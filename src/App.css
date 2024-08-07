@@ -1,0 +1,28 @@
+
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.app-container {
+    max-width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.navbar-component {
+    width: 30%;
+    position: fixed;
+    height: 100%;
+    top: 0;
+}
+
+.all-components {
+    width: 70%;
+    margin-left: 38%;
+}
+
+
