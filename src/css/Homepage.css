@@ -1,0 +1,156 @@
+.homepage-container {
+  width: 100%;
+    border: 1px solid #dcdcdc;
+    border-top: none;
+}
+.menu{
+  display: none;
+}
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.filter-container select {
+  padding: 8px 12px;
+  border: 1px solid #0c4dde;
+  color: #0c4dde;
+  outline: none;
+  border-radius: 4px;
+  width: 20%;
+  background-color: #fff;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.filter-container select:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.filter-container .search-btn {
+  width: 20%;
+  background-color: #0c4dde;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-container .search-btn:hover {
+  background-color: #0056b3;
+}
+
+.filter-container select option {
+  outline: none;
+}
+.advertisement-lists{
+  /* width: 100%; */
+}
+.advertisement {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #aaf674;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+}
+.advertisement:hover.advertisement{
+  background-color: #f9f9f9;
+}
+.advertisement-loqo {
+  width: 36px;
+  height: 36px;
+  background-color: #fb9762;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 22px;
+  color: white;
+  margin-right: 10px;
+}
+.advertisement-position-company {
+  width: 72%;
+}
+.advertisement-position-company p {
+  /* width: 20%; */
+  font-size: 16px;
+  font-weight: 600;
+}
+.advertisement-position-company span {
+  font-size: 14px;
+  color: #00000080;
+}
+.advertisement .price{
+  width: 20%;
+}
+
+@media (max-width: 768px) {
+  .advertisement p{
+    font-size: 14px;
+  }
+  .advertisement span{
+    font-size: 13px;
+  }
+  .advertisement-position-company {
+    width: 68%;
+  }
+  .menu{
+    display: block;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .logo-img{
+    width: 20%;
+    height: 20%;
+  }
+  .logo-img img{
+    width: 100%;
+    height: 100%;
+  }
+  .menu-icon{
+    font-size: 22px;
+  }
+  .homepage-container{
+    box-shadow: none;
+    border: none;
+  }
+  .filter-container{
+    border: none;
+  }
+  .filter-container select{
+    font-size: 12px;
+  }
+  .filter-container .search-btn{
+    font-size: 12px;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+  .filter-container select{
+    width: 100%;
+    margin-bottom: 4px;
+  }
+  .filter-container{
+    flex-direction: column;
+  }
+  .filter-container .search-btn{
+    width: 100%;
+  }
+}
