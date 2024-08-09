@@ -86,9 +86,9 @@
   width: 72%;
 }
 .advertisement-position-company p {
-  /* width: 20%; */
   font-size: 16px;
   font-weight: 600;
+  margin-bottom: 0px;
 }
 .advertisement-position-company span {
   font-size: 14px;
