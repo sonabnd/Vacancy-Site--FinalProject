@@ -1,8 +1,9 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
 .app-container {
     max-width: 84%;
     margin: auto;
@@ -22,29 +23,3 @@
     width: 74%;
     margin-left: 34%;
 }
-@media (max-width: 768px) {
-    .all-components{
-        width: 100%;
-        margin-left: 0;
-    }
-    .app-container{
-        max-width: 96%;
-    }
-    .navbar-component{
-        display: none;
-    }
-}
-
-@media (max-width: 480px) {
-    .all-components{
-        width: 100%;
-        margin-left: 0;
-    }
-    .app-container{
-        max-width: 96%;
-    }
-    .navbar-component{
-        display: none;
-    }
-}
-

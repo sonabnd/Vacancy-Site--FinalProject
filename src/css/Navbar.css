@@ -1,0 +1,63 @@
+.logo {
+    width: 130px;
+    height: 45px;
+}
+.icon-container {
+    width: 18%;
+    display: flex;
+    justify-content: space-between;
+    background-color: gray;
+    align-items: center;
+    padding: 3px 2px;
+    cursor: pointer;
+}
+.sun {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10%;
+}
+.moon {
+    background-color: gray;
+    color: white;
+    padding: 8px;
+}
+@media only screen and (max-width: 1200px) {
+    .icon-container {
+        width: 10%;
+    }
+    .sun, .moon {
+        padding: 14px;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .icon-container {
+        width: 11%;
+    }
+    .sun, .moon {
+        padding: 12px;
+    }
+}
+@media (max-width: 768px) {
+    .icon-container {
+        width: 10%;
+    }
+    .sun, .moon {
+        padding: 8px;
+    }
+}
+@media (max-width: 540px) {
+    .icon-container {
+        width: 12%;
+    }
+    .sun, .moon {
+        padding: 4px;
+    }
+}
+@media (max-width: 480px) {
+    .icon-container {
+        width: 15%;
+    }
+    .sun, .moon {
+        padding: 3px;
+    }
+}
