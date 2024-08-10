@@ -1,5 +1,5 @@
 
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import axios from "axios";
 
 
@@ -54,90 +54,90 @@ function App() {
 
   return (
     <>
-      <div className={isDesign ? "open" : ''}>
-          <button onClick={handleShowLogin}>
-            Elan yerlesdir
-          </button>
+      <div className={isDesign ? "open" : 'close'}>
+        <button onClick={handleShowLogin}>
+          Elan yerlesdir
+        </button>
         <div className="modal-content">
-            {
-              login && (
-                <div className="login">
-                  <div className="login-main">
-                    <div onClick={handleCloseLogin} className="login-close">
-                      <IoClose />
+          {
+            login && (
+              <div className="login">
+                <div className="login-main">
+                  <div onClick={handleCloseLogin} className="login-close">
+                    <IoClose />
+                  </div>
+                  <div className="login-icon">
+                    <RiLoginCircleLine />
+                  </div>
+                  <div style={{ marginBottom: "10px" }}>
+                    <h3>Hesabınıza daxil olun</h3>
+                  </div>
+                  <div style={{ marginBottom: "10px" }}>
+                    <p>Xoş gəlmişsiniz!</p>
+                  </div>
+                  <div className="login-inputs">
+                    <div className="login-input">
+                      <label htmlFor="">E-poçt</label>
+                      <input type="text" placeholder="E-poçtunuzu yaradın" />
                     </div>
-                    <div className="login-icon">
-                      <RiLoginCircleLine />
-                    </div>
-                    <div style={{ marginBottom: "10px" }}>
-                      <h3>Hesabınıza daxil olun</h3>
-                    </div>
-                    <div style={{ marginBottom: "10px" }}>
-                      <p>Xoş gəlmişsiniz!</p>
-                    </div>
-                    <div className="login-inputs">
-                      <div className="login-input">
-                        <label htmlFor="">E-poçt</label>
-                        <input type="text" placeholder="E-poçtunuzu yaradın" />
-                      </div>
-                      <div className="login-input">
-                        <label htmlFor="">Şifrə</label>
-                        <input type="password" placeholder="Şifrə" />
-                      </div>
-                    </div>
-                    <div className="login-button">
-                      <button>Daxil ol</button>
-                    </div>
-                    <div className="qeydiyyat-button">
-                      <button onClick={handleShowRegister}>Qeydiyyatdan keç</button>
+                    <div className="login-input">
+                      <label htmlFor="">Şifrə</label>
+                      <input type="password" placeholder="Şifrə" />
                     </div>
                   </div>
-                </div>
-              )
-            }
-            {
-              register && (
-                <div className="register">
-                  <div className="register-main">
-                    <div onClick={handleCloseRegister} className="register-close">
-                      <IoClose />
-                    </div>
-                    <div className="register-head">
-                      <div className="register-icon">
-                        <img loading="lazy" src="https://www.hellojob.az/content/assets/images/login/flag.svg" alt="" />
-                      </div>
-                      <div className="register-head-text">
-                        <h3>Qeydiyyatdan keçin</h3>
-                      </div>
-                    </div>
-                    <div className="regisetr-inputs">
-                      <div className="register-input">
-                        <label htmlFor="">Adınız*</label>
-                        <input type="text" placeholder="Adinizi daxil edin" />
-                      </div>
-                      <div className="register-input">
-                        <label htmlFor="">E-poçt*</label>
-                        <input type="text" placeholder="E-poçtunuzu yazın" />
-                      </div>
-                      <div className="register-input">
-                        <label htmlFor="">Şifre*</label>
-                        <input type="password" />
-                      </div>
-                      <div className="register-input">
-                        <label htmlFor="">Şifrə təkrarı*</label>
-                        <input type="password" />
-                      </div>
-                    </div>
-                    <div className="register-button">
-                      <button>Qeydiyyat ol</button>
-                    </div>
-                    <div className="register-button-giris">
-                      <button onClick={handleShowLogin}>Giriş sehifəsi</button>
-                    </div>
+                  <div className="login-button">
+                    <button>Daxil ol</button>
+                  </div>
+                  <div className="qeydiyyat-button">
+                    <button onClick={handleShowRegister}>Qeydiyyatdan keç</button>
                   </div>
                 </div>
-              )
-            }
+              </div>
+            )
+          }
+          {
+            register && (
+              <div className="register">
+                <div className="register-main">
+                  <div onClick={handleCloseRegister} className="register-close">
+                    <IoClose />
+                  </div>
+                  <div className="register-head">
+                    <div className="register-icon">
+                      <img loading="lazy" src="https://www.hellojob.az/content/assets/images/login/flag.svg" alt="" />
+                    </div>
+                    <div className="register-head-text">
+                      <h3>Qeydiyyatdan keçin</h3>
+                    </div>
+                  </div>
+                  <div className="regisetr-inputs">
+                    <div className="register-input">
+                      <label htmlFor="">Adınız*</label>
+                      <input type="text" placeholder="Adinizi daxil edin" />
+                    </div>
+                    <div className="register-input">
+                      <label htmlFor="">E-poçt*</label>
+                      <input type="text" placeholder="E-poçtunuzu yazın" />
+                    </div>
+                    <div className="register-input">
+                      <label htmlFor="">Şifre*</label>
+                      <input type="password" />
+                    </div>
+                    <div className="register-input">
+                      <label htmlFor="">Şifrə təkrarı*</label>
+                      <input type="password" />
+                    </div>
+                  </div>
+                  <div className="register-button">
+                    <button>Qeydiyyat ol</button>
+                  </div>
+                  <div className="register-button-giris">
+                    <button onClick={handleShowLogin}>Giriş sehifəsi</button>
+                  </div>
+                </div>
+              </div>
+            )
+          }
         </div>
         <div className="app-container">
           <Context.Provider value={data}>
