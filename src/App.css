@@ -9,7 +9,6 @@
     margin: auto;
     display: flex;
     justify-content: space-between;
-    position: relative;
     z-index: -1;
 }
 
@@ -33,14 +32,22 @@
 /* sign in/ sign up */
 
 .open {
-    background: rgba(7, 7, 7, 0.28);
+    background-color: rgba(7, 7, 7, 0.28);
     z-index: 1;
+    transition: 0.3s linear;
+}
+.open .app-container{
+    position: relative;
+}
+.close{
+    background-color: none;
+    z-index: -1;
     transition: 0.3s linear;
 }
 
 .modal-content {
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    align-items: center;
 }
 
 .login {
