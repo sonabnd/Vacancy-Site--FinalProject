@@ -11,7 +11,6 @@ import About from './pages/About';
 import Apply from './pages/Apply';
 import AddPost from './pages/AddPost';
 
-
 function App() {
   const data = {}; 
 

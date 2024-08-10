@@ -2,7 +2,6 @@ import React from "react";
 import "../css/SearchFilter.css";
 import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
-
 const SearchFilter = () => {
   return (
     <div className="search-filter-container">
@@ -22,5 +21,4 @@ const SearchFilter = () => {
     </div>
   );
 };
-
 export default SearchFilter;

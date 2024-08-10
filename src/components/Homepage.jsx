@@ -2,7 +2,7 @@ import React from "react";
 import SearchFilter from "./SearchFilter";
 import "../css/Homepage.css";
 import { IoIosMenu } from "react-icons/io";
-
+import { FaBars } from "react-icons/fa";
 const Homepage = () => {
   return (
     <>
@@ -169,5 +169,4 @@ const Homepage = () => {
     </>
   );
 };
-
 export default Homepage;
