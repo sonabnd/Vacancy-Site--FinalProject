@@ -58,7 +58,7 @@ function App() {
         <button onClick={handleShowLogin}>
           Elan yerlesdir
         </button>
-        <div className="modal-content">
+        <div className="modal-content-login">
           {
             login && (
               <div className="login">
