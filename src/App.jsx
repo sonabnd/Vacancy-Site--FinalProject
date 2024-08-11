@@ -167,7 +167,7 @@ function App() {
             <div className="all-components">
               <Routes>
                 <Route path='/' element={<Homepage />} />
-                <Route path='/details/:id' element={<Details />} />
+                <Route path='/details' element={<Details />} />
                 <Route path='/service' element={<Service />} />
                 <Route path='/contact' element={<Contact />} />
                 <Route path='/about' element={<About />} />
