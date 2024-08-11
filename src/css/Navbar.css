@@ -1,7 +1,8 @@
 .sidebar{
     /* display: flex;
     flex-direction: column; */
-}.header{
+}
+.header{
     display: flex;
     flex-direction: column;
 }
@@ -65,12 +66,13 @@
     bottom: 150px;
     left: 30px;
     display: flex;
-    justify-content: space-between;
+    gap: 5px;
     background-color: gray;
     align-items: center;
     padding: 2px 1px;
     cursor: pointer;
-    max-width: 100%;
+    /* max-width: 100%; */
+    border-radius: 10%;
 }
 .sun {
     background-color: white;
@@ -80,8 +82,43 @@
 }
 .moon {
     color: white;
-    padding: 8px;
+    margin: auto;
 }
+
+
+
+
+
+/* Apply dark mode styles to the entire page */
+body.dark-mode {
+  background-color: #333; /* Dark background */
+  color: #fff; /* Light text */
+}
+
+/* Additional dark mode styles for Navbar */
+.sidebar.dark-mode {
+  background-color: #333; /* Dark background for sidebar */
+  color: #fff; /* Light text */
+}
+
+.sidebar.dark-mode .header__menu li,
+.sidebar.dark-mode .footer_menu li {
+  color: #fff; /* Light text */
+}
+
+.sidebar.dark-mode .icon-container .sun {
+  display: none;
+}
+
+.sidebar.dark-mode .icon-container .moon {
+  display: block;
+}
+
+/* Optional: Adjust other elements for dark mode */
+
+  
+
+
 .footer {
     display: flex;
     justify-content: space-between;

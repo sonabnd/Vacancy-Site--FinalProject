@@ -258,6 +258,30 @@
     margin-top: 10px;
 }
 
+@media (max-width: 1098px) {
+    .all-components {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .app-container {
+        max-width: 96%;
+    }
+
+    .navbar-component {
+        display: none;
+    }
+
+    .login {
+        margin-top: 3px;
+    }
+
+    .register {
+        margin-top: 3px;
+    }
+}
+
+
 @media (max-width: 768px) {
     .all-components {
         width: 100%;
