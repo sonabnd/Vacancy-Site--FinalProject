@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Context from './context/context';
 import Homepage from './components/Homepage';
@@ -12,12 +12,15 @@ import Apply from './pages/Apply';
 import AddPost from './pages/AddPost';
 import { IoClose } from 'react-icons/io5';
 import { RiLoginCircleLine } from 'react-icons/ri';
+import axios from 'axios';
 
 function App() {
   // login/register
   const [login, setLogin] = useState(false)
   const [register, setRegister] = useState(false)
   const [isDesign, setDesign] = useState(false)
+  const [postCard, setPostCard] = useState([])
+  const [searchInput, setSearchInput] = useState('')
 
   const handleShowLogin = () => {
     setLogin(true)
@@ -48,8 +51,29 @@ function App() {
     register,
     setRegister,
     isDesign,
-    setDesign
+    setDesign,
+    postCard,
+    setPostCard,
+    searchInput,
+    setSearchInput
   };
+
+  const getData= async()=>{
+    try{
+      const response=await axios.get("http://localhost:3000/advertisement");
+      const posts=response.data;
+      setPostCard(posts)
+      console.log(posts);
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
+  useEffect(()=>{
+    getData()
+  },[])
+
 
   return (
     <>
