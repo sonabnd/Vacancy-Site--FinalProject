@@ -21,7 +21,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 10px 20px 10px 20px;
-  background-color: #f9f7f7;
+  /* background-color: #f9f7f7; */
 }
 .user-info {
   display: flex;
