@@ -1,20 +1,14 @@
-body,
-h1,
-h2,
-p,
-button {
+body,h1,h2,p,button{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   color: #333;
   line-height: 1.6;
 }
-
 .postAd-container {
   max-width: 900px;
   margin: 5px auto;
@@ -23,49 +17,40 @@ body {
   background: #fff;
   border-radius: 8px;
 }
-
 .header {
   display: flex;
   justify-content: space-between;
   padding: 10px 20px 10px 20px;
   background-color: #f9f7f7;
 }
-
 .user-info {
   display: flex;
   width: 100%;
   align-items: center;
 }
-
 .welcome-text {
   margin-right: auto;
   font-size: 22px;
 }
-
 .user-details {
   display: flex;
   align-items: center;
 }
-
 .user-icon {
   margin-right: 10px;
 }
-
 .user-name {
   margin-right: 15px;
 }
-
 .dropdown {
   position: relative;
 }
-
 .dropdown-button {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 16px;
 }
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -75,11 +60,9 @@ body {
   border: 1px solid #ddd;
   padding: 1px 4px;
 }
-
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
 .dropdown-content a {
   display: block;
   padding: 2px 12px;
@@ -87,11 +70,9 @@ body {
   color: black;
   font-size: 14px;
 }
-
 .dropdown-content a:hover {
   background-color: #f4f4f4;
 }
-
 .ads-header {
   display: flex;
   justify-content: space-between;
@@ -99,20 +80,17 @@ body {
   margin-top: 15px;
   padding-left: 8px;
 }
-
 .ads-header h2 {
   font-size: 20px;
   color: #333;
   margin-top: 10px;
 }
-
 .vacancies {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-top: 10px;
 }
-
 .vacancies span {
   font-size: 16px;
   color: #666;
@@ -132,11 +110,9 @@ body {
   transition: background-color 0.3s ease;
   cursor: pointer;
 }
-
 .post-ad-button:hover {
   background-color: #0056b3;
 }
-
 .ad-card {
   display: flex;
   align-items: center;
@@ -146,7 +122,6 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-top: 10px;
 }
-
 .company-logo {
   width: 36px;
   height: 36px;
@@ -160,28 +135,23 @@ body {
   font-weight: bold;
   margin-right: 15px;
 }
-
 .ad-details {
   flex: 1;
 }
-
 .job-position {
   font-size: 18px;
   font-weight: bold;
   color: #333;
   margin-bottom: 5px;
 }
-
 .company-name {
   font-size: 16px;
   color: #666;
 }
-
 .ad-actions {
   display: flex;
   gap: 10px;
 }
-
 .edit-button,
 .delete-button {
   padding: 8px 15px;
@@ -192,26 +162,21 @@ body {
   font-size: 14px;
   transition: background-color 0.3s ease;
 }
-
 .edit-button {
   background-color: #28a745;
 }
-
 .edit-button:hover {
   background-color: #218838;
 }
-
 .delete-button {
   background-color: #dc3545;
 }
-
 .delete-button:hover {
   background-color: #c82333;
 }
 .post-exit {
   display: none;
 }
-
 @media (max-width: 768px) {
   .user-info {
     font-size: 16px;
