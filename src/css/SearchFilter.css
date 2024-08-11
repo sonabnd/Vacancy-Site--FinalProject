@@ -22,11 +22,11 @@
 }
 .search .search-icon {
   font-size: 20px;
-  padding-top: 4px;
   margin-right: 25px;
+  margin-top: -3px;
 }
 .search .filter-icon {
-  font-size: 10px;
+  font-size: 14px;
   color: #0c4dde;
   margin-left: 16px;
   margin-right: 6px;
@@ -36,13 +36,14 @@
   font-size: 14px;
 }
 .search .search-filter {
-  padding-top: 4px;
+  /* padding-top: 4px; */
+
 }
 .search-label {
   border: 1px solid #dee2e6;
 }
-input,
-input::placeholder {
+.search input,
+.search input::placeholder {
   font: 15px/3 sans-serif;
   color: #0c4dde;
 }
@@ -58,8 +59,8 @@ input::placeholder {
   .search input {
     width: 98%;
   }
-  input,
-  input::placeholder {
+  .search input,
+  .search input::placeholder {
     font: 13px/3 sans-serif;
     color: #0c4dde;
   }

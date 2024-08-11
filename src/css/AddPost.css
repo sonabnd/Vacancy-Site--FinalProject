@@ -1,0 +1,243 @@
+body,h1,h2,p,button{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+.postAd-container {
+  max-width: 900px;
+  margin: 5px auto;
+  padding: 20px;
+  padding-top: 0px;
+  background: #fff;
+  border-radius: 8px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px 10px 20px;
+  background-color: #f9f7f7;
+}
+.user-info {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.welcome-text {
+  margin-right: auto;
+  font-size: 22px;
+}
+.user-details {
+  display: flex;
+  align-items: center;
+}
+.user-icon {
+  margin-right: 10px;
+}
+.user-name {
+  margin-right: 15px;
+}
+.dropdown {
+  position: relative;
+}
+.dropdown-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: -10px;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 1px 4px;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content a {
+  display: block;
+  padding: 2px 12px;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+}
+.dropdown-content a:hover {
+  background-color: #f4f4f4;
+}
+.ads-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding-left: 8px;
+}
+.ads-header h2 {
+  font-size: 20px;
+  color: #333;
+  margin-top: 10px;
+}
+.vacancies {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.vacancies span {
+  font-size: 16px;
+  color: #666;
+}
+.vacancy-count {
+  color: #007bff;
+  margin-left: 8px;
+}
+.post-ad-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+.post-ad-button:hover {
+  background-color: #0056b3;
+}
+.ad-card {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+.company-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: burlywood;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 15px;
+}
+.ad-details {
+  flex: 1;
+}
+.job-position {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+.company-name {
+  font-size: 16px;
+  color: #666;
+}
+.ad-actions {
+  display: flex;
+  gap: 10px;
+}
+.edit-button,
+.delete-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+.edit-button {
+  background-color: #28a745;
+}
+.edit-button:hover {
+  background-color: #218838;
+}
+.delete-button {
+  background-color: #dc3545;
+}
+.delete-button:hover {
+  background-color: #c82333;
+}
+.post-exit {
+  display: none;
+}
+@media (max-width: 768px) {
+  .user-info {
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .welcome-text {
+    display: none;
+  }
+  .welcome-text {
+    font-size: 18px;
+  }
+  .ads-header h2,
+  button {
+    font-size: 16px;
+  }
+  .ad-details p {
+    font-size: 16px;
+  }
+  .post-exit {
+    display: block;
+    top: 10px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.727);
+    transition: background-color 0.3s, transform 0.3s;
+    border-color: rgba(0, 0, 0, 0.095);
+  }
+
+  .post-exit:hover {
+    transform: scale(1.05);
+  }
+
+  .post-exit:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+  }
+}
+
+@media (max-width: 480px) {
+  .user-info {
+    font-size: 14px;
+  }
+  .ads-header h2,
+  button {
+    font-size: 14px;
+  }
+  .ad-details p {
+    font-size: 14px;
+  }
+  .ad-actions {
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .post-ad-button {
+    font-size: 14px;
+  }
+}
