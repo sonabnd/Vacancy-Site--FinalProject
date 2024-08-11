@@ -1,6 +1,8 @@
 .sidebar {
-    /* display: flex;
-    flex-direction: column; */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
 }
 
 .header {
@@ -14,20 +16,17 @@
     gap: 50px;
 }
 
-.header_logo img {
-    width: auto;
-    height: auto;
-    margin-top: 30px;
-    max-width: 100%;
+.sidebar-header{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
 }
 
-#lang {
-    position: absolute;
-    top: 35px;
-    left: 150px;
-    font-size: 15px;
-    cursor: pointer;
-    z-index: 1000;
+.header_logo {
+    width: 50%;
 }
 
 .header__menu {
@@ -39,20 +38,28 @@
     gap: 10px;
 }
 
-.header__menu li {
-    color: black;
+.header__menu__item1{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
     margin-top: 20px;
+    padding: 3px 10px;
+}
+
+.header__menu li {
     padding: 20px;
     text-decoration: none;
+    width: 100%;
 }
 
 .select-lang {
-    width: 100px;
+    width: 80px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #fff;
-    font-size: 16px;
+    font-size: 13px;
     color: #333;
     outline: none;
 }
@@ -68,15 +75,14 @@
     box-shadow: 0 0 0 2px rgba(38, 143, 255, 0.2);
 }
 
-.header__menu__item1.active {
-    background-color: #04AA6D;
-    color: white;
-}
 
-.header__menu__item1:hover:not(.active) {
+
+.header__menu__item1:hover{
     background-color: blue;
     color: white;
     cursor: pointer;
+    transition: background-color 1s ease;
+    border-radius: 10px;
 }
 
 .header__menu__item {
@@ -84,9 +90,9 @@
 }
 
 .icon-container {
-    width: 16%;
+    width: 20%;
     position: absolute;
-    bottom: 150px;
+    bottom: 100px;
     left: 30px;
     display: flex;
     gap: 5px;
@@ -98,15 +104,17 @@
     border-radius: 10%;
 }
 
+
 .sun {
     background-color: white;
     color: gray;
-    padding: 9px;
+    padding: 5px 10px;
     border-radius: 10%;
 }
 
 .moon {
     color: white;
+    padding: 5px 10px;
     margin: auto;
 }
 
@@ -152,9 +160,6 @@ body.dark-mode {
 .footer {
     display: flex;
     justify-content: space-between;
-    gap: 30px;
-    cursor: pointer;
-    position: absolute;
     bottom: 90px;
     left: 0px;
     flex-wrap: wrap;
@@ -204,6 +209,11 @@ body.dark-mode {
 .footer_menu_item2:hover::after,
 .footer_menu_item3:hover::after {
     animation: underlineDelay 0.5s ease 0.1s forwards;
+}
+
+.footer p{
+    color: rgba(0, 0, 0, .3);
+    padding-left: 25px;
 }
 
 @keyframes underlineDelay {

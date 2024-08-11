@@ -8,7 +8,7 @@ const Details = () => {
       <div className="container-fluid p-4">
         <header className="menu justify-content-between align-items-center mb-4">
           <div className="logo-img">
-            <img src="src/img/logo.c9da023 (1).png" alt="logo" />
+            <img src='/src/img/logo.c9da023.svg' alt="logo" />
           </div>
           <button className="menu-icon btn btn-outline-primary">
             <FaBars size="1.5em" />
