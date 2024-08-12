@@ -1,6 +1,15 @@
+
+
+import React, { useState, useEffect } from 'react';
+import { IoMdSunny } from "react-icons/io";
+import { FaMoon } from "react-icons/fa";
+import { IoClose } from 'react-icons/io5';
+import { RiLoginCircleLine } from 'react-icons/ri';
+import { useNavigate } from 'react-router-dom';
 import React, { useContext } from 'react';
 import { IoMdSunny } from "react-icons/io";
 import { FaMoon } from "react-icons/fa";
+
 import '../css/Navbar.css';
 import '../css/NavbarResponsive.css';
 import Context from '../context/context';
@@ -8,7 +17,14 @@ import { IoBagRemoveOutline } from 'react-icons/io5';
 import { MdPostAdd } from 'react-icons/md';
 
 const Navbar = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [register, setRegister] = useState(false);
+  const [isDesign, setDesign] = useState(false);
+  const navigate = useNavigate();
+
   const { setLogin, setRegister, setDesign } = useContext(Context)
+
 
 
 
@@ -18,6 +34,18 @@ const Navbar = () => {
     setDesign(true);
   };
 
+
+  const goToAboutPage = () => {
+    navigate('/about');  // Navigate to the About page
+  };
+
+  const goToServicePage = () => {
+    navigate('/service');  // Navigate to the Service page
+  };
+
+  const goToContactPage = () => {
+    navigate('/contact');  // Navigate to the Contact page
+  };
 
   return (
     <div className="sidebar">
@@ -55,9 +83,9 @@ const Navbar = () => {
       </header>
       <footer className="footer">
         <ul className="footer_menu">
-          <li className="footer_menu_item1">Haqqımızda</li>
-          <li className="footer_menu_item2">Xidmətlər</li>
-          <li className="footer_menu_item3">Əlaqə</li>
+          <li className="footer_menu_item1" onClick={goToAboutPage}>Haqqımızda</li>
+          <li className="footer_menu_item2" onClick={goToServicePage}>Xidmətlər</li>
+          <li className="footer_menu_item3" onClick={goToContactPage}>Əlaqə</li>
         </ul>
         <p>© JobSearch.az 2006—2024</p>
       </footer>

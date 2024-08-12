@@ -1,0 +1,43 @@
+.all-section{
+    padding: 2.8rem 3.2rem;
+}
+.all-section h2{
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 500;
+    font-family: 'BrutalType,sans-serif';
+}
+.about_banner{
+    height: 19rem;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+    padding-left: 2.4rem;
+    margin-bottom: 2.8rem;
+}
+.about_text{
+    max-width: 26.8rem;
+    font-weight: 500;
+}
+.about_text h1{
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    color: #0c4dde;
+    margin-bottom: .4rem;
+    font-weight: 600;
+}
+.about_text p{
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    margin-bottom: 0 !important;
+}
+.about_paragraphs{
+    max-width: 1000000px;
+}
+.about_paragraphs p{
+    margin: 1.2rem;
+}
