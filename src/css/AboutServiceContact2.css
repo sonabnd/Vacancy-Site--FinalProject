@@ -1,0 +1,29 @@
+.all_services{
+    padding: 20px 15px;
+}
+.all_services-1{
+    height: 100vh;
+    border-right: 1px solid #eaeaea;
+    display: flex;
+    flex-direction: column;
+    /* padding: 1.2rem 1.6rem;  
+    position: relative; */
+}
+.all-services-2{
+    padding: 4rem 3.2rem;
+    height: 100%;
+    margin: auto;
+}
+.services-list{
+    list-style: none;
+    margin-bottom: 2.4rem;
+}
+.services-item{
+    border: 1px solid #e2e2e2;
+    border-radius: 4px;
+    margin-bottom: .8rem;
+    padding: 1.2rem 1.6rem;
+}
+.services-item h2{
+    font-size: 1.5rem;
+}
