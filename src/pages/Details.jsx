@@ -8,14 +8,13 @@ const Details = () => {
       <div className="container-fluid p-4">
         <header className="menu justify-content-between align-items-center mb-4">
           <div className="logo-img">
-            <img src="src/img/logo.c9da023 (1).png" alt="logo" />
+            <img src='/src/img/logo.c9da023.svg' alt="logo" />
           </div>
           <button className="menu-icon btn btn-outline-primary">
             <FaBars size="1.5em" />
           </button>
         </header>
-
-        <div className="container bg-white p-4 rounded">
+        <div >
           <section className="job-header d-flex flex-column flex-md-row align-items-center border border-dark rounded p-4 mb-5">
             <div className="logo mb-3 mb-md-0 me-md-4">
               <img

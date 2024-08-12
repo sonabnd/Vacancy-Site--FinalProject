@@ -22,7 +22,7 @@ const Apply = () => {
     }
   }, []);
 
-  
+
   const phoneNumberRegex = /^\+994\(\d{2}\)\d{3}-\d{2}-\d{2}$/;
 
   const handleSubmit = (event) => {
@@ -38,23 +38,23 @@ const Apply = () => {
 
     setErrors(newErrors);
 
-   
+
     if (!Object.values(newErrors).includes(true)) {
       alert('Form submitted!');
-      
+
     }
   };
 
   return (
     <>
-        <header className="menu justify-content-between align-items-center mb-4">
-          <div className="logo-img">
-            <img src="src/img/logo.c9da023 (1).png" alt="logo" />
-          </div>
-          <button className="menu-icon btn btn-outline-primary">
-            <FaBars size="1.5em" />
-          </button>
-        </header>
+      <header className="menu justify-content-between align-items-center mb-4">
+        <div className="logo-img">
+          <img src='/src/img/logo.c9da023.svg' alt="logo" />
+        </div>
+        <button className="menu-icon btn btn-outline-primary">
+          <FaBars size="1.5em" />
+        </button>
+      </header>
       <div className="container mt-5">
         <div>
           <div className="d-flex align-items-center mb-4">
@@ -113,7 +113,7 @@ const Apply = () => {
                   id="firstName"
                   name="firstName"
                   className={`form-control border-${errors.firstName ? 'danger' : 'secondary'} bg-light`}
-                  style={{ fontSize: '1.1rem', padding: '0.75rem' }} 
+                  style={{ fontSize: '1.1rem', padding: '0.75rem' }}
                 />
                 {errors.firstName && <div className="text-danger mt-1">Məcburi xana!</div>}
               </div>
@@ -127,7 +127,7 @@ const Apply = () => {
                   id="lastName"
                   name="lastName"
                   className={`form-control border-${errors.lastName ? 'danger' : 'secondary'} bg-light`}
-                  style={{ fontSize: '1.1rem', padding: '0.75rem' }} 
+                  style={{ fontSize: '1.1rem', padding: '0.75rem' }}
                 />
                 {errors.lastName && <div className="text-danger mt-1">Məcburi xana!</div>}
               </div>
@@ -144,7 +144,7 @@ const Apply = () => {
                   id="email"
                   name="email"
                   className={`form-control border-${errors.email ? 'danger' : 'secondary'} bg-light`}
-                  style={{ fontSize: '1.1rem', padding: '0.75rem' }} 
+                  style={{ fontSize: '1.1rem', padding: '0.75rem' }}
                 />
                 {errors.email && <div className="text-danger mt-1">Məcburi xana!</div>}
               </div>
@@ -160,7 +160,7 @@ const Apply = () => {
                   ref={phoneInputRef}
                   className={`form-control border-${errors.phone ? 'danger' : 'secondary'} bg-light`}
                   placeholder="+994(00)000-00-00"
-                  style={{ fontSize: '1.1rem', padding: '0.75rem' }} 
+                  style={{ fontSize: '1.1rem', padding: '0.75rem' }}
                 />
                 {errors.phone && <div className="text-danger mt-1">Məcburi xana!</div>}
               </div>
@@ -170,14 +170,14 @@ const Apply = () => {
               <button
                 type="button"
                 className="btn btn-outline-danger"
-                style={{ fontSize: '1.1rem', padding: '0.75rem 1.5rem' }} 
+                style={{ fontSize: '1.1rem', padding: '0.75rem 1.5rem' }}
               >
                 Geri
               </button>
               <button
                 type="submit"
                 className="btn btn-primary"
-                style={{ fontSize: '1.1rem', padding: '0.75rem 1.5rem' }} 
+                style={{ fontSize: '1.1rem', padding: '0.75rem 1.5rem' }}
               >
                 Göndər
               </button>

@@ -1,14 +1,11 @@
 .homepage-container {
   width: 100%;
-  border: 1px solid #dcdcdc;
-  border-top: none;
-  align-self: start;
+    border: 1px solid #dcdcdc;
+    border-top: none;
 }
-
-.menu {
+.menu{
   display: none;
 }
-
 .filter-container {
   display: flex;
   justify-content: space-between;
@@ -56,11 +53,9 @@
 .filter-container select option {
   outline: none;
 }
-
-.advertisement-lists {
+.advertisement-lists{
   /* width: 100%; */
 }
-
 .advertisement {
   display: flex;
   justify-content: space-between;
@@ -71,11 +66,9 @@
   border-right: none;
   cursor: pointer;
 }
-
-.advertisement:hover.advertisement {
+.advertisement:hover.advertisement{
   background-color: #f9f9f9;
 }
-
 .advertisement-loqo {
   width: 36px;
   height: 36px;
@@ -89,77 +82,67 @@
   color: white;
   margin-right: 10px;
 }
-
 .advertisement-position-company {
   width: 72%;
 }
-
-.advertisement-position-company p {
+.advertisement-position-company .position-name {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 0px;
 }
-
+.advertisement-position-company .company-name {
+  margin-bottom: 0px;
+}
 .advertisement-position-company span {
   font-size: 14px;
   color: #00000080;
 }
-
-.advertisement .price {
+.advertisement-position-company .deadline {
+  font-weight: 600;
+  margin-left: 6px;
+}
+.advertisement .price{
   width: 20%;
 }
 
-
-
-
 @media (max-width: 768px) {
-  .advertisement p {
+  .advertisement p{
     font-size: 14px;
   }
-
-  .advertisement span {
+  .advertisement span{
     font-size: 13px;
   }
-
   .advertisement-position-company {
     width: 68%;
   }
-
-  .menu {
+  .menu{
     display: block;
     padding: 12px;
     display: flex;
     justify-content: space-between;
   }
-
-  .logo-img {
+  .logo-img{
     width: 20%;
     height: 20%;
   }
-
-  .logo-img img {
+  .logo-img img{
     width: 100%;
     height: 100%;
   }
-
-  .menu-icon {
+  .menu-icon{
     font-size: 22px;
   }
-
-  .homepage-container {
+  .homepage-container{
     box-shadow: none;
     border: none;
   }
-
-  .filter-container {
+  .filter-container{
     border: none;
   }
-
-  .filter-container select {
+  .filter-container select{
     font-size: 12px;
   }
-
-  .filter-container .search-btn {
+  .filter-container .search-btn{
     font-size: 12px;
   }
 
@@ -167,16 +150,14 @@
 
 
 @media (max-width: 480px) {
-  .filter-container select {
+  .filter-container select{
     width: 100%;
     margin-bottom: 4px;
   }
-
-  .filter-container {
+  .filter-container{
     flex-direction: column;
   }
-
-  .filter-container .search-btn {
+  .filter-container .search-btn{
     width: 100%;
   }
 }
