@@ -1,15 +1,7 @@
-
-
-import React, { useState, useEffect } from 'react';
 import { IoMdSunny } from "react-icons/io";
 import { FaMoon } from "react-icons/fa";
-import { IoClose } from 'react-icons/io5';
-import { RiLoginCircleLine } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
-import React, { useContext } from 'react';
-import { IoMdSunny } from "react-icons/io";
-import { FaMoon } from "react-icons/fa";
-
+import { useContext } from 'react';
 import '../css/Navbar.css';
 import '../css/NavbarResponsive.css';
 import Context from '../context/context';
@@ -17,15 +9,9 @@ import { IoBagRemoveOutline } from 'react-icons/io5';
 import { MdPostAdd } from 'react-icons/md';
 
 const Navbar = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [login, setLogin] = useState(false);
-  const [register, setRegister] = useState(false);
-  const [isDesign, setDesign] = useState(false);
+
   const navigate = useNavigate();
-
   const { setLogin, setRegister, setDesign } = useContext(Context)
-
-
 
 
   const handleShowLogin = () => {

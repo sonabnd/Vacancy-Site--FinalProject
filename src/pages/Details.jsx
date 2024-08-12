@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaBars, FaClock, FaEye, FaHome } from 'react-icons/fa';
 import '../css/Details.css';
 

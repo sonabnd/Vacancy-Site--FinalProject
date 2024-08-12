@@ -1,4 +1,3 @@
-import React from "react";
 import "../css/AboutServiceContact2.css";
 
 const Service = () => {

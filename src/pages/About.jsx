@@ -1,4 +1,3 @@
-import React from "react";
 import "../css/AboutServiceContact.css";
 const About = () => {
   return (

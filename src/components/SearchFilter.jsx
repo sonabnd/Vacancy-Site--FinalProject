@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../css/SearchFilter.css";
 import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
