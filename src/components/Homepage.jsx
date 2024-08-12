@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import SearchFilter from "./SearchFilter";
 import "../css/Homepage.css";
 import { IoIosMenu } from "react-icons/io";

@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Context from './context/context';
 import Homepage from './components/Homepage';
@@ -14,6 +13,7 @@ import AddPost from './pages/AddPost';
 import { IoClose } from 'react-icons/io5';
 import { RiLoginCircleLine } from 'react-icons/ri';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   // login/register

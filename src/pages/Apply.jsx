@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import IMask from 'imask';
 import { FaBars } from 'react-icons/fa';
 
