@@ -1,40 +1,24 @@
 .sidebar {
-    display: flex;
-    flex-direction: column;
     height: 100%;
-    justify-content: space-between;
-}
-
-.header {
-    display: flex;
-    flex-direction: column;
-}
-
-.header-first {
-    display: flex;
-    justify-content: space-between;
-    gap: 50px;
+    position: relative;
 }
 
 .sidebar-header{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
     justify-content: space-between;
-    padding-top: 15px;
 }
-
+.sidebar-header img{
+    width: 100%;
+}
 .header_logo {
     width: 50%;
+
 }
 
 .header__menu {
     list-style: none;
     padding: 0;
     margin: 0;
-    /* display: flex;
-    flex-direction: column; */
     gap: 10px;
 }
 
@@ -75,8 +59,6 @@
     box-shadow: 0 0 0 2px rgba(38, 143, 255, 0.2);
 }
 
-
-
 .header__menu__item1:hover{
     background-color: blue;
     color: white;
@@ -91,17 +73,13 @@
 
 .icon-container {
     width: 20%;
-    position: absolute;
-    bottom: 100px;
-    left: 30px;
     display: flex;
-    gap: 5px;
     background-color: gray;
     align-items: center;
     padding: 2px 1px;
     cursor: pointer;
-    /* max-width: 100%; */
     border-radius: 10%;
+    /* margin-top: 50px; */
 }
 
 
@@ -117,7 +95,9 @@
     padding: 5px 10px;
     margin: auto;
 }
-
+.sidebar main{
+    margin-top: 30px;
+}
 
 
 
@@ -154,30 +134,14 @@ body.dark-mode {
 
 /* Optional: Adjust other elements for dark mode */
 
-
-
-
-.footer {
-    display: flex;
-    justify-content: space-between;
-    bottom: 90px;
-    left: 0px;
-    flex-wrap: wrap;
+.footer { 
+    position: fixed;
+    bottom: 0;
 }
 
 .footer_menu {
-    list-style: none;
     display: flex;
     gap: 20px;
-}
-
-.footer_menu_item {
-    cursor: pointer;
-    position: relative;
-}
-
-.footer_menu_item li {
-    text-decoration: none;
 }
 
 .footer_menu_item1,
@@ -188,7 +152,7 @@ body.dark-mode {
     color: black;
     position: relative;
     overflow: hidden;
-}
+} */
 
 .footer_menu_item1::after,
 .footer_menu_item2::after,
@@ -205,6 +169,8 @@ body.dark-mode {
     transition: transform 0.5s ease;
 }
 
+
+
 .footer_menu_item1:hover::after,
 .footer_menu_item2:hover::after,
 .footer_menu_item3:hover::after {
@@ -213,7 +179,7 @@ body.dark-mode {
 
 .footer p{
     color: rgba(0, 0, 0, .3);
-    padding-left: 25px;
+    margin-top: 10px;
 }
 
 @keyframes underlineDelay {
@@ -221,3 +187,4 @@ body.dark-mode {
         transform: scaleX(1);
     }
 }
+

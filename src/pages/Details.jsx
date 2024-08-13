@@ -6,6 +6,7 @@ const Details = () => {
   return (
     <>
       <div className="container-fluid p-4">
+        <div >
         <div>
           <section className="job-header d-flex flex-column flex-md-row align-items-center border border-dark rounded p-4 mb-5">
             <div className="logo mb-3 mb-md-0 me-md-4">

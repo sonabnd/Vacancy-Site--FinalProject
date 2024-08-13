@@ -3,9 +3,6 @@
     border: 1px solid #dcdcdc;
     border-top: none;
 }
-.menu{
-  display: none;
-}
 .filter-container {
   display: flex;
   justify-content: space-between;
@@ -105,6 +102,8 @@
   width: 20%;
 }
 
+
+
 @media (max-width: 768px) {
   .advertisement p{
     font-size: 14px;
@@ -115,23 +114,8 @@
   .advertisement-position-company {
     width: 68%;
   }
-  .menu{
-    display: block;
-    padding: 12px;
-    display: flex;
-    justify-content: space-between;
-  }
-  .logo-img{
-    width: 20%;
-    height: 20%;
-  }
-  .logo-img img{
-    width: 100%;
-    height: 100%;
-  }
-  .menu-icon{
-    font-size: 22px;
-  }
+
+
   .homepage-container{
     box-shadow: none;
     border: none;
@@ -140,7 +124,7 @@
     border: none;
   }
   .filter-container select{
-    font-size: 12px;
+    font-size: 14px;
   }
   .filter-container .search-btn{
     font-size: 12px;
@@ -153,6 +137,7 @@
   .filter-container select{
     width: 100%;
     margin-bottom: 4px;
+    font-size: 12px;
   }
   .filter-container{
     flex-direction: column;

@@ -48,6 +48,7 @@ const Apply = () => {
 
   return (
     <>
+      <div className=" apply-container container mt-5">
       <div className="container-fluid p-4">
         <div>
           <div className="d-flex align-items-center mb-4">
