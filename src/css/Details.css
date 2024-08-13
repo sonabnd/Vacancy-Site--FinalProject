@@ -1,14 +1,3 @@
-
-@media (min-width: 768px) {
-    header.menu {
-      display: none;
-    }
-  }
-  
- 
-  @media (max-width: 767px) {
-    .navbar-component {
-      display: none;
-    }
-  }
- 
+.job-details .d-flex strong {
+  margin-left: 20px;
+}

@@ -1,14 +1,4 @@
-
-@media (min-width: 768px) {
-    header.menu {
-      display: none;
-    }
-  }
-  
-
-  @media (max-width: 767px) {
-    .navbar-component {
-      display: none;
-    }
-  }
+ .container{
+     display: block;
+ }
   

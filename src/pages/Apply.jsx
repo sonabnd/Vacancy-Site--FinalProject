@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import IMask from 'imask';
 import { FaBars } from 'react-icons/fa';
+import '../css/apply.css'
 
 const Apply = () => {
   const [errors, setErrors] = useState({
@@ -47,15 +48,7 @@ const Apply = () => {
 
   return (
     <>
-      <header className="menu justify-content-between align-items-center mb-4">
-        <div className="logo-img">
-          <img src='/src/img/logo.c9da023.svg' alt="logo" />
-        </div>
-        <button className="menu-icon btn btn-outline-primary">
-          <FaBars size="1.5em" />
-        </button>
-      </header>
-      <div className="container mt-5">
+      <div className="container-fluid p-4">
         <div>
           <div className="d-flex align-items-center mb-4">
             <img
