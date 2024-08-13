@@ -1,3 +1,4 @@
+import React from 'react';
 import { FaBars, FaClock, FaEye, FaHome } from 'react-icons/fa';
 import '../css/Details.css';
 
@@ -5,19 +6,12 @@ const Details = () => {
   return (
     <>
       <div className="container-fluid p-4">
-        {/* <header className="menu justify-content-between align-items-center mb-4">
-          <div className="logo-img">
-            <img src='/src/img/logo.c9da023.svg' alt="logo" />
-          </div>
-          <button className="menu-icon btn btn-outline-primary">
-            <FaBars size="1.5em" />
-          </button>
-        </header> */}
         <div >
+        <div>
           <section className="job-header d-flex flex-column flex-md-row align-items-center border border-dark rounded p-4 mb-5">
             <div className="logo mb-3 mb-md-0 me-md-4">
               <img
-                src="logo.png"
+                src=""
                 alt="Company Logo"
                 className="img-fluid rounded-circle"
                 style={{ width: '80px', height: '80px' }}
@@ -45,11 +39,31 @@ const Details = () => {
               <button className="btn btn-primary btn-lg">Müraciət et</button>
             </div>
           </section>
-
           <section className="main-content pt-4 pb-4">
             <div className="row g-4">
-              <article className="col-12 col-md-8">
-                <div className="description mb-4">
+              <aside className="col-md-6 mb-4">
+                <div className="job-details">
+                  <h3 className="fw-bold">Vakansiya haqqında</h3>
+                  <div className="d-flex">
+                    <p>Son tarix:</p>
+                    <strong>Sentyabr 16, 2024</strong>
+                  </div>
+                  <div className="d-flex">
+                    <p>Paylaşılıb:</p>
+                    <strong>Avqust 7, 2024</strong>
+                  </div>
+                  <div className="d-flex">
+                    <p>Vakansiya növü:</p>
+                    <strong>Tam ştat</strong>
+                  </div>
+                  <div className="d-flex">
+                    <p>Əmək haqqı:</p>
+                    <strong>1150 - 1300 AZN</strong>
+                  </div>
+                </div>
+              </aside>
+              <article className="col-12 mb-4">
+                <div className="description">
                   <h3 className="fw-bold">Təsvir</h3>
                   <p>• Şirkətin balansında olan avtonəqliyyat vasitələrinin ayda bir dəfədən az olmayaraq texniki vəziyyətinin yoxlanması və müvafiq sənədlərin tərtib edilməsi;</p>
                   <p>• TXTM-nə zəruri olan ehtiyat hissələri və ləvazimatlarının vaxtında sifariş edilməsi, onların qəbuluna və sərfiyyatına nəzarət edilməsi və müvafiq sənədləşmələrin aparılması;</p>
@@ -61,45 +75,20 @@ const Details = () => {
                   <p>• Əraziyə çıxmazdan öncə avtomobillərə texniki baxış keçirilməsinə nəzarət edilməsi və qayda pozuntuları haqqında avtoxidmət yarımbölməsinə məlumat verilməsi;</p>
                   <p>• TXTM-nin işində yaranan nöqsanlar haqqında avtoxidmət yarımbölməsinə vaxtında məlumat verilməsi;</p>
                   <p>• Sürücülərlə təyin olunmuş mövzularda aid təlimlərin keçirilməsi.</p>
-                  <br />
-                  <h4 className="fw-bold">İş şəraiti:</h4>
-                  <p>• İş qrafiki: I-VI günlər</p>
-                  <p>• Əmək haqqı: 1300 AZN Gross</p>
                 </div>
-
+              </article>
+              <article className="col-md-6 mb-4">
                 <div className="requirements">
                   <h3 className="fw-bold">Tələblər</h3>
                   <ul className="list-unstyled">
-                    <li>Avtoservis sahəsində 3 il təcrübə;</li>
-                    <li>Texniki biliklər;</li>
-                    <li>Yüksək liderlik qabiliyyəti;</li>
-                    <li>Məsuliyyətli və işgüzar;</li>
-                    <li>Avtopark sənədləri ilə işləmə bacarığı.</li>
+                    <li className='mb-2'>Avtoservis sahəsində 3 il təcrübə;</li>
+                    <li className='mb-2'>Texniki biliklər;</li>
+                    <li className='mb-2'>Yüksək liderlik qabiliyyəti;</li>
+                    <li className='mb-2'>Məsuliyyətli və işgüzar;</li>
+                    <li className='mb-2'>Avtopark sənədləri ilə işləmə bacarığı.</li>
                   </ul>
                 </div>
               </article>
-
-              <aside className="col-12 col-md-4">
-                <div className="job-details">
-                  <h3 className="fw-bold">Vakansiya haqqında</h3>
-                  <div className="d-flex justify-content-between mb-2">
-                    <p>Son tarix:</p>
-                    <strong>Sentyabr 16, 2024</strong>
-                  </div>
-                  <div className="d-flex justify-content-between mb-2">
-                    <p>Paylaşılıb:</p>
-                    <strong>Avqust 7, 2024</strong>
-                  </div>
-                  <div className="d-flex justify-content-between mb-2">
-                    <p>Vakansiya növü:</p>
-                    <strong>Tam ştat</strong>
-                  </div>
-                  <div className="d-flex justify-content-between">
-                    <p>Əmək haqqı:</p>
-                    <strong>1150 - 1300 AZN</strong>
-                  </div>
-                </div>
-              </aside>
             </div>
           </section>
         </div>
