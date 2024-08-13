@@ -10,12 +10,12 @@ const Homepage = () => {
   return (
     <>
       <div className="homepage-container">
-        <div className="menu">
+        {/* <div className="menu">
           <div className="logo-img">
             <img src="src/img/logo.c9da023 (1).png" alt="logo" />
           </div>
           <span className="menu-icon"><IoIosMenu /></span>
-        </div>
+        </div> */}
         <SearchFilter />
         <div className="filter-container">
           <select name="" id="">

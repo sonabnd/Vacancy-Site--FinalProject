@@ -177,6 +177,13 @@ body {
 .post-exit {
   display: none;
 }
+
+/* @media (max-width: 1098px){
+  .navbar-component{
+    display: none;
+  }
+} */
+
 @media (max-width: 768px) {
   .user-info {
     font-size: 16px;

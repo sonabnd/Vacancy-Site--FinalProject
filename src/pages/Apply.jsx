@@ -47,15 +47,15 @@ const Apply = () => {
 
   return (
     <>
-      <header className="menu justify-content-between align-items-center mb-4">
+      {/* <header className="menu justify-content-between align-items-center mb-4">
         <div className="logo-img">
           <img src='/src/img/logo.c9da023.svg' alt="logo" />
         </div>
         <button className="menu-icon btn btn-outline-primary">
           <FaBars size="1.5em" />
         </button>
-      </header>
-      <div className="container mt-5">
+      </header> */}
+      <div className=" apply-container container mt-5">
         <div>
           <div className="d-flex align-items-center mb-4">
             <img
