@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import PostModal from "../components/PostModal";
 import UpdatePost from "../components/UpdatePost";
 import DeletePost from "../components/DeletePost";
+
 const AddPost = () => {
   const [postModalShow, setPostModalShow] = React.useState(false);
   const [updateModalShow, setUpdateModalShow] = React.useState(false);

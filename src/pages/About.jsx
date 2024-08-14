@@ -1,4 +1,4 @@
-import "../css/AboutServiceContact.css";
+import "../css/About.css";
 const About = () => {
   return (
     <div className="all-section">

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import SearchFilter from "./SearchFilter";
 import "../css/Homepage.css";
 import { IoIosMenu } from "react-icons/io";
@@ -6,37 +6,48 @@ import HomepageCard from "./HomepageCard";
 import Context from "../context/context";
 
 const Homepage = () => {
-  const {postCard} = useContext(Context);
+  const {postCard,setPostCard,filterContainer,originalPostCard,setOriginalPostCard} = useContext(Context);
+  
+  const [selectedLocation, setSelectedLocation] = useState('');
+
+  const singlePositions = [...new Set(postCard.map(post=> post.position))]
+  
+  const singleLocations = [...new Set(postCard.map(post=> post.location))]
+
+  const searchVacancy=()=>{
+    const locationCard=postCard.filter(card=> card.location == postCard.location)
+    // TODO FILTER
+  }
   return (
     <>
       <div className="homepage-container">
-        {/* <div className="menu">
-          <div className="logo-img">
-            <img src="src/img/logo.c9da023 (1).png" alt="logo" />
-          </div>
-          <span className="menu-icon"><IoIosMenu /></span>
-        </div> */}
         <SearchFilter />
-        <div className="filter-container">
+        <div className="filter-container" style={{display : filterContainer ? "block" : "none"}} >
           <select name="" id="">
             <option value="">Vəzifə</option>
-            <option value="">Direktor</option>
-            <option value="">Menecer</option>
-            <option value="">Köməkçi</option>
+            {
+              singlePositions.map((position,index)=>(
+                <option value={position} key={index}>{position}</option>
+              ))
+            }
           </select>
           <select name="" id="">
             <option value="">Maaş</option>
-            <option value="">Direktor</option>
-            <option value="">Menecer</option>
-            <option value="">Köməkçi</option>
+            <option value="">0-500</option>
+            <option value="">500-1000</option>
+            <option value="">1000-1500</option>
+            <option value="">1500-2000</option>
+            <option value="">2000+</option>
           </select>
-          <select name="" id="">
+          <select name="" id="" onChange={e => setSelectedLocation(e.target.value)}>
             <option value="">Ərazi</option>
-            <option value="">Direktor</option>
-            <option value="">Menecer</option>
-            <option value="">Köməkçi</option>
+            {
+              singleLocations.map((location, index)=>(
+                <option value={location} key={index}>{location}</option>
+              ))
+            }
           </select>
-          <button className="search-btn">Search</button>
+          <button className="search-btn" onClick={searchVacancy}>Search</button>
         </div>
         <div className="advertisement-lists">
             {
@@ -53,4 +64,3 @@ const Homepage = () => {
 };
 
 export default Homepage;
-

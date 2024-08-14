@@ -3,10 +3,12 @@ import "../css/SearchFilter.css";
 import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
 import Context from "../context/context";
+import { IoMdClose } from "react-icons/io";
+import { RiFontSize } from "react-icons/ri";
 
 const SearchFilter = () => {
-  const { searchInput, setSearchInput, postCard, setPostCard } = useContext(Context);
-  const [originalPostCard, setOriginalPostCard] = useState([]);
+  const { searchInput, setSearchInput,postCard,setPostCard,filterContainer, showHideFilter,originalPostCard,setOriginalPostCard } = useContext(Context);
+  
 
   useEffect(() => {
     if (postCard.length > 0 && originalPostCard.length === 0) {
@@ -27,25 +29,24 @@ const SearchFilter = () => {
       setPostCard(filtered);
     }
   };
-
   return (
     <div className="search-filter-container">
       <div className="search">
-        <input
-          type="text"
-          placeholder="Sayt üzrə axtarış"
-          value={searchInput}
-          onChange={getValueInput}
-        />
-        <span className="search-icon">
-          <CiSearch />
-        </span>
-        <div className="search-filter">
+        <div className="input-container">
+          <CiSearch className="search-icon" />
+          <input
+            type="text"
+            placeholder="Sayt üzrə axtarış"
+            value={searchInput}
+            onChange={getValueInput}
+          />
+        </div>
+        <div className="search-filter" onClick={showHideFilter}>
           <span className="search-label"></span>
-          <span className="filter-icon">
-            <FaFilter />
+          <span  >
+            {filterContainer ? <IoMdClose className="filter-icon" style={{color : "red", fontSize : "16px"}} /> : <FaFilter className="filter-icon" />}
           </span>
-          <span className="filter-text">Filterlər</span>
+          <span className="filter-text" style={{color : filterContainer ? "red" : "#0C4DDE"}} >{filterContainer ? "Bağla" : "Filterlər"}</span>
         </div>
       </div>
     </div>
