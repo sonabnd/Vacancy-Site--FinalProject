@@ -23,7 +23,12 @@ function App() {
   const [isDesign, setDesign] = useState(false);
   const [postCard, setPostCard] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [filterContainer, setfilterContainer] = useState(false)
+  const [originalPostCard, setOriginalPostCard] = useState([]);
 
+  const showHideFilter=()=>{
+    setfilterContainer(!filterContainer)
+  }
 
   const handleShowLogin = () => {
     setLogin(true);
@@ -58,14 +63,18 @@ function App() {
     setPostCard,
     searchInput,
     setSearchInput,
+    filterContainer, 
+    setfilterContainer,
+    showHideFilter,
+    originalPostCard,setOriginalPostCard
   };
 
   const getData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/advertisement");
+      const response = await axios.get("http://localhost:3001/advertisement");
       const posts = response.data;
+
       setPostCard(posts);
-      console.log(posts);
     } catch (error) {
       console.log(error);
     }
