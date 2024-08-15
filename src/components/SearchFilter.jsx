@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import "../css/SearchFilter.css";
 import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
 import Context from "../context/context";
 import { IoMdClose } from "react-icons/io";
-import { RiFontSize } from "react-icons/ri";
 
 const SearchFilter = () => {
   const { searchInput, setSearchInput,postCard,setPostCard,filterContainer, showHideFilter,originalPostCard,setOriginalPostCard } = useContext(Context);

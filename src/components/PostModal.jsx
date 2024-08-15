@@ -5,218 +5,225 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { useFormik } from "formik";
 import { PostModalSchema } from "./PostModalSchema";
+import { toast } from "react-toastify";
 
 function PostModal(props) {
 
-  function test() {
-    console.log("btn kliklendi");
-  }
-
-  const {values, handleChange, errors, handleSubmit} = useFormik({
-    initialValues:{
-      company : "",
-      category : "",
-      position : "",
-      location : "",
-      salary : "",
-      workExperience :"",
-      deadline : "",
-      jobTime : "",
-      requirement : "",
-      jobInformation : ""
+  const { values, handleChange, errors, handleSubmit } = useFormik({
+    initialValues: {
+      company: "",
+      category: "",
+      position: "",
+      location: "",
+      salary: "",
+      workExperience: "",
+      deadline: "",
+      jobTime: "",
+      requirement: "",
+      jobInformation: ""
     },
-
     validationSchema: PostModalSchema,
-
-    onSubmit : async (values, actions) =>{
-      
-      try{
-        const checkData = await axios.get('http://localhost:3001/advertisement')
-        const getData=checkData.data;
+    onSubmit: async (values, actions) => {
+      try {
+        const checkData = await axios.get('http://localhost:3000/advertisement')
+        const getData = checkData.data;
         console.log(getData);
-        const sameVacancy= getData.find(vacancy=> vacancy.company == values.company && vacancy.position == values.position);
-
-        if(sameVacancy){
-          alert("Şirkət adından bu vakansiya artıq paylaşılıb");
+        const sameVacancy = getData.find(vacancy => vacancy.company == values.company && vacancy.position == values.position);
+        toast.success('Əlavə olundu!')
+        if (sameVacancy) {
+          toast.error('Şirkət adından bu vakansiya artıq paylaşılıb')
           return;
+        } else {
+          const response = await axios.post('http://localhost:3000/advertisement', values);
+          console.log(response.data);
+          actions.resetForm();
         }
-
-        const response = await axios.post('http://localhost:3001/advertisement', values);
-        console.log(response.data); 
-        actions.resetForm();
       }
-      catch(error){
+      catch (error) {
         console.log(error);
       }
     }
-
   })
+
+
 
   return (
     <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered>
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Elan yerləşdir
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form onSubmit = {handleSubmit}>
-            <Form.Group controlId="formCompany">
-              <Form.Label>Şirkət:</Form.Label>
-              <Form.Control
-                name="company"
-                value={values.company}
-                onChange={handleChange}
-                type="text"
-                placeholder="Məsələn: Agile Solutions"
-              />
-              {errors.company && (
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Elan yerləşdir
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label htmlFor='company'>Şirkət:</Form.Label>
+            <Form.Control
+              id="company"
+              name="company"
+              value={values.company}
+              onChange={handleChange}
+              type="text"
+              placeholder="Məsələn: Agile Solutions"
+            />
+            {errors.company && (
               <div className="error-message">{errors.company}</div>
-              )}
-            </Form.Group>
+            )}
+          </Form.Group>
 
-            <Form.Group controlId="formCategory">
-              <Form.Label>Kateqoriya:</Form.Label>
-              <Form.Control
-                name="category"
-                value={values.category}
-                onChange={handleChange}
-                type="text"
-                placeholder="Məsələn: IT, Satış"
-              />
-              {errors.category&& (
+          <Form.Group>
+            <Form.Label htmlFor='category'>Kateqoriya:</Form.Label>
+            <Form.Control
+              id="category"
+              name="category"
+              value={values.category}
+              onChange={handleChange}
+              type="text"
+              placeholder="Məsələn: IT, Satış"
+            />
+            {errors.category && (
               <div className="error-message">{errors.category}</div>
-              )}
-            </Form.Group>
+            )}
+          </Form.Group>
 
-            <Form.Group controlId="formPosition">
-              <Form.Label>Vəzifə :</Form.Label>
-              <Form.Control
-                name="position"
-                value={values.position}
-                onChange={handleChange}
-                type="text"
-                placeholder="Məsələn: Software Engineer"
-              />
-              {errors.position && (
+          <Form.Group>
+            <Form.Label htmlFor='position'>Vəzifə :</Form.Label>
+            <Form.Control
+              id="position"
+              name="position"
+              value={values.position}
+              onChange={handleChange}
+              type="text"
+              placeholder="Məsələn: Software Engineer"
+            />
+            {errors.position && (
               <div className="error-message">{errors.position}</div>
-              )}
-            </Form.Group>
+            )}
+          </Form.Group>
 
-            <Form.Group controlId="formCity">
-              <Form.Label>Şəhər:</Form.Label>
-              <Form.Control
-                name="location"
-                value={values.location}
-                onChange={handleChange}
-                type="text"
-                placeholder="Məsələn: Bakı"
-              />
-              {errors.location && (
+          <Form.Group>
+            <Form.Label htmlFor='location'>Şəhər:</Form.Label>
+            <Form.Control
+              id="location"
+              name="location"
+              value={values.location}
+              onChange={handleChange}
+              type="text"
+              placeholder="Məsələn: Bakı"
+            />
+            {errors.location && (
               <div className="error-message">{errors.location}</div>
-              )}
-            </Form.Group>
+            )}
+          </Form.Group>
 
-            <Form.Group controlId="formJobTime">
-              <Form.Label>Job :</Form.Label>
-              <Form.Control
-                name="jobTime"
-                value={values.jobTime}
-                onChange={handleChange}
-                type="text"
-                placeholder="Məsələn: full time"
-              />
-              {errors.jobTime && (
+          <Form.Group>
+            <Form.Label htmlFor='jobTime'>Job :</Form.Label>
+            <Form.Control
+              id="jobTime"
+              name="jobTime"
+              value={values.jobTime}
+              onChange={handleChange}
+              type="text"
+              placeholder="Məsələn: full time"
+            />
+            {errors.jobTime && (
               <div className="error-message">{errors.jobTime}</div>
-              )}
-            </Form.Group>
+            )}
+          </Form.Group>
 
-            <Form.Group controlId="formSalary">
-              <Form.Label>Əmək haqqı:</Form.Label>
-              <Form.Control
-                name="salary"
-                value={values.salary}
-                onChange={handleChange}
-                type="text"
-                placeholder="Məsələn: 1000 AZN"
-              />
-              {errors.salary && (
+          <Form.Group>
+            <Form.Label htmlFor='salary'>Əmək haqqı:</Form.Label>
+            <Form.Control
+              id="salary"
+              name="salary"
+              value={values.salary}
+              onChange={handleChange}
+              type="text"
+              placeholder="Məsələn: 1000 AZN"
+            />
+            {errors.salary && (
               <div className="error-message">{errors.salary}</div>
-              )}
-            </Form.Group>
+            )}
+          </Form.Group>
 
-            <Form.Group controlId="formDeadline">
-              <Form.Label>Son tarix:</Form.Label>
-              <Form.Control
-                name="deadline"
-                value={values.deadline}
-                onChange={handleChange}
-                type="text"
-                placeholder="Məsələn: 25.09.2024"
-              />
-              {errors.deadline && (
+          <Form.Group>
+            <Form.Label htmlFor='deadline'>Son tarix:</Form.Label>
+            <Form.Control
+              id="deadline"
+              name="deadline"
+              value={values.deadline}
+              onChange={handleChange}
+              type="date"
+              placeholder="Məsələn: 25.09.2024"
+            />
+            {errors.deadline && (
               <div className="error-message">{errors.deadline}</div>
-              )}
-            </Form.Group>
+            )}
+          </Form.Group>
 
-            <Form.Group controlId="formWorkExperience">
-              <Form.Label>İş təcrübəsi:</Form.Label>
-              <Form.Control
-                name="workExperience"
-                value={values.workExperience}
-                onChange={handleChange}
-                type="text"
-                placeholder="Məsələn: 3 il"
-              />
-              {errors.workExperience && (
+          <Form.Group>
+            <Form.Label htmlFor='workExperience'>İş təcrübəsi:</Form.Label>
+            <Form.Control
+              id="workExperience"
+              name="workExperience"
+              value={values.workExperience}
+              onChange={handleChange}
+              type="text"
+              placeholder="Məsələn: 3 il"
+            />
+            {errors.workExperience && (
               <div className="error-message">{errors.workExperience}</div>
-              )}
-            </Form.Group>
+            )}
+          </Form.Group>
 
-            <Form.Group controlId="formCandidateRequirements">
-              <Form.Label>Namizəd tələbləri:</Form.Label>
-              <Form.Control
-                name="requirement"
-                value={values.requirement}
-                onChange={handleChange}
-                as="textarea"
-                rows={3}
-                placeholder="Namizədə olan tələbləri daxil edin"
-              />
-              {errors.requirement && (
+          <Form.Group>
+            <Form.Label htmlFor='requirement'>Namizəd tələbləri:</Form.Label>
+            <Form.Control
+              id="requirement"
+              name="requirement"
+              value={values.requirement}
+              onChange={handleChange}
+              as="textarea"
+              rows={3}
+              placeholder="Namizədə olan tələbləri daxil edin"
+            />
+            {errors.requirement && (
               <div className="error-message">{errors.requirement}</div>
-              )}
-            </Form.Group>
+            )}
+          </Form.Group>
 
-            <Form.Group controlId="formJobInformation">
-              <Form.Label>İş haqqında məlumat:</Form.Label>
-              <Form.Control
-                name="jobInformation"
-                value={values.jobInformation}
-                onChange={handleChange}
-                as="textarea"
-                rows={5}
-                placeholder="İş haqqında məlumat daxil edin"
-              />
-              {errors.jobInformation && (
+          <Form.Group>
+            <Form.Label htmlFor='jobInformation'>İş haqqında məlumat:</Form.Label>
+            <Form.Control
+              id="jobInformation"
+              name="jobInformation"
+              value={values.jobInformation}
+              onChange={handleChange}
+              as="textarea"
+              rows={5}
+              placeholder="İş haqqında məlumat daxil edin"
+            />
+            {errors.jobInformation && (
               <div className="error-message">{errors.jobInformation}</div>
-              )}
-            </Form.Group>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
+            )}
+          </Form.Group>
+        </form>
+      </Modal.Body>
+      <Modal.Footer>
+        <form onSubmit={handleSubmit}>
           <Button variant="secondary" onClick={props.onHide}>
             Bağla
           </Button>
-          <Button type="submit" variant="primary" onClick={test}>
+          <Button type="submit" variant="primary">
             Elan yerləşdir
           </Button>
-        </Modal.Footer>
-      </Modal>
+        </form>
+      </Modal.Footer>
+    </Modal>
   );
 }
 

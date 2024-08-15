@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 
 const HomepageCard = ({ post }) => {
+
   const [randomColor, setRandomColor] = useState('')
+
   useEffect(()=>{
     const getRandomColor = () => {
       const letters = '0123456789ABCDEF';
@@ -13,6 +15,8 @@ const HomepageCard = ({ post }) => {
     };
     setRandomColor(getRandomColor());
   }, [])
+
+
   return (
     <>
       <div className="advertisement-loqo" style={{backgroundColor : randomColor}}>{post.company.slice(0,1)}</div>
