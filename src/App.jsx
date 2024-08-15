@@ -15,6 +15,8 @@ import { RiLoginCircleLine } from "react-icons/ri";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { IoIosMenu } from "react-icons/io";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   // login/register
@@ -26,7 +28,7 @@ function App() {
   const [filterContainer, setfilterContainer] = useState(false)
   const [originalPostCard, setOriginalPostCard] = useState([]);
 
-  const showHideFilter=()=>{
+  const showHideFilter = () => {
     setfilterContainer(!filterContainer)
   }
 
@@ -63,10 +65,10 @@ function App() {
     setPostCard,
     searchInput,
     setSearchInput,
-    filterContainer, 
+    filterContainer,
     setfilterContainer,
     showHideFilter,
-    originalPostCard,setOriginalPostCard
+    originalPostCard, setOriginalPostCard
   };
 
   const getData = async () => {
@@ -169,6 +171,18 @@ function App() {
           )}
         </div>
         <div className="app-container">
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
           <Context.Provider value={data}>
             <div
               className="navbar-component"

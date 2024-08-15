@@ -12,7 +12,6 @@
 }
 .header_logo {
     width: 50%;
-
 }
 
 .header__menu {
@@ -37,26 +36,58 @@
     width: 100%;
 }
 
-.select-lang {
+.language-select {
+    position: relative;
+    display: inline-block;
+}
+  
+.select-trigger {
     width: 80px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #fff;
-    font-size: 13px;
+    font-size: 15px;
     color: #333;
-    outline: none;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+  }
+  
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #333;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
 }
-
-.select-lang-option {
+  
+.select-options {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    z-index: 1000;
+}
+  
+.select-option {
     padding: 10px;
     background-color: #f9f9f9;
     color: #333;
+    cursor: pointer;
 }
-
-.select-lang:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 0 2px rgba(38, 143, 255, 0.2);
+  
+.select-option:hover {
+    background-color: blue;
+    color: white;
 }
 
 .header__menu__item1:hover{
@@ -79,9 +110,7 @@
     padding: 2px 1px;
     cursor: pointer;
     border-radius: 10%;
-    /* margin-top: 50px; */
 }
-
 
 .sun {
     background-color: white;
@@ -99,29 +128,19 @@
     margin-top: 30px;
 }
 
-
-
-
-/* Apply dark mode styles to the entire page */
 body.dark-mode {
     background-color: #333;
-    /* Dark background */
     color: #fff;
-    /* Light text */
 }
 
-/* Additional dark mode styles for Navbar */
 .sidebar.dark-mode {
     background-color: #333;
-    /* Dark background for sidebar */
     color: #fff;
-    /* Light text */
 }
 
 .sidebar.dark-mode .header__menu li,
 .sidebar.dark-mode .footer_menu li {
     color: #fff;
-    /* Light text */
 }
 
 .sidebar.dark-mode .icon-container .sun {
@@ -131,8 +150,6 @@ body.dark-mode {
 .sidebar.dark-mode .icon-container .moon {
     display: block;
 }
-
-/* Optional: Adjust other elements for dark mode */
 
 .footer { 
     position: fixed;
@@ -152,7 +169,19 @@ body.dark-mode {
     color: black;
     position: relative;
     overflow: hidden;
-} */
+    transition: all 3s ease;
+} 
+
+.footer_menu_item1:hover::after,
+.footer_menu_item2:hover::after,
+.footer_menu_item3:hover::after {
+    animation: underlineDelay 1s ease 0.5s forwards;
+}
+
+.footer p{
+    color: rgba(0, 0, 0, .3);
+    margin-top: 10px;
+}
 
 .footer_menu_item1::after,
 .footer_menu_item2::after,
@@ -169,7 +198,11 @@ body.dark-mode {
     transition: transform 0.5s ease;
 }
 
-
+.footer_menu_item1:hover,
+.footer_menu_item2:hover,
+.footer_menu_item3:hover {
+    color: #0C4DDE; 
+}
 
 .footer_menu_item1:hover::after,
 .footer_menu_item2:hover::after,
@@ -177,14 +210,8 @@ body.dark-mode {
     animation: underlineDelay 0.5s ease 0.1s forwards;
 }
 
-.footer p{
-    color: rgba(0, 0, 0, .3);
-    margin-top: 10px;
-}
-
 @keyframes underlineDelay {
     to {
         transform: scaleX(1);
     }
 }
-

@@ -5,7 +5,9 @@ import HomepageCard from "./HomepageCard";
 import Context from "../context/context";
 
 const Homepage = () => {
+
   const { postCard, setPostCard, filterContainer, setOriginalPostCard, originalPostCard } = useContext(Context);
+
 
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedPosition, setSelectedPosition] = useState('');
@@ -25,6 +27,7 @@ const Homepage = () => {
   const filteredCards = originalPostCard.filter(card => {
     const locationMatch = selectedLocation ? card.location === selectedLocation : true;
     const positionMatch = selectedPosition ? card.position === selectedPosition : true;
+
 
     let salaryMatch = true; 
     const salary = parseInt(card.salary); 
@@ -51,6 +54,10 @@ const Homepage = () => {
   setPostCard(filteredCards.length ? filteredCards : []);
 };
 
+  const singlePositions = [...new Set(postCard.map(post => post.position))]
+
+  const singleLocations = [...new Set(postCard.map(post => post.location))]
+
   return (
     <>
       <div className="homepage-container">
@@ -61,6 +68,14 @@ const Homepage = () => {
             {singlePositions.map((position, index) => (
             <option value={position} key={index}>{position}</option>
             ))}
+        <div className="filter-container" style={{ display: filterContainer ? "block" : "none" }} >
+          <select name="" id="">
+            <option value="">Vəzifə</option>
+            {
+              singlePositions.map((position, index) => (
+                <option value={position} key={index}>{position}</option>
+              ))
+            }
           </select>
           <select name="" id="" onChange={e=>setSelectedSalary(e.target.value)}>
             <option value="">Maaş</option>
@@ -75,20 +90,26 @@ const Homepage = () => {
             {singleLocations.map((location, index) => (
               <option value={location} key={index}>{location}</option>
             ))}
+            {
+              singleLocations.map((location, index) => (
+                <option value={location} key={index}>{location}</option>
+              ))
+            }
           </select>
           <button className="search-btn" onClick={searchVacancy}>Search</button>
         </div>
-        <div className="advertisement-lists">
-          {postCard.map(post => (
-            <div className="advertisement" key={post.id}>
-              <HomepageCard post={post} />
-            </div>
-          ))}
+          {
+            postCard.map(post => (
+              <div className="advertisement" key={post.id}>
+                <HomepageCard post={post} />
+              </div>
+            ))
+          }
         </div>
       </div>
     </>
   );
 };
 
-export default Homepage;
 
+export default Homepage;
