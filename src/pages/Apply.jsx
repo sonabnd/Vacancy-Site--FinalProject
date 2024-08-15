@@ -75,9 +75,8 @@ const Apply = () => {
                   <span className="text-danger ms-2">*</span>
                 </label>
                 <div
-                  className={`border ${
-                    errors.cv ? "border-danger" : "border-secondary"
-                  } border-dashed p-4 text-center bg-light`}
+                  className={`border ${errors.cv ? "border-danger" : "border-secondary"
+                    } border-dashed p-4 text-center bg-light`}
                   onClick={() => document.getElementById("cv-upload").click()}
                   style={{ cursor: "pointer" }}
                 >
@@ -118,9 +117,8 @@ const Apply = () => {
                     type="text"
                     id="firstName"
                     name="firstName"
-                    className={`form-control border-${
-                      errors.firstName ? "danger" : "secondary"
-                    } bg-light`}
+                    className={`form-control border-${errors.firstName ? "danger" : "secondary"
+                      } bg-light`}
                     style={{ fontSize: "1.1rem", padding: "0.75rem" }}
                   />
                   {errors.firstName && (
@@ -139,9 +137,8 @@ const Apply = () => {
                     type="text"
                     id="lastName"
                     name="lastName"
-                    className={`form-control border-${
-                      errors.lastName ? "danger" : "secondary"
-                    } bg-light`}
+                    className={`form-control border-${errors.lastName ? "danger" : "secondary"
+                      } bg-light`}
                     style={{ fontSize: "1.1rem", padding: "0.75rem" }}
                   />
                   {errors.lastName && (
@@ -163,9 +160,8 @@ const Apply = () => {
                     type="email"
                     id="email"
                     name="email"
-                    className={`form-control border-${
-                      errors.email ? "danger" : "secondary"
-                    } bg-light`}
+                    className={`form-control border-${errors.email ? "danger" : "secondary"
+                      } bg-light`}
                     style={{ fontSize: "1.1rem", padding: "0.75rem" }}
                   />
                   {errors.email && (
@@ -185,9 +181,8 @@ const Apply = () => {
                     id="phone"
                     name="phone"
                     ref={phoneInputRef}
-                    className={`form-control border-${
-                      errors.phone ? "danger" : "secondary"
-                    } bg-light`}
+                    className={`form-control border-${errors.phone ? "danger" : "secondary"
+                      } bg-light`}
                     placeholder="+994(00)000-00-00"
                     style={{ fontSize: "1.1rem", padding: "0.75rem" }}
                   />
