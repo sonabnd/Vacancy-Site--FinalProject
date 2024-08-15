@@ -54,20 +54,10 @@ const Homepage = () => {
   setPostCard(filteredCards.length ? filteredCards : []);
 };
 
-  const singlePositions = [...new Set(postCard.map(post => post.position))]
-
-  const singleLocations = [...new Set(postCard.map(post => post.location))]
-
   return (
     <>
       <div className="homepage-container">
-        <SearchFilter />
-        <div className="filter-container" style={{ display: filterContainer ? "block" : "none" }}>
-          <select name="" id="" onChange={e=>setSelectedPosition(e.target.value)}>
-            <option value="Office manager">Vəzifə</option>
-            {singlePositions.map((position, index) => (
-            <option value={position} key={index}>{position}</option>
-            ))}
+        <SearchFilter />         
         <div className="filter-container" style={{ display: filterContainer ? "block" : "none" }} >
           <select name="" id="">
             <option value="">Vəzifə</option>
@@ -106,7 +96,6 @@ const Homepage = () => {
             ))
           }
         </div>
-      </div>
     </>
   );
 };
