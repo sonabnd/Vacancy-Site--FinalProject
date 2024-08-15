@@ -3,7 +3,6 @@ import { FaMoon } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import '../css/Navbar.css';
-import '../css/NavbarResponsive.css';
 import Context from '../context/context';
 import { IoBagRemoveOutline } from 'react-icons/io5';
 import { MdPostAdd } from 'react-icons/md';
@@ -23,17 +22,17 @@ const Navbar = () => {
 
   const goToAboutPage = () => {
     setActive(true);
-    navigate('/about');  
+    navigate('/about');
   };
 
   const goToServicePage = () => {
     setActive(true);
-    navigate('/service');  
+    navigate('/service');
   };
 
   const goToContactPage = () => {
     setActive(true);
-    navigate('/contact');  
+    navigate('/contact');
   };
   if (active && location.pathname !== '/contact' && location.pathname !== '/about' && location.pathname !== '/service') {
     setActive(false);
@@ -56,14 +55,6 @@ const Navbar = () => {
         </div>
       </header>
       <main>
-        {/* <div className="icon-container" >
-            <div className="sun">
-              <IoMdSunny size={15} />
-            </div>
-            <div className="moon">
-              <FaMoon size={15} />
-            </div>
-        </div> */}
         <ul className="header__menu">
           <div className="header__menu__item1">
             <IoBagRemoveOutline />
@@ -71,17 +62,27 @@ const Navbar = () => {
           </div>
           <div className="header__menu__item1">
             <MdPostAdd />
-            <li  onClick={handleShowLogin}> Elan yerləşdir</li>
+            <li onClick={handleShowLogin}> Elan yerləşdir</li>
           </div>
         </ul>
       </main>
-      <footer className="footer">
-        <div className="footer_menu">
-          <div className="footer_menu_item1" onClick={goToAboutPage} style={{ color: active && location.pathname === '/about' ? '#0C4DDE' : 'black' }}>Haqqımızda</div>
-          <div className="footer_menu_item2" onClick={goToServicePage} style={{ color: active && location.pathname === '/service' ? '#0C4DDE' : 'black' }}>Xidmətlər</div>
-          <div className="footer_menu_item3" onClick={goToContactPage} style={{ color: active && location.pathname === '/contact' ? '#0C4DDE' : 'black' }}>Əlaqə</div>
+      <footer className="sidebar-footer">
+        <div className="sidebar_footer_menu">
+          <div className="icon-container" >
+            <div className="sun">
+              <IoMdSunny size={15} />
+            </div>
+            <div className="moon">
+              <FaMoon size={15} />
+            </div>
+          </div>
+          <div className="footer_menu_items">
+            <div className="footer_menu_item1" onClick={goToAboutPage} style={{ color: active && location.pathname === '/about' ? '#0C4DDE' : 'black' }}>Haqqımızda</div>
+            <div className="footer_menu_item2" onClick={goToServicePage} style={{ color: active && location.pathname === '/service' ? '#0C4DDE' : 'black' }}>Xidmətlər</div>
+            <div className="footer_menu_item3" onClick={goToContactPage} style={{ color: active && location.pathname === '/contact' ? '#0C4DDE' : 'black' }}>Əlaqə</div>
+          </div>
         </div>
-        <p >© JobSearch.az 2006—2024</p>
+        <p className="footer_menu_p">© JobSearch.az 2006—2024</p>
       </footer>
     </div>
   );
