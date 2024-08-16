@@ -1,17 +1,20 @@
 .sidebar {
     height: 100%;
-    position: relative;
+    /* position: relative; */
 }
 
-.sidebar-header{
+.sidebar-header {
     display: flex;
     justify-content: space-between;
 }
-.sidebar-header img{
+
+.sidebar-header img {
     width: 100%;
 }
+
 .header_logo {
     width: 50%;
+
 }
 
 .header__menu {
@@ -21,7 +24,7 @@
     gap: 10px;
 }
 
-.header__menu__item1{
+.header__menu__item1 {
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -40,7 +43,7 @@
     position: relative;
     display: inline-block;
 }
-  
+
 .select-trigger {
     width: 80px;
     padding: 8px;
@@ -52,8 +55,8 @@
     cursor: pointer;
     text-align: center;
     position: relative;
-  }
-  
+}
+
 .arrow-down {
     width: 0;
     height: 0;
@@ -65,7 +68,7 @@
     top: 50%;
     transform: translateY(-50%);
 }
-  
+
 .select-options {
     display: block;
     position: absolute;
@@ -77,20 +80,22 @@
     background-color: #fff;
     z-index: 1000;
 }
-  
+
 .select-option {
     padding: 10px;
     background-color: #f9f9f9;
     color: #333;
     cursor: pointer;
 }
-  
+
 .select-option:hover {
     background-color: blue;
+    transition: 0.3s linear;
+    border-radius: 5px;
     color: white;
 }
 
-.header__menu__item1:hover{
+.header__menu__item1:hover {
     background-color: blue;
     color: white;
     cursor: pointer;
@@ -103,14 +108,16 @@
 }
 
 .icon-container {
-    width: 20%;
+    width: 70px;
     display: flex;
     background-color: gray;
     align-items: center;
     padding: 2px 1px;
     cursor: pointer;
     border-radius: 10%;
+    /* margin-top: 50px; */
 }
+
 
 .sun {
     background-color: white;
@@ -124,23 +131,34 @@
     padding: 5px 10px;
     margin: auto;
 }
-.sidebar main{
+
+.sidebar main {
     margin-top: 30px;
 }
 
+
+
+
+/* Apply dark mode styles to the entire page */
 body.dark-mode {
     background-color: #333;
+    /* Dark background */
     color: #fff;
+    /* Light text */
 }
 
+/* Additional dark mode styles for Navbar */
 .sidebar.dark-mode {
     background-color: #333;
+    /* Dark background for sidebar */
     color: #fff;
+    /* Light text */
 }
 
 .sidebar.dark-mode .header__menu li,
 .sidebar.dark-mode .footer_menu li {
     color: #fff;
+    /* Light text */
 }
 
 .sidebar.dark-mode .icon-container .sun {
@@ -151,14 +169,22 @@ body.dark-mode {
     display: block;
 }
 
-.footer { 
-    position: fixed;
-    bottom: 0;
+/* Optional: Adjust other elements for dark mode */
+
+.sidebar-footer {
+    margin-top: 150px;
+    padding-top: 150px;
 }
 
-.footer_menu {
+.sidebar_footer_menu {
     display: flex;
     gap: 20px;
+    flex-direction: column;
+}
+
+.footer_menu_items {
+    display: flex;
+    gap: 10px;
 }
 
 .footer_menu_item1,
@@ -169,21 +195,9 @@ body.dark-mode {
     color: black;
     position: relative;
     overflow: hidden;
-    transition: all 3s ease;
-} 
-
-.footer_menu_item1:hover::after,
-.footer_menu_item2:hover::after,
-.footer_menu_item3:hover::after {
-    animation: underlineDelay 1s ease 0.5s forwards;
 }
 
-.footer p{
-    color: rgba(0, 0, 0, .3);
-    margin-top: 10px;
-}
-
-.footer_menu_item1::after,
+*/ .footer_menu_item1::after,
 .footer_menu_item2::after,
 .footer_menu_item3::after {
     content: '';
@@ -198,11 +212,7 @@ body.dark-mode {
     transition: transform 0.5s ease;
 }
 
-.footer_menu_item1:hover,
-.footer_menu_item2:hover,
-.footer_menu_item3:hover {
-    color: #0C4DDE; 
-}
+
 
 .footer_menu_item1:hover::after,
 .footer_menu_item2:hover::after,
@@ -210,8 +220,263 @@ body.dark-mode {
     animation: underlineDelay 0.5s ease 0.1s forwards;
 }
 
+.footer_menu_p {
+    color: rgba(0, 0, 0, .3);
+    margin-top: 10px;
+}
+
 @keyframes underlineDelay {
     to {
         transform: scaleX(1);
+    }
+}
+
+@media (max-width: 1098px) {
+    .sidebar {
+        margin-left: 15px;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header-first {
+        display: flex;
+        justify-content: space-between;
+        gap: 50px;
+    }
+
+    .header_logo img {
+        width: auto;
+        height: auto;
+        margin-top: 30px;
+        max-width: 100%;
+    }
+
+    #lang {
+        top: 35px;
+        left: 150px;
+        font-size: 15px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .header__menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        /* display: flex;
+        flex-direction: column; */
+        gap: 10px;
+    }
+
+    .header__menu li {
+        padding: 20px;
+        text-decoration: none;
+    }
+
+    .header__menu__item {
+        font-size: 20px;
+    }
+
+    .header__menu__item1 {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 20px;
+        padding: 3px 10px;
+    }
+
+    .header__menu__item1:hover {
+        background-color: blue;
+        color: white;
+        cursor: pointer;
+        transition: background-color 1s ease;
+        border-radius: 10px;
+    }
+
+    .icon-container {
+        width: 75px;
+        display: flex;
+        background-color: gray;
+        align-items: center;
+        padding: 2px 1px;
+        cursor: pointer;
+        border-radius: 10%;
+    }
+
+    .sun {
+        background-color: white;
+        color: gray;
+        padding: 9px;
+        border-radius: 10%;
+    }
+
+    .moon {
+        color: white;
+        margin: auto;
+    }
+
+
+    body.dark-mode {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .sidebar.dark-mode {
+        background-color: #333;
+        color: #fff;
+    }
+
+    .sidebar.dark-mode .header__menu li,
+    .sidebar.dark-mode .footer_menu li {
+        color: #fff;
+    }
+
+    .sidebar.dark-mode .icon-container .sun {
+        display: none;
+    }
+
+    .sidebar.dark-mode .icon-container .moon {
+        display: block;
+    }
+
+    .sidebar-footer {
+        margin-top: 100px;
+        padding-top: 100px;
+    }
+
+    .sidebar_footer_menu {
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .footer_menu_p {
+        color: rgba(0, 0, 0, .3);
+        margin-top: 10px;
+    }
+
+    .footer_menu_item {
+        cursor: pointer;
+        position: relative;
+    }
+
+    .footer_menu_item li {
+        text-decoration: none;
+    }
+
+    .footer_menu_item1,
+    .footer_menu_item2,
+    .footer_menu_item3 {
+        text-decoration: none;
+        cursor: pointer;
+        color: black;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .footer_menu_item1::after,
+    .footer_menu_item2::after,
+    .footer_menu_item3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 100%;
+        height: 2px;
+        background-color: black;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s ease;
+    }
+
+    .footer_menu_item1:hover::after,
+    .footer_menu_item2:hover::after,
+    .footer_menu_item3:hover::after {
+        animation: underlineDelay 0.5s ease 0.1s forwards;
+    }
+
+    @keyframes underlineDelay {
+        to {
+            transform: scaleX(1);
+        }
+    }
+}
+
+
+@media (max-width: 768px) {
+    .header_logo {
+        width: 90%;
+    }
+
+    #lang {
+        left: 80px;
+        font-size: 12px;
+    }
+
+    .icon-container {
+        width: 65px;
+        display: flex;
+        background-color: gray;
+        align-items: center;
+        padding: 2px 1px;
+        cursor: pointer;
+        border-radius: 10%;
+        /* margin-top: 50px; */
+    }
+
+    .sidebar-footer {
+        margin-top: 50px;
+        padding-top: 50px;
+    }
+
+    .footer_menu_items {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .sun,
+    .moon {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header_logo {
+        width: 90%;
+    }
+
+    #lang {
+        left: 50px;
+        font-size: 10px;
+    }
+
+    .icon-container {
+        width: 53px;
+        display: flex;
+        background-color: gray;
+        align-items: center;
+        padding: 2px 1px;
+        cursor: pointer;
+        border-radius: 10%;
+    }
+
+    .footer_menu_items {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .sun,
+    .moon {
+        padding: 4px;
+    }
+
+    .footer {
+        gap: 20px;
     }
 }

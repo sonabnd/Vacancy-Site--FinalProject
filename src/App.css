@@ -304,7 +304,7 @@
     font-size: 22px;
   }
   .app-container {
-    max-width: 96%;
+    max-width: 100%;
   }
 
   .login {
@@ -323,7 +323,7 @@
   }
 
   .app-container {
-    max-width: 96%;
+    max-width: 100%;
   }
 
   .login {
@@ -345,7 +345,7 @@
   }
 
   .app-container {
-    max-width: 96%;
+    max-width: 100%;
   }
   .navbar-component{
     width: 54%;
