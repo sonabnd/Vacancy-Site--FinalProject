@@ -1,17 +1,33 @@
 .homepage-container {
   width: 100%;
-  /* border: 1px solid #dcdcdc; */
   border-top: none;
 }
 .filter-container {
   margin: 20px 0;
-  /* padding: 10px; */
   padding-left: 15px;
-  /* border: 1px solid #dcdcdc; */
-  /* border-radius: 8px; */
-  /* background-color: #f9f9f9; */
 }
-
+.homepage-container .not-found-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+.not-found-container span{
+  font-size: 32px;
+  margin-bottom: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #FAFAFA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #9b9b9b;
+}
+.not-found-container p{
+  font-size: 20px;
+}
 .filter-container select {
   padding: 8px 12px;
   border: 1px solid #0c4dde;

@@ -23,7 +23,7 @@ const SearchFilter = () => {
       setPostCard(originalPostCard);
     } else {
       const filtered = originalPostCard.filter((post) =>
-        post.position.toLowerCase().includes(value.toLowerCase())
+        post.position.toLowerCase().includes(value.toLowerCase().trim())
       );
       setPostCard(filtered);
     }

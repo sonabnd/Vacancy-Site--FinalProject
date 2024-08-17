@@ -1,4 +1,4 @@
-import '../css/AddPost.css'
+import "../css/AddPost.css";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -6,9 +6,11 @@ import Form from "react-bootstrap/Form";
 import { useFormik } from "formik";
 import { PostModalSchema } from "./PostModalSchema";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import Context from "../context/context";
 
 function PostModal(props) {
-
+  const { postCard, setPostCard } = useContext(Context);
   const { values, handleChange, errors, handleSubmit } = useFormik({
     initialValues: {
       company: "",
@@ -20,39 +22,52 @@ function PostModal(props) {
       deadline: "",
       jobTime: "",
       requirement: "",
-      jobInformation: ""
+      jobInformation: "",
     },
     validationSchema: PostModalSchema,
     onSubmit: async (values, actions) => {
       try {
-        const checkData = await axios.get('http://localhost:3000/advertisement')
+        const checkData = await axios.get(
+          "http://localhost:3000/advertisement"
+        );
         const getData = checkData.data;
         console.log(getData);
-        const sameVacancy = getData.find(vacancy => vacancy.company == values.company && vacancy.position == values.position);
-        toast.success('Əlavə olundu!')
+        const sameVacancy = getData.find(
+          (vacancy) =>
+            vacancy.company == values.company &&
+            vacancy.position == values.position
+        );
+        toast.success("Əlavə olundu!");
         if (sameVacancy) {
-          toast.error('Şirkət adından bu vakansiya artıq paylaşılıb')
+          toast.error("Şirkət adından bu vakansiya artıq paylaşılıb");
           return;
         } else {
-          const response = await axios.post('http://localhost:3000/advertisement', values);
-          console.log(response.data);
+          const response = await axios.post(
+            "http://localhost:3000/advertisement",
+            values
+          );
+          setPostCard((prevAds) => [response.data, ...prevAds]);
           actions.resetForm();
         }
-      }
-      catch (error) {
+      } catch (error) {
         console.log(error);
       }
-    }
-  })
+    },
+  });
 
-
+  const formatDate = (date) => {
+    if (!date) return '';
+    const [year, month, day] = date.split('-');
+    return `${day}/${month}/${year}`; 
+  };
 
   return (
     <Modal
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
-      centered>
+      centered
+    >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Elan yerləşdir
@@ -61,7 +76,7 @@ function PostModal(props) {
       <Modal.Body>
         <form onSubmit={handleSubmit}>
           <Form.Group>
-            <Form.Label htmlFor='company'>Şirkət:</Form.Label>
+            <Form.Label htmlFor="company">Şirkət:</Form.Label>
             <Form.Control
               id="company"
               name="company"
@@ -76,7 +91,7 @@ function PostModal(props) {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label htmlFor='category'>Kateqoriya:</Form.Label>
+            <Form.Label htmlFor="category">Kateqoriya:</Form.Label>
             <Form.Control
               id="category"
               name="category"
@@ -91,7 +106,7 @@ function PostModal(props) {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label htmlFor='position'>Vəzifə :</Form.Label>
+            <Form.Label htmlFor="position">Vəzifə :</Form.Label>
             <Form.Control
               id="position"
               name="position"
@@ -106,7 +121,7 @@ function PostModal(props) {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label htmlFor='location'>Şəhər:</Form.Label>
+            <Form.Label htmlFor="location">Şəhər:</Form.Label>
             <Form.Control
               id="location"
               name="location"
@@ -121,7 +136,7 @@ function PostModal(props) {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label htmlFor='jobTime'>Job :</Form.Label>
+            <Form.Label htmlFor="jobTime">Job :</Form.Label>
             <Form.Control
               id="jobTime"
               name="jobTime"
@@ -136,7 +151,7 @@ function PostModal(props) {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label htmlFor='salary'>Əmək haqqı:</Form.Label>
+            <Form.Label htmlFor="salary">Əmək haqqı:</Form.Label>
             <Form.Control
               id="salary"
               name="salary"
@@ -151,22 +166,27 @@ function PostModal(props) {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label htmlFor='deadline'>Son tarix:</Form.Label>
+            <Form.Label htmlFor="deadline">Son tarix:</Form.Label>
             <Form.Control
               id="deadline"
               name="deadline"
               value={values.deadline}
               onChange={handleChange}
-              type="date"
+              type="text"
               placeholder="Məsələn: 25.09.2024"
             />
             {errors.deadline && (
               <div className="error-message">{errors.deadline}</div>
             )}
+            {values.deadline && (
+              <div className="formatted-date">
+                <strong>Selected Date:</strong> {formatDate(values.deadline)}
+              </div>
+            )}
           </Form.Group>
 
           <Form.Group>
-            <Form.Label htmlFor='workExperience'>İş təcrübəsi:</Form.Label>
+            <Form.Label htmlFor="workExperience">İş təcrübəsi:</Form.Label>
             <Form.Control
               id="workExperience"
               name="workExperience"
@@ -181,7 +201,7 @@ function PostModal(props) {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label htmlFor='requirement'>Namizəd tələbləri:</Form.Label>
+            <Form.Label htmlFor="requirement">Namizəd tələbləri:</Form.Label>
             <Form.Control
               id="requirement"
               name="requirement"
@@ -197,7 +217,9 @@ function PostModal(props) {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label htmlFor='jobInformation'>İş haqqında məlumat:</Form.Label>
+            <Form.Label htmlFor="jobInformation">
+              İş haqqında məlumat:
+            </Form.Label>
             <Form.Control
               id="jobInformation"
               name="jobInformation"
