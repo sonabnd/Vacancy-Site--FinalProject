@@ -1,11 +1,11 @@
 import * as Yup from 'yup';
 
-// const dateRegex = /^(\d{2})\.(\d{2})\.(\d{4})$/;
-// const capitalizeFirstLetter = (value) =>
-//     value.replace(/\b\w/g, (char) => char.toUpperCase());
+const dateRegex = /^(\d{2})-(\d{2})-(\d{4})$/;
+const capitalizeFirstLetter = (value) =>
+    value.replace(/\b\w/g, (char) => char.toUpperCase());
 export const PostModalSchema=Yup.object().shape({
     company: Yup.string()
-    // .transform((value) => capitalizeFirstLetter(value))
+    .transform((value) => capitalizeFirstLetter(value))
     .min(2, 'Şirkət adı çox qısadır')
     .max(25, 'Çox uzun!')
     .required('Xananı doldurmağınız tələb olunur'),
@@ -32,7 +32,7 @@ export const PostModalSchema=Yup.object().shape({
     workExperience: Yup.number(),
 
     deadline: Yup.string()
-    // .matches(dateRegex, 'Son tarix bu formatda olmalıdır : DD.MM.YYYY')
+    .matches(dateRegex, 'Son tarix bu formatda olmalıdır : DD-MM.YYYY')
     .required('Xananı doldurmağınız tələb olunur'),
 
     jobTime: Yup.string(),

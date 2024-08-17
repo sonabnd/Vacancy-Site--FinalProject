@@ -3,6 +3,8 @@ import SearchFilter from "./SearchFilter";
 import "../css/Homepage.css";
 import HomepageCard from "./HomepageCard";
 import Context from "../context/context";
+import axios from "axios";
+import { VscSearchStop } from "react-icons/vsc";
 
 const Homepage = () => {
 
@@ -11,7 +13,7 @@ const Homepage = () => {
 
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedPosition, setSelectedPosition] = useState('');
-  const [selectedSalary , setSelectedSalary] = useState('')
+  const [selectedSalary , setSelectedSalary] = useState('');
 
   useEffect(() => {
 
@@ -23,15 +25,40 @@ const Homepage = () => {
   const singlePositions = [...new Set(originalPostCard.map(post => post.position))];
   const singleLocations = [...new Set(originalPostCard.map(post => post.location))];
 
+    async function delDeadline(){
+      const today = new Date();
+      const month = today.getMonth()+1;
+      const year = today.getFullYear();
+      const day = today. getDate();
+      
+      const formattedDay = day < 10 ? '0' + day : day;
+      const formattedMonth = month < 10 ? '0' + month : month;
+      const currentDate = formattedDay + "-" + formattedMonth + "-" + year;
+      
+      for(const card of postCard){
+        if(card.deadline == currentDate){
+          try{
+            const response = await axios.delete(`http://localhost:3000/advertisement/${card.id}`)
+            console.log(`Card with ID ${card.id} deleted`, response.data);
+          }
+          catch(error){
+            console.error(`Failed to delete card with ID ${card.id}:`, error);
+          }
+        }
+      }
+    }
+    useEffect(()=>{
+      delDeadline(); 
+    }, [])
+
   const searchVacancy = () => {
   const filteredCards = originalPostCard.filter(card => {
     const locationMatch = selectedLocation ? card.location === selectedLocation : true;
     const positionMatch = selectedPosition ? card.position === selectedPosition : true;
 
-
     let salaryMatch = true; 
     const salary = parseInt(card.salary); 
-
+    
     if (isNaN(salary)) {
       salaryMatch = true;
     } else {
@@ -47,11 +74,11 @@ const Homepage = () => {
         salaryMatch = salary > 2000;
       }
     }
-
     return locationMatch && positionMatch && salaryMatch;
+    
   });
 
-  setPostCard(filteredCards.length ? filteredCards : []);
+  setPostCard(filteredCards.length ? filteredCards : [] );
 };
 
   return (
@@ -59,7 +86,7 @@ const Homepage = () => {
       <div className="homepage-container">
         <SearchFilter />         
         <div className="filter-container" style={{ display: filterContainer ? "block" : "none" }} >
-          <select name="" id="">
+          <select name="" id=""  onChange={e => setSelectedPosition(e.target.value)}>
             <option value="">Vəzifə</option>
             {
               singlePositions.map((position, index) => (
@@ -80,20 +107,22 @@ const Homepage = () => {
             {singleLocations.map((location, index) => (
               <option value={location} key={index}>{location}</option>
             ))}
-            {
-              singleLocations.map((location, index) => (
-                <option value={location} key={index}>{location}</option>
-              ))
-            }
           </select>
           <button className="search-btn" onClick={searchVacancy}>Search</button>
         </div>
           {
-            postCard.map(post => (
-              <div className="advertisement" key={post.id}>
-                <HomepageCard post={post} />
+            postCard.length>0 ? (
+              postCard.map(post => (
+                <div className="advertisement" key={post.id}>
+                  <HomepageCard post={post} />
+                </div>
+              ))
+            ) : (
+              <div className="not-found-container">
+                <span><VscSearchStop /></span>
+                <p className="not-found-search">Sizin axtarış üzrə heç bir nəticə tapılmadı.</p>
               </div>
-            ))
+            )
           }
         </div>
     </>
