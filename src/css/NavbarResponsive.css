@@ -33,7 +33,8 @@
     margin-top: 20px;
     padding: 20px;
     text-decoration: none;
-  }
+}
+
 .header__menu__item2.active {
     background-color: #04AA6D;
     color: white;
@@ -78,7 +79,6 @@
     color: white;
     margin: auto;
 }
-
 
 body.dark-mode {
   background-color: #333; 
@@ -149,95 +149,122 @@ body.dark-mode {
 @keyframes underlineDelay {
     to {
         transform: scaleX(1);
-    }
+        }
+          }
+  }
+
+  .sidebar.open {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 9999;
+}
+
+.menu-icon {
+    display: none; 
+    font-size: 2rem;
+    cursor: pointer;
 }
 
 
-    
+@media only screen and (max-width: 1098px) {
+  .header {
+    display: flex;
+    flex-direction: column;
   }
-
-
-  @media only screen and (max-width: 1098px) {
-    .header{
-      display: flex;
-      flex-direction: column;
-  }
-  .header-first{
-      display: flex;
-      justify-content: space-between;
-      gap: 50px;
+  .header-first {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
   }
   .header_logo img {
-      width: auto;
-      height: auto;
-      margin-top: 30px;
-      max-width: 100%;
+    width: auto;
+    height: auto;
+    margin-top: 30px;
+    max-width: 100%;
   }
   #lang {
-      position: absolute;
-      top: 35px;
-      left: 150px;
-      font-size: 15px;
-      cursor: pointer;
-      z-index: 1000;
+    position: absolute;
+    top: 35px;
+    left: 150px;
+    font-size: 15px;
+    cursor: pointer;
+    z-index: 1000;
   }
+
   .header__menu {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      gap: 10px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    padding: 0;
+    margin-left: 40px;
   }
+
+  .header__menu__item1 {
+    display: flex; 
+    align-items: center;
+    gap: 10px; 
+    margin-bottom: 10px; 
+  }
+
   .header__menu li {
-      color: black;
-      margin-top: 20px;
-      padding: 20px;
-      text-decoration: none;
-    }
+    color: black;
+    margin: 0; 
+    padding: 10px; 
+    text-decoration: none;
+  }
+
   .header__menu__item2.active {
-      background-color: #04AA6D;
-      color: white;
+    background-color: #04AA6D;
+    color: white;
   }
   .header__menu__item2:hover:not(.active) {
-      background-color: blue;
-      color: white;
-      cursor: pointer;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
   }
   .header__menu__item1.active {
-      background-color: #04AA6D;
-      color: white;
+    background-color: #04AA6D;
+    color: white;
   }
   .header__menu__item1:hover:not(.active) {
-      background-color: blue;
-      color: white;
-      cursor: pointer;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
   }
-  .header__menu__item{
-      font-size: 20px;
+  .header__menu__item {
+    font-size: 20px;
+  }
+  .menu-icon {
+    display: block; 
   }
   .icon-container {
-      width: auto;
-      position: absolute;
-      bottom: 150px;
-      left: 30px;
-      display: flex;
-      justify-content: space-between;
-      background-color: gray;
-      align-items: center;
-      padding: 2px 3px;
-      cursor: pointer;
-      border-radius: 10%;
+    width: auto;
+    position: absolute;
+    bottom: 150px;
+    left: 30px;
+    display: flex;
+    justify-content: space-between;
+    background-color: gray;
+    align-items: center;
+    padding: 2px 3px;
+    cursor: pointer;
+    border-radius: 10%;
   }
   .sun {
-      background-color: white;
-      color: gray;
-      padding: 9px;
-      border-radius: 10%;
+    background-color: white;
+    color: gray;
+    padding: 9px;
+    border-radius: 10%;
   }
   .moon {
-      color: white;
-      margin: auto;
+    color: white;
+    margin: auto;
   }
-  
   
   body.dark-mode {
     background-color: #333; 
@@ -262,58 +289,62 @@ body.dark-mode {
     display: block;
   }
   .footer {
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-      cursor: pointer;
-      position: absolute;
-      bottom: 90px;
-      left: 0px;
-      flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 90px;
+    left: 0px;
+    flex-wrap: wrap;
   }
   .footer_menu {
-      list-style: none;
-      display: flex;
-      gap: 20px;
+    list-style: none;
+    display: flex;
+    gap: 20px;
   }
   .footer_menu_item {
-      cursor: pointer;
-      position: relative;
+    cursor: pointer;
+    position: relative;
   }
   .footer_menu_item li {
-      text-decoration: none;
+    text-decoration: none;
   }
   .footer_menu_item1, .footer_menu_item2, .footer_menu_item3 {
-      text-decoration: none;
-      cursor: pointer;
-      color: black;
-      position: relative;
-      overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    position: relative;
+    overflow: hidden;
   }
   .footer_menu_item1::after, .footer_menu_item2::after, .footer_menu_item3::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -1px;
-      width: 100%;
-      height: 2px;
-      background-color: black;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.5s ease;
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
   }
   .footer_menu_item1:hover::after, .footer_menu_item2:hover::after, .footer_menu_item3:hover::after {
-      animation: underlineDelay 0.5s ease 0.1s forwards;
+    transform: scaleX(1);
   }
-  @keyframes underlineDelay {
-      to {
-          transform: scaleX(1);
-      }
-  } 
+  .footer_menu_item1.active, .footer_menu_item2.active, .footer_menu_item3.active {
+    color: blue;
+  }
 }
 
+.header {
+    display: flex;
+    flex-direction: column;
+  }
 
-
+  .menu-icon {
+    display: block;
+  }
 
   @media only screen and (max-width: 992px) {
     .header_logo img {

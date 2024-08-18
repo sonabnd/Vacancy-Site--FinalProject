@@ -16,21 +16,38 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { IoIosMenu } from "react-icons/io";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import Button from "react-bootstrap/Button";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import { FaBars } from "react-icons/fa";
 
 function App() {
-  // login/register
   const [login, setLogin] = useState(false);
   const [register, setRegister] = useState(false);
   const [isDesign, setDesign] = useState(false);
   const [postCard, setPostCard] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [filterContainer, setfilterContainer] = useState(false)
+  const [filterContainer, setfilterContainer] = useState(false);
   const [originalPostCard, setOriginalPostCard] = useState([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [icon, setIcon] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleCloseIcon = () => {
+    setLogin(false);
+    setDesign(false);
+  };
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   const showHideFilter = () => {
-    setfilterContainer(!filterContainer)
-  }
+    setfilterContainer(!filterContainer);
+  };
 
   const handleShowLogin = () => {
     setLogin(true);
@@ -68,7 +85,8 @@ function App() {
     filterContainer,
     setfilterContainer,
     showHideFilter,
-    originalPostCard, setOriginalPostCard
+    originalPostCard,
+    setOriginalPostCard,
   };
 
   const getData = async () => {
@@ -184,9 +202,7 @@ function App() {
             theme="dark"
           />
           <Context.Provider value={data}>
-            <div
-              className="navbar-component"
-            >
+            <div className="navbar-component">
               <Navbar />
             </div>
             <div className="all-components">
@@ -194,9 +210,12 @@ function App() {
                 <div className="logo-img">
                   <img src="/src/img/logo.c9da023.svg" alt="logo" />
                 </div>
-                <span className="menu-icon" >
+                {/* <span onClick={handleCloseIcon} className="menu-icon" >   
                   <IoIosMenu />
-                </span>
+                </span> */}
+                <Button variant="primary" onClick={handleShow}>
+                  <FaBars />
+                </Button>
               </div>
               <Routes>
                 <Route path="/" element={<Homepage />} />
