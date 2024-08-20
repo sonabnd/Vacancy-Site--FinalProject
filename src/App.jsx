@@ -21,8 +21,7 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
-import { IoMdSunny } from "react-icons/io";
-import { FaMoon } from "react-icons/fa";
+
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -49,10 +48,6 @@ function App() {
     }
   };
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle("dark-mode");
-  };
 
   useEffect(() => {
     const getData = async () => {
@@ -80,11 +75,6 @@ function App() {
     if (!isDesktop) {
       setNavbarOpen(prevState => !prevState);
     }
-  };
-
-  const goToNavbarpage = () => {
-    setLogin(false);
-    setDesign(false);
   };
 
   const showHideFilter = () => {
@@ -123,7 +113,7 @@ function App() {
     postCard,
     setPostCard,
     searchInput,setSearchInput,
-    filterContainer,setfilterContainer,
+    filterContainer,
     showHideFilter,
     originalPostCard, setOriginalPostCard,
     user,setUser
@@ -245,14 +235,6 @@ function App() {
   }
   //register functions end
 
-    searchInput,
-    setSearchInput,
-    filterContainer,
-    setFilterContainer,
-    showHideFilter,
-    originalPostCard, 
-    setOriginalPostCard
-  };
 
   return (
     <>
@@ -305,7 +287,7 @@ function App() {
                     </div>
                   </div>
                   <div className="login-button">
-                    <button className="register-btn" type='submit'>Daxil ol</button>
+                    <button className="login-btn" type='submit'>Daxil ol</button>
                   </div>
                   <div className="qeydiyyat-button">
                     <button onClick={handleShowRegister}>Qeydiyyatdan keç</button>
