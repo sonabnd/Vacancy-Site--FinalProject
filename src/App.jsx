@@ -4,6 +4,7 @@ import Context from "./context/context";
 import Homepage from "./components/Homepage";
 import Navbar from "./components/Navbar";
 import "./App.css";
+import "./css/AppResponsive.css"
 import Details from "./pages/Details";
 import Service from "./pages/Service";
 import Contact from "./pages/Contact";
@@ -20,24 +21,75 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import { IoMdSunny } from "react-icons/io";
+import { FaMoon } from "react-icons/fa";
 
 function App() {
-  // login/register
   const [login, setLogin] = useState(false);
   const [register, setRegister] = useState(false);
   const [isDesign, setDesign] = useState(false);
   const [postCard, setPostCard] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [filterContainer, setfilterContainer] = useState(false)
+  const [filterContainer, setFilterContainer] = useState(false);
   const [originalPostCard, setOriginalPostCard] = useState([]);
   const [user, setUser] = useState([]);
 
   const navigation = useNavigate();
 
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1098);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const handleResize = () => {
+    setIsDesktop(window.innerWidth > 1098);
+    if (window.innerWidth > 1098) {
+      setNavbarOpen(true); 
+    } else {
+      setNavbarOpen(false);
+    }
+  };
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.body.classList.toggle("dark-mode");
+  };
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/advertisement");
+        const posts = response.data;
+        setPostCard(posts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getData();
+  }, []);
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
+  const toggleNavbar = () => {
+    if (!isDesktop) {
+      setNavbarOpen(prevState => !prevState);
+    }
+  };
+
+  const goToNavbarpage = () => {
+    setLogin(false);
+    setDesign(false);
+  };
 
   const showHideFilter = () => {
-    setfilterContainer(!filterContainer)
-  }
+    setFilterContainer(prevState => !prevState);
+  };
 
   const handleShowLogin = () => {
     setLogin(true);
@@ -193,7 +245,14 @@ function App() {
   }
   //register functions end
 
-
+    searchInput,
+    setSearchInput,
+    filterContainer,
+    setFilterContainer,
+    showHideFilter,
+    originalPostCard, 
+    setOriginalPostCard
+  };
 
   return (
     <>
@@ -356,17 +415,17 @@ function App() {
             theme="dark"
           />
           <Context.Provider value={data}>
-            <div
-              className="navbar-component"
-            >
-              <Navbar />
-            </div>
+            {(isDesktop || navbarOpen) && (
+              <div className="navbar-component">
+                <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+              </div>
+            )}
             <div className="all-components">
               <div className="menu">
                 <div className="logo-img">
                   <img src="/src/img/logo.c9da023.svg" alt="logo" />
                 </div>
-                <span className="menu-icon" >
+                <span className="menu-icon" onClick={toggleNavbar}>
                   <IoIosMenu />
                 </span>
               </div>

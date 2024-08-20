@@ -1,0 +1,83 @@
+@media (max-width: 1098px) {
+    .all-components {
+      width: 100%;
+      margin-left: 0;
+      position: relative;
+    }
+    .language-select{
+      display: none;
+    }
+    .footer_menu{
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+    }
+    .navbar-component {
+      z-index: 5;
+      display: block;
+      background-color: white;
+      width: 30%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .menu {
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .logo-img {
+      width: 100%;
+      height: 30px;
+    }
+    .logo-img img {
+      width: 18%;
+      height: 100%;
+    }
+    .menu-icon {
+      font-size: 22px;
+    }
+    .app-container {
+      max-width: 100%;
+    }
+    .login {
+      margin-top: 3px;
+    }
+    .register {
+      margin-top: 3px;
+    }
+  }
+  @media (max-width: 768px) {
+    .all-components {
+      width: 100%;
+      margin-left: 0;
+    }
+    .app-container {
+      max-width: 100%;
+    }
+    .login {
+      margin-top: 3px;
+    }
+    .register {
+      margin-top: 3px;
+    }
+    .navbar-component{
+      width: 40%;
+    }
+  }
+  @media (max-width: 480px) {
+    .all-components {
+      width: 100%;
+      margin-left: 0;
+    }
+    .app-container {
+      max-width: 100%;
+    }
+    .navbar-component{
+      width: 54%;
+    }
+  }
