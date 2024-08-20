@@ -1,7 +1,9 @@
 @media (max-width: 1098px) {
-    .navbar-component {
-        display: none;
-      }
+    .all-components{
+        max-width: 100%;
+        margin-left: -120px;
+        position: relative;
+    }
     .sidebar {
         margin-left: 15px;
     }

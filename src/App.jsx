@@ -4,6 +4,7 @@ import Context from "./context/context";
 import Homepage from "./components/Homepage";
 import Navbar from "./components/Navbar";
 import "./App.css";
+import "./css/AppResponsive.css"
 import Details from "./pages/Details";
 import Service from "./pages/Service";
 import Contact from "./pages/Contact";
