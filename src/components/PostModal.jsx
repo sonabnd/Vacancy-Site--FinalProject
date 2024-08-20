@@ -37,7 +37,6 @@ function PostModal(props) {
             vacancy.company == values.company &&
             vacancy.position == values.position
         );
-        toast.success("Əlavə olundu!");
         if (sameVacancy) {
           toast.error("Şirkət adından bu vakansiya artıq paylaşılıb");
           return;
@@ -46,6 +45,7 @@ function PostModal(props) {
             "http://localhost:3000/advertisement",
             values
           );
+          toast.success("Əlavə olundu!");
           setPostCard((prevAds) => [response.data, ...prevAds]);
           actions.resetForm();
         }
@@ -58,7 +58,7 @@ function PostModal(props) {
   const formatDate = (date) => {
     if (!date) return '';
     const [year, month, day] = date.split('-');
-    return `${day}/${month}/${year}`; 
+    return `${day}/${month}/${year}`;
   };
 
   return (
