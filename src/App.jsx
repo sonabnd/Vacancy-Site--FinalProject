@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Context from "./context/context";
 import Homepage from "./components/Homepage";
 import Navbar from "./components/Navbar";
@@ -16,7 +16,10 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { IoIosMenu } from "react-icons/io";
 import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useFormik } from "formik";
+import * as Yup from 'yup';
 
 function App() {
   // login/register
@@ -27,6 +30,10 @@ function App() {
   const [searchInput, setSearchInput] = useState("");
   const [filterContainer, setfilterContainer] = useState(false)
   const [originalPostCard, setOriginalPostCard] = useState([]);
+  const [user, setUser] = useState([]);
+
+  const navigation = useNavigate();
+
 
   const showHideFilter = () => {
     setfilterContainer(!filterContainer)
@@ -63,19 +70,17 @@ function App() {
     setDesign,
     postCard,
     setPostCard,
-    searchInput,
-    setSearchInput,
-    filterContainer,
-    setfilterContainer,
+    searchInput,setSearchInput,
+    filterContainer,setfilterContainer,
     showHideFilter,
-    originalPostCard, setOriginalPostCard
+    originalPostCard, setOriginalPostCard,
+    user,setUser
   };
 
   const getData = async () => {
     try {
       const response = await axios.get("http://localhost:3000/advertisement");
       const posts = response.data;
-
       setPostCard(posts);
     } catch (error) {
       console.log(error);
@@ -86,88 +91,255 @@ function App() {
     getData();
   }, []);
 
+  //login functions start
+  const validationLogin = Yup.object().shape({
+    email: Yup.string().email().required('E-poçt tələb olunur'),
+    password: Yup.string().required('Şifrə sahəsi boş saxlanılmamalıdır').min(6),
+  })
+
+  const formikLogin = useFormik({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    validationSchema: validationLogin,
+    onSubmit: async (values) => {
+      jsonLogin(values);
+    }
+  })
+
+  const jsonLogin = async (values) => {
+    let users = []
+    let res = await axios.get('http://localhost:3000/users')
+    let data = await res.data;
+    // console.log(res.data);
+    users = data;
+    console.log(users);
+    if (users) {
+      const hasUser = users.find((user) => {
+        return user.email == values.email && user.password == values.password
+      })
+      console.log(hasUser);
+      setUser(hasUser)
+      if (hasUser) {
+        localStorage.setItem('user', JSON.stringify(hasUser));
+        console.log(user);
+        navigation('/add-post')
+        toast.success("Sizin qeydiyyatınız uğurludur!");
+        setLogin(false);
+        setDesign(false);
+        formik.resetForm('')
+      } else {
+        toast.error("Sifre və ya e-poçt yanlışdır!");
+        formik.resetForm('')
+        setLogin(false);
+        setDesign(false);
+      }
+    }
+  }
+
+  //login functiona end
+
+
+  //regsiter functions start
+  const validationRegister = Yup.object().shape({
+    name: Yup.string()
+      .required('Adınızı daxil edin')
+      .min(2, 'Adınız en az 2 simvol olmalıdır'),
+    email: Yup.string().email().required('E-poçt tələb olunur'),
+    password: Yup.string().required('Şifrə sahəsi boş saxlanılmamalıdır').min(6),
+    confirmpassword: Yup.string().required().oneOf([Yup.ref('password'), null], 'Şifrənin təkrarı sahəsi Şifrə sahəsi ilə eyni olmalıdır ')
+  })
+
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmpassword: ''
+    },
+    validationSchema: validationRegister,
+    onSubmit: async (values) => {
+      jsonRegister(values);
+      console.log("qeydiyyat olundu");
+    }
+  })
+
+  const jsonRegister = async (values) => {
+    try {
+      const checkUser = await axios.get('http://localhost:3000/users');
+      const getUser = checkUser.data;
+      console.log(getUser);
+      const sameUser = getUser.find(
+        (user) => user.email === values.email
+      );
+      if (sameUser) {
+        toast.error("Bu e-poçt artıq istifadə edilib");
+        setRegister(false)
+        setDesign(false);
+        formik.resetForm();
+        return;
+      } else {
+        toast.success("user yaradildi");
+        localStorage.setItem('user', JSON.stringify({ name }));
+        await axios.post('http://localhost:3000/users', JSON.stringify(values));
+        setRegister(false)
+        setLogin(true)
+        formik.resetForm();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  //register functions end
+
+
+
   return (
     <>
       <div className={isDesign ? "open" : "close"}>
         <div className="modal-content-login">
           {login && (
-            <div className="login">
-              <div className="login-main">
-                <div onClick={handleCloseLogin} className="login-close">
-                  <IoClose />
-                </div>
-                <div className="login-icon">
-                  <RiLoginCircleLine />
-                </div>
-                <div style={{ marginBottom: "10px" }}>
-                  <h3>Hesabınıza daxil olun</h3>
-                </div>
-                <div style={{ marginBottom: "10px" }}>
-                  <p>Xoş gəlmişsiniz!</p>
-                </div>
-                <div className="login-inputs">
-                  <div className="login-input">
-                    <label htmlFor="">E-poçt</label>
-                    <input type="text" placeholder="E-poçtunuzu yaradın" />
+            <form className="formik-navbar" onSubmit={formikLogin.handleSubmit}>
+              <div className="login">
+                <div className="login-main">
+                  <div onClick={handleCloseLogin} className="login-close">
+                    <IoClose />
                   </div>
-                  <div className="login-input">
-                    <label htmlFor="">Şifrə</label>
-                    <input type="password" placeholder="Şifrə" />
+                  <div className="login-icon">
+                    <RiLoginCircleLine />
                   </div>
-                </div>
-                <div className="login-button">
-                  <button>Daxil ol</button>
-                </div>
-                <div className="qeydiyyat-button">
-                  <button onClick={handleShowRegister}>Qeydiyyatdan keç</button>
+                  <div style={{ marginBottom: "10px" }}>
+                    <h3>Hesabınıza daxil olun</h3>
+                  </div>
+                  <div style={{ marginBottom: "10px" }}>
+                    <p>Xoş gəlmişsiniz!</p>
+                  </div>
+                  <div className="login-inputs">
+                    <div className="login-input">
+                      <label htmlFor="email">E-poçt</label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        onChange={formikLogin.handleChange}
+                        value={formikLogin.values.email}
+                        placeholder="E-poçtunuzu yaradın"
+                      />
+                      {formikLogin.errors.email && formikLogin.touched.email && (
+                        <div className="error">{formikLogin.errors.email}</div>
+                      )}
+                    </div>
+                    <div className="login-input">
+                      <label htmlFor="password">Şifrə</label>
+                      <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        onChange={formikLogin.handleChange}
+                        placeholder="Şifrə"
+                        value={formikLogin.values.password}
+                      />
+                      {formikLogin.errors.password && formikLogin.touched.password && (
+                        <div className="error">{formikLogin.errors.password}</div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="login-button">
+                    <button className="register-btn" type='submit'>Daxil ol</button>
+                  </div>
+                  <div className="qeydiyyat-button">
+                    <button onClick={handleShowRegister}>Qeydiyyatdan keç</button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </form>
           )}
           {register && (
-            <div className="register">
-              <div className="register-main">
-                <div onClick={handleCloseRegister} className="register-close">
-                  <IoClose />
-                </div>
-                <div className="register-head">
-                  <div className="register-icon">
-                    <img
-                      loading="lazy"
-                      src="https://www.hellojob.az/content/assets/images/login/flag.svg"
-                      alt=""
-                    />
+            <form className="formik-navbar" onSubmit={formik.handleSubmit}>
+              <div className="register">
+                <div className="register-main">
+                  <div onClick={handleCloseRegister} className="register-close">
+                    <IoClose />
                   </div>
-                  <div className="register-head-text">
-                    <h3>Qeydiyyatdan keçin</h3>
+                  <div className="register-head">
+                    <div className="register-icon">
+                      <img
+                        loading="lazy"
+                        src="https://www.hellojob.az/content/assets/images/login/flag.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div className="register-head-text">
+                      <h3>Qeydiyyatdan keçin</h3>
+                    </div>
                   </div>
-                </div>
-                <div className="regisetr-inputs">
-                  <div className="register-input">
-                    <label htmlFor="">Adınız*</label>
-                    <input type="text" placeholder="Adinizi daxil edin" />
+                  <div className="regisetr-inputs">
+                    <div className="register-input">
+                      <label htmlFor="">Adınız*</label>
+                      <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        placeholder="Adınızı daxil edin"
+                        onChange={formik.handleChange}
+                        value={formik.values.name} />
+                      {formik.errors.name && formik.touched.name && (
+                        <div className="error">{formik.errors.name}</div>
+                      )}
+                    </div>
+                    <div className="register-input">
+                      <label htmlFor="">E-poçt*</label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="E-poçtunuzu yazın"
+                        onChange={formik.handleChange}
+                        value={formik.values.email}
+                      />
+                      {formik.errors.email && formik.touched.email && (
+                        <div className="error">{formik.errors.email}</div>
+                      )}
+                    </div>
+                    <div className="register-input">
+                      <label htmlFor="">Şifre*</label>
+                      <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="Şifrənizi daxil edin"
+                        onChange={formik.handleChange}
+                        value={formik.values.password}
+                      />
+                      {formik.errors.password && formik.touched.password && (
+                        <div className="error">{formik.errors.password}</div>
+                      )}
+                    </div>
+                    <div className="register-input">
+                      <label htmlFor="">Şifrə təkrarı*</label>
+                      <input
+                        id="confirmpassword"
+                        name="confirmpassword"
+                        type="password"
+                        placeholder="Şifrənizi təkrar edin"
+                        onChange={formik.handleChange}
+                        value={formik.values.confirmpassword}
+                      />
+                      {formik.errors.confirmpassword && formik.touched.confirmpassword && (
+                        <div className="error">{formik.errors.confirmpassword}</div>
+                      )}
+                    </div>
                   </div>
-                  <div className="register-input">
-                    <label htmlFor="">E-poçt*</label>
-                    <input type="text" placeholder="E-poçtunuzu yazın" />
+                  <div className="register-button">
+                    <button className="register-btn" type='submit'>Qeydiyyat ol</button>
                   </div>
-                  <div className="register-input">
-                    <label htmlFor="">Şifre*</label>
-                    <input type="password" />
+                  <div className="register-button-giris">
+                    <button onClick={handleShowLogin}>Giriş sehifəsi</button>
                   </div>
-                  <div className="register-input">
-                    <label htmlFor="">Şifrə təkrarı*</label>
-                    <input type="password" />
-                  </div>
-                </div>
-                <div className="register-button">
-                  <button>Qeydiyyat ol</button>
-                </div>
-                <div className="register-button-giris">
-                  <button onClick={handleShowLogin}>Giriş sehifəsi</button>
                 </div>
               </div>
-            </div>
+            </form>
           )}
         </div>
         <div className="app-container">

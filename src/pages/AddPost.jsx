@@ -1,30 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../css/AddPost.css";
 import { IoPersonSharp } from "react-icons/io5";
 import "bootstrap/dist/css/bootstrap.min.css";
 import PostModal from "../components/PostModal";
 import UpdatePost from "../components/UpdatePost";
 import DeletePost from "../components/DeletePost";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AddPost = () => {
   const [postModalShow, setPostModalShow] = React.useState(false);
   const [updateModalShow, setUpdateModalShow] = React.useState(false);
   const [deleteModalShow, setDeleteModalShow] = React.useState(false);
+
+  // start user detail
+  const [details, setDetails] = useState({});
+  const navigation = useNavigate();
+
+  const local = localStorage.getItem("user");
+  console.log(local);
+
+
+
+  useEffect(() => {
+    if (!local) {
+      navigation('/');
+    } else {
+      setDetails(JSON.parse(local));
+      console.log(details);
+    }
+  }, [local])
+
+  const handleLogout = async () => {
+    try {
+      toast.success("cixis edildi")
+      localStorage.removeItem('user');
+      navigation("/")
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // end user detail
+
   return (
     <>
       <div className="postAd-container">
         <header className="header">
           <div className="user-info">
-            <h2 className="welcome-text">Xoş gəlmisiniz</h2>
+            <h2 className="welcome-text">Xoş gəlmisiniz, {details.name}</h2>
             <div className="user-details">
-              <div className="user-icon">
-                <IoPersonSharp />
-              </div>
-              <div className="user-name">Sona Bandaliyeva</div>
               <div className="dropdown">
-                <button className="dropdown-button">▼</button>
+                <div className="dropdown-design">
+                  <div className="user-icon">
+                    <IoPersonSharp />
+                  </div>
+                  <div className="user-name">{details.name}</div>
+                  <button className="dropdown-button">▼</button>
+                </div>
                 <div className="dropdown-content">
-                  <a>Çıxış</a>
+                  <a className="user-detail-dropdown">Şəxsi məlumatlar</a>
+                  <a className="user-detail-dropdown" onClick={handleLogout}>Çıxış</a>
                 </div>
               </div>
             </div>
