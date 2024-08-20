@@ -26,6 +26,7 @@
   background-color: rgba(7, 7, 7, 0.28);
   z-index: 1;
   transition: 0.3s linear;
+  height: 100vh;
 }
 .open .app-container {
   position: relative;
@@ -211,6 +212,11 @@
   cursor: pointer;
 }
 .register-btn:hover{
+  background-color: #2188ff;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover{
   background-color: #2188ff;
   transition: background-color 0.3s ease;
 }
