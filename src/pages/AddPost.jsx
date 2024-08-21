@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import PostModal from "../components/PostModal";
 import UpdatePost from "../components/UpdatePost";
 import DeletePost from "../components/DeletePost";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const AddPost = () => {
@@ -59,7 +59,7 @@ const AddPost = () => {
                   <button className="dropdown-button">▼</button>
                 </div>
                 <div className="dropdown-content">
-                  <a className="user-detail-dropdown">Şəxsi məlumatlar</a>
+                  <Link to={"/personalInformation"} className="user-detail-dropdown">Şəxsi məlumatlar</Link>
                   <a className="user-detail-dropdown" onClick={handleLogout}>Çıxış</a>
                 </div>
               </div>
