@@ -33,6 +33,7 @@ function App() {
   const [filterContainer, setFilterContainer] = useState(false);
   const [originalPostCard, setOriginalPostCard] = useState([]);
   const [user, setUser] = useState([]);
+  const [myPost, setMyPost] = useState([]);
 
   const navigation = useNavigate();
 
@@ -117,7 +118,8 @@ function App() {
     filterContainer,
     showHideFilter,
     originalPostCard, setOriginalPostCard,
-    user,setUser
+    user,setUser,
+    myPost,setMyPost
   };
 
   const getData = async () => {
@@ -125,6 +127,7 @@ function App() {
       const response = await axios.get("http://localhost:3000/advertisement");
       const posts = response.data;
       setPostCard(posts);
+      setMyPost(posts)
     } catch (error) {
       console.log(error);
     }
@@ -135,6 +138,7 @@ function App() {
   }, []);
 
   //login functions start
+
   const validationLogin = Yup.object().shape({
     email: Yup.string().email().required('E-poçt tələb olunur'),
     password: Yup.string().required('Şifrə sahəsi boş saxlanılmamalıdır').min(6),
@@ -155,7 +159,6 @@ function App() {
     let users = []
     let res = await axios.get('http://localhost:3000/users')
     let data = await res.data;
-    // console.log(res.data);
     users = data;
     console.log(users);
     if (users) {
@@ -414,7 +417,7 @@ function App() {
               </div>
               <Routes>
                 <Route path="/" element={<Homepage />} />
-                <Route path="/details" element={<Details />} />
+                <Route path="/details/:id" element={<Details />} />
                 <Route path="/service" element={<Service />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<About />} />

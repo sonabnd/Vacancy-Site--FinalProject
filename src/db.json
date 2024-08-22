@@ -27,30 +27,74 @@
       "jobInformation": "gfdytb"
     },
     {
-      "id": "35",
-      "company": "Agile",
-      "category": "Assduieunc",
-      "position": "Engineer",
-      "location": "Baki",
-      "salary": "324",
-      "workExperience": "5",
-      "deadline": "2024-08-30",
-      "jobTime": "cxv",
-      "requirement": "fghjk",
-      "jobInformation": "fghjkl"
+      "id": "5aa9",
+      "company": "user:Sona",
+      "category": "fgrt",
+      "position": "dfg",
+      "location": "fgbh",
+      "salary": "3245",
+      "workExperience": "2",
+      "deadline": "20-09-2022",
+      "jobTime": "cvdbfgh",
+      "requirement": "",
+      "jobInformation": "",
+      "userId": "e10c"
     },
     {
-      "id": "36",
-      "company": "Agile",
-      "category": "sd",
-      "position": "Kassir",
-      "location": "Baki",
+      "id": "4715",
+      "company": "Admin",
+      "category": "scdf",
+      "position": "Admin user",
+      "location": "34",
+      "salary": "34",
+      "workExperience": "3",
+      "deadline": "28-09-3933",
+      "jobTime": "3434",
+      "requirement": "qw",
+      "jobInformation": "",
+      "userId": "a662"
+    },
+    {
+      "id": "da61",
+      "company": "Kapital",
+      "category": "Satis",
+      "position": "Developer",
+      "location": "Ganca",
+      "salary": "900",
+      "workExperience": "4",
+      "deadline": "12-05-2024",
+      "jobTime": "tam stat",
+      "requirement": "",
+      "jobInformation": "",
+      "userId": "e10c"
+    },
+    {
+      "id": "b943",
+      "company": "ABB",
+      "category": "maliyye",
+      "position": "Enginerr",
+      "location": "Gadabay",
       "salary": "800",
-      "workExperience": "5",
-      "deadline": "19-08-2024",
-      "jobTime": "cxv",
-      "requirement": "ssfhh",
-      "jobInformation": "gfdytb"
+      "workExperience": "3",
+      "deadline": "10-09-2024",
+      "jobTime": "tam stat",
+      "requirement": "",
+      "jobInformation": "",
+      "userId": "e10c"
+    },
+    {
+      "id": "ce7e",
+      "company": "asdfg",
+      "category": "sdcfg",
+      "position": "sdfgrt",
+      "location": "asdf",
+      "salary": "223",
+      "workExperience": "2",
+      "deadline": "03-03-0334",
+      "jobTime": "asdfg",
+      "requirement": "df",
+      "jobInformation": "",
+      "userId": "e10c"
     }
   ],
   "users": [
@@ -58,6 +102,20 @@
       "id": "a662",
       "name": "Admin",
       "email": "admin@gmail.com",
+      "password": "123456",
+      "confirmpassword": "123456"
+    },
+    {
+      "id": "e10c",
+      "name": "sona",
+      "email": "bandaliyevasona@gmail.com",
+      "password": "Sona11",
+      "confirmpassword": "Sona11"
+    },
+    {
+      "id": "fbeb",
+      "name": "nergiz",
+      "email": "test@gmail.com",
       "password": "123456",
       "confirmpassword": "123456"
     }

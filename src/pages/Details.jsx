@@ -1,8 +1,11 @@
 import React from "react";
 import { FaBars, FaClock, FaEye, FaHome } from "react-icons/fa";
 import "../css/Details.css";
+import { useParams } from "react-router-dom";
 
 const Details = () => {
+  const {id} = useParams();
+  console.log(id);
   return (
     <>
       <div className="container-fluid p-4">
