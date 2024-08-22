@@ -84,6 +84,11 @@
 .advertisement div{
   margin-bottom: 10px;
 }
+.advertisement a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
 .advertisement:hover.advertisement{
   background-color: #f9f9f9;
 }
@@ -121,6 +126,9 @@
 }
 .advertisement .price{
   width: 20%;
+}
+.details-page-link{
+  text-decoration: none;
 }
 
 

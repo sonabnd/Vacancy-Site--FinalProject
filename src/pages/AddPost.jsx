@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../css/AddPost.css";
 import { IoPersonSharp } from "react-icons/io5";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,39 +7,43 @@ import UpdatePost from "../components/UpdatePost";
 import DeletePost from "../components/DeletePost";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Context from "../context/context";
+import { PiEmptyBold } from "react-icons/pi";
 
 const AddPost = () => {
   const [postModalShow, setPostModalShow] = React.useState(false);
   const [updateModalShow, setUpdateModalShow] = React.useState(false);
   const [deleteModalShow, setDeleteModalShow] = React.useState(false);
-
-  // start user detail
+  const { myPost, setMyPost } = useContext(Context);
   const [details, setDetails] = useState({});
   const navigation = useNavigate();
 
   const local = localStorage.getItem("user");
-  console.log(local);
 
-
+  const user = JSON.parse(localStorage.getItem("user"));
+  const filteredPosts = myPost.filter((post) => post.userId === user.id);
 
   useEffect(() => {
     if (!local) {
-      navigation('/');
+      navigation("/");
     } else {
       setDetails(JSON.parse(local));
-      console.log(details);
     }
-  }, [local])
+  }, [local]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("myPost", JSON.stringify(myPost));
+  // }, [myPost]);
 
   const handleLogout = async () => {
     try {
-      toast.success("cixis edildi")
-      localStorage.removeItem('user');
-      navigation("/")
+      toast.success("cixis edildi");
+      localStorage.removeItem("user");
+      navigation("/");
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   // end user detail
 
@@ -59,8 +63,15 @@ const AddPost = () => {
                   <button className="dropdown-button">▼</button>
                 </div>
                 <div className="dropdown-content">
-                  <Link to={"/personalInformation"} className="user-detail-dropdown">Şəxsi məlumatlar</Link>
-                  <a className="user-detail-dropdown" onClick={handleLogout}>Çıxış</a>
+                  <Link
+                    to={"/personalInformation"}
+                    className="user-detail-dropdown"
+                  >
+                    Şəxsi məlumatlar
+                  </Link>
+                  <a className="user-detail-dropdown" onClick={handleLogout}>
+                    Çıxış
+                  </a>
                 </div>
               </div>
             </div>
@@ -81,51 +92,40 @@ const AddPost = () => {
             </div>
           </div>
           <span className="vacancy-count">Vakansiyalar (5)</span>
-          <div className="ad-card">
-            <div className="company-logo">T</div>
-            <div className="ad-details">
-              <p className="job-position">Software Engineer</p>
-              <p className="company-name">Tech Innovators Inc.</p>
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map((post) => (
+              <div className="ad-card" key={post.id}>
+                <div className="company-logo">T</div>
+                <div className="ad-details">
+                  <p className="job-position">{post.position}</p>
+                  <p className="company-name">{post.position}.</p>
+                </div>
+                <div className="ad-actions">
+                  <button
+                    className="edit-button"
+                    variant="primary"
+                    onClick={() => setUpdateModalShow(true)}
+                  >
+                    Redaktə et
+                  </button>
+                  <button
+                    className="delete-button"
+                    variant="primary"
+                    onClick={() => setDeleteModalShow(true)}
+                  >
+                    Sil
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="no-post">
+              <span>
+                <PiEmptyBold className="no-post-icon" />
+              </span>
+              <p>Aktiv elanınız yoxdur</p>
             </div>
-            <div className="ad-actions">
-              <button
-                className="edit-button"
-                variant="primary"
-                onClick={() => setUpdateModalShow(true)}
-              >
-                Redaktə et
-              </button>
-              <button
-                className="delete-button"
-                variant="primary"
-                onClick={() => setDeleteModalShow(true)}
-              >
-                Sil
-              </button>
-            </div>
-          </div>
-          <div className="ad-card">
-            <div className="company-logo">T</div>
-            <div className="ad-details">
-              <p className="job-position">Software Engineer</p>
-              <p className="company-name">Tech Innovators Inc.</p>
-            </div>
-            <div className="ad-actions">
-              <button className="edit-button">Redaktə et</button>
-              <button className="delete-button">Sil</button>
-            </div>
-          </div>
-          <div className="ad-card">
-            <div className="company-logo">T</div>
-            <div className="ad-details">
-              <p className="job-position">Software Engineer</p>
-              <p className="company-name">Tech Innovators Inc.</p>
-            </div>
-            <div className="ad-actions">
-              <button className="edit-button">Redaktə et</button>
-              <button className="delete-button">Sil</button>
-            </div>
-          </div>
+          )}
         </section>
         <PostModal
           show={postModalShow}
