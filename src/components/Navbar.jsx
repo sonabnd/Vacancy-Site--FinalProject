@@ -5,7 +5,7 @@ import { FaMoon } from "react-icons/fa";
 import { IoBagRemoveOutline } from "react-icons/io5";
 import { MdPostAdd } from "react-icons/md";
 import "../css/Navbar.css";
-import "../css/NavbarResponsive.css"
+import "../css/NavbarResponsive.css";
 import Context from "../context/context";
 
 const Navbar = () => {
@@ -122,57 +122,62 @@ const Navbar = () => {
           </ul>
         </main>
         <footer className="sidebar-footer">
-  <div className="sidebar_footer_menu">
-    <div className={`icon-container ${isDarkMode ? "dark" : ""}`}>
-      <div className="sun" onClick={() => toggleDarkMode("light")}>
-        <IoMdSunny size={15} />
-      </div>
-      <div className="moon" onClick={() => toggleDarkMode("dark")}>
-        <FaMoon size={15} />
-      </div>
-    </div>
-    <div className="footer_menu_items">
-      <div
-        className="footer_menu_item1"
-        onClick={goToAboutPage}
-        style={{
-          color:
-            active && location.pathname === "/about"
-              ? "#0C4DDE"
-              : "black",
-        }}
-      >
-        Haqqımızda
-      </div>
-      <div
-        className="footer_menu_item2"
-        onClick={goToServicePage}
-        style={{
-          color:
-            active && location.pathname === "/service"
-              ? "#0C4DDE"
-              : "black",
-        }}
-      >
-        Xidmətlər
-      </div>
-      <div
-        className="footer_menu_item3"
-        onClick={goToContactPage}
-        style={{
-          color:
-            active && location.pathname === "/contact"
-              ? "#0C4DDE"
-              : "black",
-        }}
-      >
-        Əlaqə
-      </div>
-    </div>
-  </div>
-  <p className="footer_menu_p">© JobSearch.az 2006—2024</p>
-</footer>
-
+          <div className="sidebar_footer_menu">
+            <div className={`icon-container ${isDarkMode ? "dark" : ""}`}>
+              <div
+                className={`sun ${!isDarkMode ? "active" : ""}`}
+                onClick={() => toggleDarkMode("light")}
+              >
+                <IoMdSunny size={15} />
+              </div>
+              <div
+                className={`moon ${isDarkMode ? "active" : ""}`}
+                onClick={() => toggleDarkMode("dark")}
+              >
+                <FaMoon size={15} />
+              </div>
+            </div>
+            <div className="footer_menu_items">
+              <div
+                className="footer_menu_item1"
+                onClick={goToAboutPage}
+                style={{
+                  color:
+                    active && location.pathname === "/about"
+                      ? "#0C4DDE"
+                      : "black",
+                }}
+              >
+                Haqqımızda
+              </div>
+              <div
+                className="footer_menu_item2"
+                onClick={goToServicePage}
+                style={{
+                  color:
+                    active && location.pathname === "/service"
+                      ? "#0C4DDE"
+                      : "black",
+                }}
+              >
+                Xidmətlər
+              </div>
+              <div
+                className="footer_menu_item3"
+                onClick={goToContactPage}
+                style={{
+                  color:
+                    active && location.pathname === "/contact"
+                      ? "#0C4DDE"
+                      : "black",
+                }}
+              >
+                Əlaqə
+              </div>
+            </div>
+          </div>
+          <p className="footer_menu_p">© JobSearch.az 2006—2024</p>
+        </footer>
       </div>
     </>
   );
