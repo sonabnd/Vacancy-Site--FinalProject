@@ -101,7 +101,7 @@
     border-radius: 10%;
 }
 .sun {
-    background-color: white;
+    background-color: gray;
     color: gray;
     padding: 5px 10px;
     border-radius: 10%;
@@ -115,18 +115,45 @@
     margin-top: 30px;
 }
 .icon-container div {
-    transition: transform 0.3s ease;
-  }
-  
+    transition: transform 0.3s ease, color 0.3s ease;
+}
   .icon-container div:active {
     transform: scale(1.2);
-  }
-  
-  /* Optional: Add a slight hover effect */
-  .icon-container div:hover {
+}
+.icon-container div:hover {
     transform: scale(1.1);
-  }
-  
+} 
+.icon-container .moon.active {
+    color: gray;
+} 
+.icon-container .sun.active {
+    color: gray;
+}
+.icon-container div {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    color: #333;
+}
+.icon-container div:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+.icon-container div.active:after {
+    transform: translateX(0);
+}
+.icon-container .moon,
+.icon-container .sun {
+    z-index: 1;
+}
 body.dark-mode {
     background-color: #333;
     color: #fff;
