@@ -7,6 +7,7 @@
 }
 .sidebar-header img {
     width: 100%;
+    cursor: pointer;
 }
 .header_logo {
     width: 50%;
@@ -113,6 +114,19 @@
 .sidebar main {
     margin-top: 30px;
 }
+.icon-container div {
+    transition: transform 0.3s ease;
+  }
+  
+  .icon-container div:active {
+    transform: scale(1.2);
+  }
+  
+  /* Optional: Add a slight hover effect */
+  .icon-container div:hover {
+    transform: scale(1.1);
+  }
+  
 body.dark-mode {
     background-color: #333;
     color: #fff;
