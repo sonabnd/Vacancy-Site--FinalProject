@@ -17,9 +17,14 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle("dark-mode");
+  const toggleDarkMode = (mode) => {
+    if (mode === "dark") {
+      setIsDarkMode(true);
+      document.body.classList.add("dark-mode");
+    } else {
+      setIsDarkMode(false);
+      document.body.classList.remove("dark-mode");
+    }
   };
 
   const handleShowLogin = () => {
@@ -117,56 +122,57 @@ const Navbar = () => {
           </ul>
         </main>
         <footer className="sidebar-footer">
-          <div className="sidebar_footer_menu">
-            <div className={`icon-container ${isDarkMode ? "dark" : ""}`}>
-              <div className="sun">
-                <IoMdSunny size={15} />
-              </div>
-              <div className="moon" onClick={toggleDarkMode}>
-                <FaMoon size={15} />
-              </div>
-            </div>
-            <div className="footer_menu_items">
-              <div
-                className="footer_menu_item1"
-                onClick={goToAboutPage}
-                style={{
-                  color:
-                    active && location.pathname === "/about"
-                      ? "#0C4DDE"
-                      : "black",
-                }}
-              >
-                Haqqımızda
-              </div>
-              <div
-                className="footer_menu_item2"
-                onClick={goToServicePage}
-                style={{
-                  color:
-                    active && location.pathname === "/service"
-                      ? "#0C4DDE"
-                      : "black",
-                }}
-              >
-                Xidmətlər
-              </div>
-              <div
-                className="footer_menu_item3"
-                onClick={goToContactPage}
-                style={{
-                  color:
-                    active && location.pathname === "/contact"
-                      ? "#0C4DDE"
-                      : "black",
-                }}
-              >
-                Əlaqə
-              </div>
-            </div>
-          </div>
-          <p className="footer_menu_p">© JobSearch.az 2006—2024</p>
-        </footer>
+  <div className="sidebar_footer_menu">
+    <div className={`icon-container ${isDarkMode ? "dark" : ""}`}>
+      <div className="sun" onClick={() => toggleDarkMode("light")}>
+        <IoMdSunny size={15} />
+      </div>
+      <div className="moon" onClick={() => toggleDarkMode("dark")}>
+        <FaMoon size={15} />
+      </div>
+    </div>
+    <div className="footer_menu_items">
+      <div
+        className="footer_menu_item1"
+        onClick={goToAboutPage}
+        style={{
+          color:
+            active && location.pathname === "/about"
+              ? "#0C4DDE"
+              : "black",
+        }}
+      >
+        Haqqımızda
+      </div>
+      <div
+        className="footer_menu_item2"
+        onClick={goToServicePage}
+        style={{
+          color:
+            active && location.pathname === "/service"
+              ? "#0C4DDE"
+              : "black",
+        }}
+      >
+        Xidmətlər
+      </div>
+      <div
+        className="footer_menu_item3"
+        onClick={goToContactPage}
+        style={{
+          color:
+            active && location.pathname === "/contact"
+              ? "#0C4DDE"
+              : "black",
+        }}
+      >
+        Əlaqə
+      </div>
+    </div>
+  </div>
+  <p className="footer_menu_p">© JobSearch.az 2006—2024</p>
+</footer>
+
       </div>
     </>
   );
