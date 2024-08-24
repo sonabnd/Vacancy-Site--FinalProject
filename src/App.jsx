@@ -37,7 +37,8 @@ function App() {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1098);
   const [editInputVal,setEditInputVal] = useState({});
-  const [deleteVacancy, setDeleteVacancy] = useState([])
+  const [deleteVacancy, setDeleteVacancy] = useState([]);
+  const [myPost,setMyPost] = useState([])
 
   const navigation = useNavigate();
 
@@ -121,7 +122,7 @@ function App() {
     user,setUser,
     updateVacancy,setUpdateVacancy,
     editInputVal, setEditInputVal,
-    deleteVacancy, setDeleteVacancy
+    deleteVacancy, setDeleteVacancy,
     originalPostCard,
     setOriginalPostCard,
     user,
