@@ -1,9 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import IMask from "imask";
-import { FaBars } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom"; 
 import "../css/apply.css";
 
 const Apply = () => {
+  const { state } = useLocation();
+  const navigate = useNavigate(); 
+
   const [errors, setErrors] = useState({
     firstName: false,
     lastName: false,
@@ -40,32 +43,40 @@ const Apply = () => {
 
     if (!Object.values(newErrors).includes(true)) {
       alert("Form submitted!");
+    
     }
   };
 
   return (
     <>
-      <div className=" apply-container container mt-5">
+      <div className="apply-container container mt-5">
         <div className="container-fluid p-4">
           <div>
             <div className="d-flex align-items-center mb-4">
-              <img
-                src="https://yourlogo.com/logo.png"
-                alt="Company Logo"
-                className="me-3"
-                style={{ height: "80px", width: "80px" }}
-              />
+              <div
+                className="logo mb-3 mb-md-0 me-md-4 advertisement-loqo"
+                style={{
+                  backgroundColor: "#ccc",
+                  width: "80px",
+                  height: "80px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "50%",
+                }}
+              >
+                {state.company.slice(0, 1)}
+              </div>
               <div>
-                <h1 className="h4">Texnik-usta</h1>
-                <p className="text-muted">Kontakt Home</p>
+                <h1 className="h4">{state.position}</h1>
+                <p className="text-muted">{state.company}</p>
               </div>
             </div>
             <hr />
 
             <h1 className="h3 mb-3">Ərizənizi təqdim edin</h1>
             <p className="text-muted mb-4">
-              Şəxsi məlumatlarınızı daxil edin. Tələb olunan fayl formatlarına
-              diqqət edin.
+              Şəxsi məlumatlarınızı daxil edin. Tələb olunan fayl formatlarına diqqət edin.
             </p>
 
             <form onSubmit={handleSubmit}>
@@ -75,8 +86,7 @@ const Apply = () => {
                   <span className="text-danger ms-2">*</span>
                 </label>
                 <div
-                  className={`border ${errors.cv ? "border-danger" : "border-secondary"
-                    } border-dashed p-4 text-center bg-light`}
+                  className={`border ${errors.cv ? "border-danger" : "border-secondary"} border-dashed p-4 text-center bg-light`}
                   onClick={() => document.getElementById("cv-upload").click()}
                   style={{ cursor: "pointer" }}
                 >
@@ -88,10 +98,7 @@ const Apply = () => {
                     style={{ display: "none" }}
                   />
                   <div className="text-primary">
-                    <i
-                      className="bi bi-upload mb-2"
-                      style={{ fontSize: "24px" }}
-                    ></i>
+                    <i className="bi bi-upload mb-2" style={{ fontSize: "24px" }}></i>
                     <br />
                     <span>CV faylını seç</span>
                   </div>
@@ -117,8 +124,7 @@ const Apply = () => {
                     type="text"
                     id="firstName"
                     name="firstName"
-                    className={`form-control border-${errors.firstName ? "danger" : "secondary"
-                      } bg-light`}
+                    className={`form-control border-${errors.firstName ? "danger" : "secondary"} bg-light`}
                     style={{ fontSize: "1.1rem", padding: "0.75rem" }}
                   />
                   {errors.firstName && (
@@ -137,8 +143,7 @@ const Apply = () => {
                     type="text"
                     id="lastName"
                     name="lastName"
-                    className={`form-control border-${errors.lastName ? "danger" : "secondary"
-                      } bg-light`}
+                    className={`form-control border-${errors.lastName ? "danger" : "secondary"} bg-light`}
                     style={{ fontSize: "1.1rem", padding: "0.75rem" }}
                   />
                   {errors.lastName && (
@@ -160,8 +165,7 @@ const Apply = () => {
                     type="email"
                     id="email"
                     name="email"
-                    className={`form-control border-${errors.email ? "danger" : "secondary"
-                      } bg-light`}
+                    className={`form-control border-${errors.email ? "danger" : "secondary"} bg-light`}
                     style={{ fontSize: "1.1rem", padding: "0.75rem" }}
                   />
                   {errors.email && (
@@ -181,8 +185,7 @@ const Apply = () => {
                     id="phone"
                     name="phone"
                     ref={phoneInputRef}
-                    className={`form-control border-${errors.phone ? "danger" : "secondary"
-                      } bg-light`}
+                    className={`form-control border-${errors.phone ? "danger" : "secondary"} bg-light`}
                     placeholder="+994(00)000-00-00"
                     style={{ fontSize: "1.1rem", padding: "0.75rem" }}
                   />
@@ -197,6 +200,7 @@ const Apply = () => {
                   type="button"
                   className="btn btn-outline-danger"
                   style={{ fontSize: "1.1rem", padding: "0.75rem 1.5rem" }}
+                  onClick={() => navigate(-1)}
                 >
                   Geri
                 </button>
