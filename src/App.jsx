@@ -421,7 +421,7 @@ function App() {
                 <Route path="/service" element={<Service />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/apply" element={<Apply />} />
+                <Route path="/apply/:id" element={<Apply />} />
                 <Route path="/add-post" element={<AddPost />} />
                 <Route path="/personalInformation" element={<Personalİnformation/>}/>
               </Routes>
