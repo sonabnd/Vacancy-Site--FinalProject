@@ -139,7 +139,7 @@ function PostModal(props) {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label htmlFor="jobTime">Job :</Form.Label>
+            <Form.Label htmlFor="jobTime">İş vaxtı:</Form.Label>
             <Form.Control
               id="jobTime"
               name="jobTime"
