@@ -33,7 +33,7 @@ const AddPost = () => {
 
   const handleLogout = async () => {
     try {
-      toast.success("cixis edildi")
+      toast.success("Çixis edildi")
       localStorage.removeItem('user');
       navigation("/")
     } catch (error) {
