@@ -32,13 +32,15 @@ function App() {
   const [filterContainer, setFilterContainer] = useState(false);
   const [originalPostCard, setOriginalPostCard] = useState([]);
   const [user, setUser] = useState([]);
-  const [myPost, setMyPost] = useState([]);
+  const [updateVacancy, setUpdateVacancy] = useState([]);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1098);
+  const [editInputVal,setEditInputVal] = useState({});
+  const [deleteVacancy, setDeleteVacancy] = useState([])
 
   const navigation = useNavigate();
 
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1098);
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleResize = () => {
     setIsDesktop(window.innerWidth > 1098);
@@ -115,6 +117,11 @@ function App() {
     setSearchInput,
     filterContainer,
     showHideFilter,
+    originalPostCard, setOriginalPostCard,
+    user,setUser,
+    updateVacancy,setUpdateVacancy,
+    editInputVal, setEditInputVal,
+    deleteVacancy, setDeleteVacancy
     originalPostCard,
     setOriginalPostCard,
     user,
@@ -137,6 +144,7 @@ function App() {
   useEffect(() => {
     getData();
   }, []);
+  
 
   //login functions start
 
