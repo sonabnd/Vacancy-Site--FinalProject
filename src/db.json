@@ -27,30 +27,18 @@
       "jobInformation": "gfdytb"
     },
     {
-      "id": "35",
-      "company": "Agile",
-      "category": "Assduieunc",
-      "position": "Engineer",
-      "location": "Baki",
-      "salary": "324",
-      "workExperience": "5",
-      "deadline": "2024-08-30",
-      "jobTime": "cxv",
-      "requirement": "fghjk",
-      "jobInformation": "fghjkl"
-    },
-    {
-      "id": "36",
-      "company": "Agile",
-      "category": "sd",
-      "position": "Kassir",
-      "location": "Baki",
-      "salary": "800",
-      "workExperience": "5",
-      "deadline": "19-08-2024",
-      "jobTime": "cxv",
-      "requirement": "ssfhh",
-      "jobInformation": "gfdytb"
+      "id": "4715",
+      "company": "Admin",
+      "category": "scdf",
+      "position": "Admin user",
+      "location": "34",
+      "salary": "34",
+      "workExperience": "3",
+      "deadline": "28-09-3933",
+      "jobTime": "3434",
+      "requirement": "qw",
+      "jobInformation": "",
+      "userId": "a662"
     }
   ],
   "users": [
@@ -58,6 +46,20 @@
       "id": "bcdc",
       "name": "Admin",
       "email": "admin@gmail.com",
+      "password": "123456",
+      "confirmpassword": "123456"
+    },
+    {
+      "id": "e10c",
+      "name": "sona",
+      "email": "bandaliyevasona@gmail.com",
+      "password": "Sona11",
+      "confirmpassword": "Sona11"
+    },
+    {
+      "id": "fbeb",
+      "name": "nergiz",
+      "email": "test@gmail.com",
       "password": "123456",
       "confirmpassword": "123456"
     }

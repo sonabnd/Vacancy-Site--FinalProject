@@ -10,7 +10,7 @@ import { useContext } from "react";
 import Context from "../context/context";
 
 function PostModal(props) {
-  const { postCard, setPostCard } = useContext(Context);
+  const { postCard, setPostCard} = useContext(Context);
   const { values, handleChange, errors, handleSubmit } = useFormik({
     initialValues: {
       company: "",
@@ -31,7 +31,6 @@ function PostModal(props) {
           "http://localhost:3000/advertisement"
         );
         const getData = checkData.data;
-        console.log(getData);
         const sameVacancy = getData.find(
           (vacancy) =>
             vacancy.company == values.company &&
@@ -41,12 +40,16 @@ function PostModal(props) {
           toast.error("Şirkət adından bu vakansiya artıq paylaşılıb");
           return;
         } else {
+          const user = JSON.parse(localStorage.getItem("user"));
+          const newAd = {...values, userId : user.id}
+
           const response = await axios.post(
             "http://localhost:3000/advertisement",
-            values
+            newAd
           );
+
           toast.success("Əlavə olundu!");
-          setPostCard((prevAds) => [response.data, ...prevAds]);
+          // setPostCard((prevAds) => [response.data, ...prevAds]);
           actions.resetForm();
         }
       } catch (error) {
@@ -136,7 +139,7 @@ function PostModal(props) {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label htmlFor="jobTime">Job :</Form.Label>
+            <Form.Label htmlFor="jobTime">İş vaxtı:</Form.Label>
             <Form.Control
               id="jobTime"
               name="jobTime"

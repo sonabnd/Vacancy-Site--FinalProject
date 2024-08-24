@@ -5,6 +5,7 @@ import HomepageCard from "./HomepageCard";
 import Context from "../context/context";
 import axios from "axios";
 import { VscSearchStop } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
 
@@ -113,9 +114,11 @@ const Homepage = () => {
           {
             postCard.length>0 ? (
               postCard.map(post => (
-                <div className="advertisement" key={post.id}>
-                  <HomepageCard post={post} />
-                </div>
+                <Link className="details-page-link" to={`details/${post.id}`} key={post.id}>
+                  <div className="advertisement" >
+                    <HomepageCard post={post} />
+                  </div>
+                </Link>
               ))
             ) : (
               <div className="not-found-container">

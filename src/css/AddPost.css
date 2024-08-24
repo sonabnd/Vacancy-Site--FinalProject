@@ -29,7 +29,7 @@ body {
   justify-content: space-between;
   padding: 10px 20px 10px 20px;
   position: sticky;
-  /* background-color: #f9f7f7; */
+  padding: 10px 0;
 }
 
 .user-info {
@@ -63,7 +63,7 @@ body {
   position: relative;
   padding: 12px 16px;
   border-radius: 14px;
-  background-color: #F4F6F9;
+  background-color: #f4f6f9;
 }
 
 .dropdown-button {
@@ -84,7 +84,7 @@ body {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #F4F6F9;
+  background-color: #f4f6f9;
   padding: 4px 4px;
   width: 140px;
   border-radius: 10px;
@@ -105,8 +105,6 @@ body {
   font-size: 14px;
 }
 
-
-
 .user-detail-dropdown:hover {
   background-color: blue;
   color: white;
@@ -115,18 +113,11 @@ body {
   border-radius: 10px;
 }
 
-
-
-
-
-
-
 .ads-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 15px;
-  padding-left: 8px;
 }
 
 .ads-header h2 {
@@ -149,7 +140,6 @@ body {
 
 .vacancy-count {
   color: #007bff;
-  margin-left: 8px;
 }
 
 .post-ad-button {
@@ -179,8 +169,8 @@ body {
 }
 
 .company-logo {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -244,14 +234,36 @@ body {
   display: none;
 }
 
-/* @media (max-width: 1098px){
-  .navbar-component{
-    display: none;
-  }
-} */
-
 .error-message {
   color: red;
+}
+
+.no-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.no-post p{
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+.no-post span{
+  width: 80px;
+  height: 80px;
+  background-color: #FAFAFA ;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-post span .no-post-icon{
+  font-size: 32px;
+  color: #cbcbcb;
 }
 
 @media (max-width: 768px) {
