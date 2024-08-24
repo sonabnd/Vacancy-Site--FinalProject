@@ -33,13 +33,15 @@ function App() {
   const [filterContainer, setFilterContainer] = useState(false);
   const [originalPostCard, setOriginalPostCard] = useState([]);
   const [user, setUser] = useState([]);
-  const [myPost, setMyPost] = useState([]);
+  const [updateVacancy, setUpdateVacancy] = useState([]);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1098);
+  const [editInputVal,setEditInputVal] = useState({});
+  const [deleteVacancy, setDeleteVacancy] = useState([])
 
   const navigation = useNavigate();
 
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1098);
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleResize = () => {
     setIsDesktop(window.innerWidth > 1098);
@@ -119,7 +121,9 @@ function App() {
     showHideFilter,
     originalPostCard, setOriginalPostCard,
     user,setUser,
-    myPost,setMyPost
+    updateVacancy,setUpdateVacancy,
+    editInputVal, setEditInputVal,
+    deleteVacancy, setDeleteVacancy
   };
 
   const getData = async () => {
@@ -127,7 +131,6 @@ function App() {
       const response = await axios.get("http://localhost:3000/advertisement");
       const posts = response.data;
       setPostCard(posts);
-      setMyPost(posts)
     } catch (error) {
       console.log(error);
     }
@@ -136,6 +139,7 @@ function App() {
   useEffect(() => {
     getData();
   }, []);
+  
 
   //login functions start
 

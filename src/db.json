@@ -27,20 +27,6 @@
       "jobInformation": "gfdytb"
     },
     {
-      "id": "5aa9",
-      "company": "user:Sona",
-      "category": "fgrt",
-      "position": "dfg",
-      "location": "fgbh",
-      "salary": "3245",
-      "workExperience": "2",
-      "deadline": "20-09-2022",
-      "jobTime": "cvdbfgh",
-      "requirement": "",
-      "jobInformation": "",
-      "userId": "e10c"
-    },
-    {
       "id": "4715",
       "company": "Admin",
       "category": "scdf",
@@ -53,48 +39,6 @@
       "requirement": "qw",
       "jobInformation": "",
       "userId": "a662"
-    },
-    {
-      "id": "da61",
-      "company": "Kapital",
-      "category": "Satis",
-      "position": "Developer",
-      "location": "Ganca",
-      "salary": "900",
-      "workExperience": "4",
-      "deadline": "12-05-2024",
-      "jobTime": "tam stat",
-      "requirement": "",
-      "jobInformation": "",
-      "userId": "e10c"
-    },
-    {
-      "id": "b943",
-      "company": "ABB",
-      "category": "maliyye",
-      "position": "Enginerr",
-      "location": "Gadabay",
-      "salary": "800",
-      "workExperience": "3",
-      "deadline": "10-09-2024",
-      "jobTime": "tam stat",
-      "requirement": "",
-      "jobInformation": "",
-      "userId": "e10c"
-    },
-    {
-      "id": "ce7e",
-      "company": "asdfg",
-      "category": "sdcfg",
-      "position": "sdfgrt",
-      "location": "asdf",
-      "salary": "223",
-      "workExperience": "2",
-      "deadline": "03-03-0334",
-      "jobTime": "asdfg",
-      "requirement": "df",
-      "jobInformation": "",
-      "userId": "e10c"
     }
   ],
   "users": [
