@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import Context from "./context/context";
 import Homepage from "./components/Homepage";
 import Navbar from "./components/Navbar";
@@ -22,6 +22,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Personalİnformation from "./pages/Personalİnformation";
+import { IoEye, IoEyeOff } from 'react-icons/io5'; // Göz simgeleri
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -32,6 +33,8 @@ function App() {
   const [filterContainer, setFilterContainer] = useState(false);
   const [originalPostCard, setOriginalPostCard] = useState([]);
   const [user, setUser] = useState([]);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
   const [updateVacancy, setUpdateVacancy] = useState([]);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -39,6 +42,16 @@ function App() {
   const [editInputVal,setEditInputVal] = useState({});
   const [deleteVacancy, setDeleteVacancy] = useState([]);
   const [myPost,setMyPost] = useState([])
+  
+  
+  
+  const togglePasswordVisibility = (type) => {
+    if (type === 'password') {
+      setShowPassword(!showPassword);
+    } else if (type === 'newPassword') {
+      setShowNewPassword(!showNewPassword);
+    }
+  }
 
   const navigation = useNavigate();
 
@@ -114,6 +127,13 @@ function App() {
     setDesign,
     postCard,
     setPostCard,
+    searchInput,
+    setSearchInput,
+    filterContainer,
+    showHideFilter,
+    originalPostCard,
+    setOriginalPostCard,
+    user, setUser,
     searchInput,
     setSearchInput,
     filterContainer,
@@ -217,42 +237,42 @@ function App() {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      password: "",
-      confirmpassword: "",
+      name: '',
+      email: '',
+      password: '',
     },
     validationSchema: validationRegister,
     onSubmit: async (values) => {
       jsonRegister(values);
       console.log("qeydiyyat olundu");
-    },
-  });
+    }
+  })
 
   const jsonRegister = async (values) => {
     try {
-      const checkUser = await axios.get("http://localhost:3000/users");
+      const checkUser = await axios.get('http://localhost:3000/users');
       const getUser = checkUser.data;
       console.log(getUser);
-      const sameUser = getUser.find((user) => user.email === values.email);
+      const sameUser = getUser.find(
+        (user) => user.email === values.email
+      );
       if (sameUser) {
         toast.error("Bu e-poçt artıq istifadə edilib");
-        setRegister(false);
+        setRegister(false)
         setDesign(false);
         formik.resetForm();
         return;
       } else {
-        toast.success("user yaradildi");
-        localStorage.setItem("user", JSON.stringify({ name }));
-        await axios.post("http://localhost:3000/users", JSON.stringify(values));
-        setRegister(false);
-        setLogin(true);
+        toast.success("Qeydiyyat tamamlandi!");
+        await axios.post('http://localhost:3000/users', JSON.stringify(values));
+        setRegister(false)
+        setLogin(true)
         formik.resetForm();
       }
     } catch (error) {
       console.error(error);
     }
-  };
+  }
   //register functions end
 
   return (
@@ -298,17 +318,20 @@ function App() {
                       <input
                         id="password"
                         name="password"
-                        type="password"
+                        type={showPassword ? 'text' : 'password'}
                         onChange={formikLogin.handleChange}
                         placeholder="Şifrə"
                         value={formikLogin.values.password}
                       />
-                      {formikLogin.errors.password &&
-                        formikLogin.touched.password && (
-                          <div className="error">
-                            {formikLogin.errors.password}
-                          </div>
-                        )}
+                      <i
+                        type="button"
+                        onClick={() => togglePasswordVisibility('password')}
+                        className="toggle-password-visibility">
+                        {showPassword ? <IoEyeOff /> : <IoEye />}
+                      </i>
+                      {formikLogin.errors.password && formikLogin.touched.password && (
+                        <div className="error">{formikLogin.errors.password}</div>
+                      )}
                     </div>
                   </div>
                   <div className="login-button">
@@ -378,11 +401,17 @@ function App() {
                       <input
                         id="password"
                         name="password"
-                        type="password"
+                        type={showPassword ? 'text' : 'password'}
                         placeholder="Şifrənizi daxil edin"
                         onChange={formik.handleChange}
                         value={formik.values.password}
                       />
+                      <i
+                        type="button"
+                        onClick={() => togglePasswordVisibility('password')}
+                        className="toggle-password-visibility">
+                        {showPassword ? <IoEyeOff /> : <IoEye />}
+                      </i>
                       {formik.errors.password && formik.touched.password && (
                         <div className="error">{formik.errors.password}</div>
                       )}
@@ -392,17 +421,20 @@ function App() {
                       <input
                         id="confirmpassword"
                         name="confirmpassword"
-                        type="password"
+                        type={showNewPassword ? 'text' : 'password'}
                         placeholder="Şifrənizi təkrar edin"
                         onChange={formik.handleChange}
                         value={formik.values.confirmpassword}
                       />
-                      {formik.errors.confirmpassword &&
-                        formik.touched.confirmpassword && (
-                          <div className="error">
-                            {formik.errors.confirmpassword}
-                          </div>
-                        )}
+                      <i
+                        type="button"
+                        onClick={() => togglePasswordVisibility('newPassword')}
+                        className="toggle-password-visibility">
+                        {showNewPassword ? <IoEyeOff /> : <IoEye />}
+                      </i>
+                      {formik.errors.confirmpassword && formik.touched.confirmpassword && (
+                        <div className="error">{formik.errors.confirmpassword}</div>
+                      )}
                     </div>
                   </div>
                   <div className="register-button">
@@ -440,7 +472,7 @@ function App() {
             <div className="all-components">
               <div className="menu">
                 <div className="logo-img">
-                  <img src="/src/img/logo.c9da023.svg" alt="logo" />
+                  <Link to={"/"}><img src="/src/img/logo.c9da023.svg" alt="logo" /></Link>
                 </div>
                 <span className="menu-icon" onClick={toggleNavbar}>
                   <IoIosMenu />
@@ -454,6 +486,7 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/apply/:id" element={<Apply />} />
                 <Route path="/add-post" element={<AddPost />} />
+                <Route path="/personalInformation" element={<Personalİnformation />} />
                 <Route
                   path="/personalInformation"
                   element={<Personalİnformation />}
@@ -462,7 +495,7 @@ function App() {
             </div>
           </Context.Provider>
         </div>
-      </div>
+      </div >
     </>
   );
 }

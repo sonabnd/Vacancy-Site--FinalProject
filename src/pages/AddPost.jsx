@@ -37,21 +37,22 @@ const AddPost = () => {
 
   useEffect(() => {
     if (!local) {
-      navigation("/");
+      navigation('/');
     } else {
       setDetails(JSON.parse(local));
+      console.log(details);
     }
-  }, [local]);
+  }, [local])
 
   const handleLogout = async () => {
     try {
-      toast.success("cixis edildi");
-      localStorage.removeItem("user");
-      navigation("/");
+      toast.success("Çixis edildi")
+      localStorage.removeItem('user');
+      navigation("/")
     } catch (error) {
       console.error(error);
     }
-  };
+  }
 
 
   // end user detail

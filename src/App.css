@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
 }
+
 .app-container {
   max-width: 84%;
   margin: auto;
@@ -10,16 +11,19 @@
   justify-content: space-between;
   z-index: -1;
 }
+
 .navbar-component {
   width: 26%;
   position: fixed;
   height: 100%;
   top: 0;
 }
+
 .all-components {
   width: 74%;
   margin-left: 34%;
 }
+
 /* sign in/ sign up */
 
 .open {
@@ -28,29 +32,25 @@
   transition: 0.3s linear;
   height: 100vh;
 }
+
 .open .app-container {
   position: relative;
 }
+
 .close {
   background-color: none;
   z-index: -1;
   transition: 0.3s linear;
 }
+
 .modal-content-login {
   width: 100%;
   align-items: center;
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  color: var(--bs-modal-color);
-  pointer-events: auto;
-  background-color: var(--bs-modal-bg);
-  background-clip: padding-box;
-  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
-  border-radius: var(--bs-modal-border-radius);
-  outline: 0;
 }
+
 .login {
   position: absolute;
   background-color: white;
@@ -62,12 +62,14 @@
   box-shadow: 0px 20px 24px -4px rgba(16, 24, 40, 0.1),
     0px 8px 8px -4px rgba(16, 24, 40, 0.04);
 }
+
 .login-close {
   position: absolute;
   right: 5px;
   font-size: 20px;
   color: #333;
 }
+
 .login-main {
   position: relative;
   display: flex;
@@ -75,6 +77,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .login-icon {
   width: 48px;
   height: 48px;
@@ -87,10 +90,12 @@
   margin-bottom: 16px;
   font-size: 20px;
 }
+
 .login-inputs {
   width: 100%;
   margin-bottom: 20px;
 }
+
 .login-input {
   display: flex;
   flex-direction: column;
@@ -98,6 +103,7 @@
   gap: 8px;
   margin-top: 8px;
 }
+
 .login-input input {
   width: 100%;
   padding: 2px 10px;
@@ -105,10 +111,25 @@
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
   border-radius: 8px;
   color: black;
+  position: relative;
 }
+
 .login-button {
   width: 100%;
 }
+
+.toggle-password-visibility {
+  border: none;
+  width: 20px;
+  position: absolute;
+  right: 10px;
+  margin-top: 39px;
+  background-color: white;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+}
+
 .login-button button {
   width: 100%;
   padding: 10px 16px;
@@ -121,9 +142,11 @@
   border-radius: 8px;
   cursor: pointer;
 }
+
 .qeydiyyat-button {
   width: 100%;
 }
+
 .qeydiyyat-button button {
   width: 100%;
   font-size: 15px;
@@ -134,6 +157,7 @@
   background-color: transparent;
   margin-top: 10px;
 }
+
 .register {
   position: absolute;
   background-color: white;
@@ -145,6 +169,7 @@
   box-shadow: 0px 20px 24px -4px rgba(16, 24, 40, 0.1),
     0px 8px 8px -4px rgba(16, 24, 40, 0.04);
 }
+
 .register-main {
   position: relative;
   display: flex;
@@ -152,12 +177,14 @@
   flex-direction: column;
   align-items: center;
 }
+
 .register-close {
   position: absolute;
   right: 5px;
   font-size: 20px;
   color: #333;
 }
+
 .register-icon {
   width: 48px;
   height: 48px;
@@ -170,18 +197,22 @@
   margin-bottom: 16px;
   font-size: 20px;
 }
+
 .register-head {
   width: 100%;
   margin-bottom: 20px;
 }
+
 .register-head-text {
   line-height: 28px;
   color: #101828;
 }
+
 .regisetr-inputs {
   width: 100%;
   margin-bottom: 20px;
 }
+
 .register-input {
   display: flex;
   flex-direction: column;
@@ -189,6 +220,7 @@
   gap: 8px;
   margin-top: 8px;
 }
+
 .register-input input {
   width: 100%;
   padding: 2px 10px;
@@ -197,9 +229,11 @@
   border-radius: 8px;
   color: black;
 }
+
 .register-button {
   width: 100%;
 }
+
 .register-button button {
   width: 100%;
   padding: 10px 16px;
@@ -211,12 +245,13 @@
   border-radius: 8px;
   cursor: pointer;
 }
-.register-btn:hover{
+
+.register-btn:hover {
   background-color: #2188ff;
   transition: background-color 0.3s ease;
 }
 
-.login-btn:hover{
+.login-btn:hover {
   background-color: #2188ff;
   transition: background-color 0.3s ease;
 }
@@ -224,6 +259,7 @@
 .register-button-giris {
   width: 100%;
 }
+
 .register-button-giris button {
   width: 100%;
   font-size: 15px;
@@ -235,16 +271,16 @@
   margin-top: 10px;
 }
 
-.formik-navbar{
+.formik-navbar {
   display: flex;
   justify-content: center;
 }
 
-.error{
+.error {
   color: red;
   top: 3px;
 }
 
-.menu{
-    display: none;
+.menu {
+  display: none;
 }

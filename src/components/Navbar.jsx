@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { IoMdSunny } from "react-icons/io";
 import { FaMoon } from "react-icons/fa";
 import { IoBagRemoveOutline } from "react-icons/io5";
@@ -16,6 +16,13 @@ const Navbar = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("Az");
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [buttonText, setButtonText] = useState('Elan yerlesdir')
+
+  const navigation = useNavigate();
+
+
+  const local = localStorage.getItem("user");
+
 
   const toggleDarkMode = (mode) => {
     if (mode === "dark") {
@@ -26,11 +33,23 @@ const Navbar = () => {
       document.body.classList.remove("dark-mode");
     }
   };
+  useEffect(() => {
+    const userinformation = localStorage.getItem("user");
+    if (userinformation) {
+      setButtonText('Elanlarım');
+    } else {
+      setButtonText('Elan yerləşdir');
+    }
+  }, [local]);
 
   const handleShowLogin = () => {
-    setLogin(true);
-    setRegister(false);
-    setDesign(true);
+    if (!local) {
+      setLogin(true);
+      setRegister(false);
+      setDesign(true);
+    } else {
+      navigation('/add-post')
+    }
   };
 
   const goToHomepage = () => {
@@ -73,7 +92,7 @@ const Navbar = () => {
         <header className="header">
           <div className="sidebar-header">
             <div className="header_logo">
-              <img src="/src/img/logo.c9da023.svg" alt="logo" />
+              <Link to={"/"}><img src="/src/img/logo.c9da023.svg" alt="logo" /></Link>
             </div>
             <div
               className="language-select"
@@ -115,9 +134,9 @@ const Navbar = () => {
               <IoBagRemoveOutline />
               <li>Elanlar</li>
             </div>
-            <div className="header__menu__item1">
+            <div onClick={handleShowLogin} className="header__menu__item1">
               <MdPostAdd />
-              <li onClick={handleShowLogin}> Elan yerləşdir</li>
+              <li>{buttonText}</li>
             </div>
           </ul>
         </main>
