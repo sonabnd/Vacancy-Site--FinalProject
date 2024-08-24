@@ -5,7 +5,7 @@ import { FaMoon } from "react-icons/fa";
 import { IoBagRemoveOutline } from "react-icons/io5";
 import { MdPostAdd } from "react-icons/md";
 import "../css/Navbar.css";
-import "../css/NavbarResponsive.css"
+import "../css/NavbarResponsive.css";
 import Context from "../context/context";
 
 const Navbar = () => {
@@ -17,9 +17,14 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle("dark-mode");
+  const toggleDarkMode = (mode) => {
+    if (mode === "dark") {
+      setIsDarkMode(true);
+      document.body.classList.add("dark-mode");
+    } else {
+      setIsDarkMode(false);
+      document.body.classList.remove("dark-mode");
+    }
   };
 
   const handleShowLogin = () => {
@@ -119,10 +124,16 @@ const Navbar = () => {
         <footer className="sidebar-footer">
           <div className="sidebar_footer_menu">
             <div className={`icon-container ${isDarkMode ? "dark" : ""}`}>
-              <div className="sun">
+              <div
+                className={`sun ${!isDarkMode ? "active" : ""}`}
+                onClick={() => toggleDarkMode("light")}
+              >
                 <IoMdSunny size={15} />
               </div>
-              <div className="moon" onClick={toggleDarkMode}>
+              <div
+                className={`moon ${isDarkMode ? "active" : ""}`}
+                onClick={() => toggleDarkMode("dark")}
+              >
                 <FaMoon size={15} />
               </div>
             </div>

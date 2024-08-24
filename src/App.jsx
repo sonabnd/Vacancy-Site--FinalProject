@@ -4,7 +4,7 @@ import Context from "./context/context";
 import Homepage from "./components/Homepage";
 import Navbar from "./components/Navbar";
 import "./App.css";
-import "./css/AppResponsive.css"
+import "./css/AppResponsive.css";
 import Details from "./pages/Details";
 import Service from "./pages/Service";
 import Contact from "./pages/Contact";
@@ -18,11 +18,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { IoIosMenu } from "react-icons/io";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 import Personalİnformation from "./pages/Personalİnformation";
-
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -46,12 +45,11 @@ function App() {
   const handleResize = () => {
     setIsDesktop(window.innerWidth > 1098);
     if (window.innerWidth > 1098) {
-      setNavbarOpen(true); 
+      setNavbarOpen(true);
     } else {
       setNavbarOpen(false);
     }
   };
-
 
   useEffect(() => {
     const getData = async () => {
@@ -63,26 +61,25 @@ function App() {
         console.log(error);
       }
     };
-
     getData();
   }, []);
 
   useEffect(() => {
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
-  
+
   const toggleNavbar = () => {
     if (!isDesktop) {
-      setNavbarOpen(prevState => !prevState);
+      setNavbarOpen((prevState) => !prevState);
     }
   };
 
   const showHideFilter = () => {
-    setFilterContainer(prevState => !prevState);
+    setFilterContainer((prevState) => !prevState);
   };
 
   const handleShowLogin = () => {
@@ -116,7 +113,8 @@ function App() {
     setDesign,
     postCard,
     setPostCard,
-    searchInput,setSearchInput,
+    searchInput,
+    setSearchInput,
     filterContainer,
     showHideFilter,
     originalPostCard, setOriginalPostCard,
@@ -124,6 +122,12 @@ function App() {
     updateVacancy,setUpdateVacancy,
     editInputVal, setEditInputVal,
     deleteVacancy, setDeleteVacancy
+    originalPostCard,
+    setOriginalPostCard,
+    user,
+    setUser,
+    myPost,
+    setMyPost,
   };
 
   const getData = async () => {
@@ -131,6 +135,7 @@ function App() {
       const response = await axios.get("http://localhost:3000/advertisement");
       const posts = response.data;
       setPostCard(posts);
+      setMyPost(posts);
     } catch (error) {
       console.log(error);
     }
@@ -144,105 +149,110 @@ function App() {
   //login functions start
 
   const validationLogin = Yup.object().shape({
-    email: Yup.string().email().required('E-poçt tələb olunur'),
-    password: Yup.string().required('Şifrə sahəsi boş saxlanılmamalıdır').min(6),
-  })
+    email: Yup.string().email().required("E-poçt tələb olunur"),
+    password: Yup.string()
+      .required("Şifrə sahəsi boş saxlanılmamalıdır")
+      .min(6),
+  });
 
   const formikLogin = useFormik({
     initialValues: {
-      email: '',
-      password: ''
+      email: "",
+      password: "",
     },
     validationSchema: validationLogin,
     onSubmit: async (values) => {
       jsonLogin(values);
-    }
-  })
+    },
+  });
 
   const jsonLogin = async (values) => {
-    let users = []
-    let res = await axios.get('http://localhost:3000/users')
+    let users = [];
+    let res = await axios.get("http://localhost:3000/users");
     let data = await res.data;
     users = data;
     console.log(users);
     if (users) {
       const hasUser = users.find((user) => {
-        return user.email == values.email && user.password == values.password
-      })
+        return user.email == values.email && user.password == values.password;
+      });
       console.log(hasUser);
-      setUser(hasUser)
+      setUser(hasUser);
       if (hasUser) {
-        localStorage.setItem('user', JSON.stringify(hasUser));
+        localStorage.setItem("user", JSON.stringify(hasUser));
         console.log(user);
-        navigation('/add-post')
+        navigation("/add-post");
         toast.success("Sizin qeydiyyatınız uğurludur!");
         setLogin(false);
         setDesign(false);
-        formik.resetForm('')
+        formik.resetForm("");
       } else {
         toast.error("Sifre və ya e-poçt yanlışdır!");
-        formik.resetForm('')
+        formik.resetForm("");
         setLogin(false);
         setDesign(false);
       }
     }
-  }
+  };
 
   //login functiona end
-
 
   //regsiter functions start
   const validationRegister = Yup.object().shape({
     name: Yup.string()
-      .required('Adınızı daxil edin')
-      .min(2, 'Adınız en az 2 simvol olmalıdır'),
-    email: Yup.string().email().required('E-poçt tələb olunur'),
-    password: Yup.string().required('Şifrə sahəsi boş saxlanılmamalıdır').min(6),
-    confirmpassword: Yup.string().required().oneOf([Yup.ref('password'), null], 'Şifrənin təkrarı sahəsi Şifrə sahəsi ilə eyni olmalıdır ')
-  })
+      .required("Adınızı daxil edin")
+      .min(2, "Adınız en az 2 simvol olmalıdır"),
+    email: Yup.string().email().required("E-poçt tələb olunur"),
+    password: Yup.string()
+      .required("Şifrə sahəsi boş saxlanılmamalıdır")
+      .min(6),
+    confirmpassword: Yup.string()
+      .required()
+      .oneOf(
+        [Yup.ref("password"), null],
+        "Şifrənin təkrarı sahəsi Şifrə sahəsi ilə eyni olmalıdır "
+      ),
+  });
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
-      password: '',
-      confirmpassword: ''
+      name: "",
+      email: "",
+      password: "",
+      confirmpassword: "",
     },
     validationSchema: validationRegister,
     onSubmit: async (values) => {
       jsonRegister(values);
       console.log("qeydiyyat olundu");
-    }
-  })
+    },
+  });
 
   const jsonRegister = async (values) => {
     try {
-      const checkUser = await axios.get('http://localhost:3000/users');
+      const checkUser = await axios.get("http://localhost:3000/users");
       const getUser = checkUser.data;
       console.log(getUser);
-      const sameUser = getUser.find(
-        (user) => user.email === values.email
-      );
+      const sameUser = getUser.find((user) => user.email === values.email);
       if (sameUser) {
         toast.error("Bu e-poçt artıq istifadə edilib");
-        setRegister(false)
+        setRegister(false);
         setDesign(false);
         formik.resetForm();
         return;
       } else {
         toast.success("user yaradildi");
-        localStorage.setItem('user', JSON.stringify({ name }));
-        await axios.post('http://localhost:3000/users', JSON.stringify(values));
-        setRegister(false)
-        setLogin(true)
+        localStorage.setItem("user", JSON.stringify({ name }));
+        await axios.post("http://localhost:3000/users", JSON.stringify(values));
+        setRegister(false);
+        setLogin(true);
         formik.resetForm();
       }
     } catch (error) {
       console.error(error);
     }
-  }
+  };
   //register functions end
-
 
   return (
     <>
@@ -275,9 +285,12 @@ function App() {
                         value={formikLogin.values.email}
                         placeholder="E-poçtunuzu yaradın"
                       />
-                      {formikLogin.errors.email && formikLogin.touched.email && (
-                        <div className="error">{formikLogin.errors.email}</div>
-                      )}
+                      {formikLogin.errors.email &&
+                        formikLogin.touched.email && (
+                          <div className="error">
+                            {formikLogin.errors.email}
+                          </div>
+                        )}
                     </div>
                     <div className="login-input">
                       <label htmlFor="password">Şifrə</label>
@@ -289,16 +302,23 @@ function App() {
                         placeholder="Şifrə"
                         value={formikLogin.values.password}
                       />
-                      {formikLogin.errors.password && formikLogin.touched.password && (
-                        <div className="error">{formikLogin.errors.password}</div>
-                      )}
+                      {formikLogin.errors.password &&
+                        formikLogin.touched.password && (
+                          <div className="error">
+                            {formikLogin.errors.password}
+                          </div>
+                        )}
                     </div>
                   </div>
                   <div className="login-button">
-                    <button className="login-btn" type='submit'>Daxil ol</button>
+                    <button className="login-btn" type="submit">
+                      Daxil ol
+                    </button>
                   </div>
                   <div className="qeydiyyat-button">
-                    <button onClick={handleShowRegister}>Qeydiyyatdan keç</button>
+                    <button onClick={handleShowRegister}>
+                      Qeydiyyatdan keç
+                    </button>
                   </div>
                 </div>
               </div>
@@ -332,7 +352,8 @@ function App() {
                         type="text"
                         placeholder="Adınızı daxil edin"
                         onChange={formik.handleChange}
-                        value={formik.values.name} />
+                        value={formik.values.name}
+                      />
                       {formik.errors.name && formik.touched.name && (
                         <div className="error">{formik.errors.name}</div>
                       )}
@@ -375,13 +396,18 @@ function App() {
                         onChange={formik.handleChange}
                         value={formik.values.confirmpassword}
                       />
-                      {formik.errors.confirmpassword && formik.touched.confirmpassword && (
-                        <div className="error">{formik.errors.confirmpassword}</div>
-                      )}
+                      {formik.errors.confirmpassword &&
+                        formik.touched.confirmpassword && (
+                          <div className="error">
+                            {formik.errors.confirmpassword}
+                          </div>
+                        )}
                     </div>
                   </div>
                   <div className="register-button">
-                    <button className="register-btn" type='submit'>Qeydiyyat ol</button>
+                    <button className="register-btn" type="submit">
+                      Qeydiyyat ol
+                    </button>
                   </div>
                   <div className="register-button-giris">
                     <button onClick={handleShowLogin}>Giriş sehifəsi</button>
@@ -427,7 +453,10 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/apply" element={<Apply />} />
                 <Route path="/add-post" element={<AddPost />} />
-                <Route path="/personalInformation" element={<Personalİnformation/>}/>
+                <Route
+                  path="/personalInformation"
+                  element={<Personalİnformation />}
+                />
               </Routes>
             </div>
           </Context.Provider>
