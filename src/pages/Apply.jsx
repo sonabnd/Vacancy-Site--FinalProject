@@ -1,19 +1,23 @@
 import { useState, useRef, useEffect } from "react";
 import IMask from "imask";
-import { useLocation, useNavigate } from "react-router-dom"; 
+import { useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../css/apply.css";
 
 const Apply = () => {
   const { state } = useLocation();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({
-    firstName: false,
-    lastName: false,
-    email: false,
+    firstName: "",
+    lastName: "",
+    email: "",
     phone: false,
     cv: false,
   });
+
+  const [cvFile, setCvFile] = useState(null);
 
   const phoneInputRef = useRef(null);
 
@@ -28,22 +32,58 @@ const Apply = () => {
 
   const phoneNumberRegex = /^\+994\(\d{2}\)\d{3}-\d{2}-\d{2}$/;
 
+  const handleCvChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const fileSizeInMB = file.size / (1024 * 1024);
+      const validFileTypes = ["application/pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+      
+      if (fileSizeInMB > 2 || !validFileTypes.includes(file.type)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          cv: "Fayl tipi uyğun deyil və ya ölçü çox böyükdür!",
+        }));
+        setCvFile(null);
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          cv: false,
+        }));
+        setCvFile(file);
+      }
+    } else {
+      setCvFile(null);
+    }
+  };
+
+  const handleCvDelete = () => {
+    setCvFile(null);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      cv: false,
+    }));
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    const firstName = event.target.firstName.value.trim();
+    const lastName = event.target.lastName.value.trim();
+    const email = event.target.email.value.trim();
+    const phone = event.target.phone.value.trim();
+
     const newErrors = {
-      firstName: !event.target.firstName.value,
-      lastName: !event.target.lastName.value,
-      email: !event.target.email.value,
-      phone: !phoneNumberRegex.test(event.target.phone.value),
-      cv: !event.target.cv.files.length,
+      firstName: !firstName ? "Məcburi xana!" : /[^a-zA-Z]/.test(firstName) ? "Ad yalnız hərflərdən ibarət olmalıdır!" : "",
+      lastName: !lastName ? "Məcburi xana!" : /[^a-zA-Z]/.test(lastName) ? "Soyad yalnız hərflərdən ibarət olmalıdır!" : "",
+      email: !email ? "Məcburi xana!" : "",
+      phone: !phoneNumberRegex.test(phone),
+      cv: !cvFile,
     };
 
     setErrors(newErrors);
 
-    if (!Object.values(newErrors).includes(true)) {
-      alert("Form submitted!");
-    
+    if (!Object.values(newErrors).some((error) => error)) {
+      toast.success("Cv göndərildi!");
     }
   };
 
@@ -96,27 +136,36 @@ const Apply = () => {
                     type="file"
                     accept=".pdf,.docx"
                     style={{ display: "none" }}
+                    onChange={handleCvChange}
                   />
                   <div className="text-primary">
                     <i className="bi bi-upload mb-2" style={{ fontSize: "24px" }}></i>
                     <br />
-                    <span>CV faylını seç</span>
+                    <span>{cvFile ? cvFile.name : "CV faylını seç"}</span>
                   </div>
                   <small className="text-muted d-block mt-2">
                     Sadəcə PDF və ya DOCX fayl (maks. 2mb)
                   </small>
+                  {cvFile && (
+                    <button
+                      type="button"
+                      className="btn btn-danger mt-2"
+                      onClick={handleCvDelete}
+                    >
+                      Sil
+                    </button>
+                  )}
                 </div>
                 {errors.cv && (
-                  <div className="text-danger mt-1">Məcburi xana!</div>
+                  <div className="text-danger mt-1">
+                    {errors.cv}
+                  </div>
                 )}
               </div>
 
               <div className="row mb-3">
                 <div className="col-md-6 mb-3 mb-md-0">
-                  <label
-                    className="form-label d-flex align-items-center"
-                    htmlFor="firstName"
-                  >
+                  <label className="form-label d-flex align-items-center" htmlFor="firstName">
                     <span className="text-dark">Ad</span>
                     <span className="text-danger ms-2">*</span>
                   </label>
@@ -128,14 +177,11 @@ const Apply = () => {
                     style={{ fontSize: "1.1rem", padding: "0.75rem" }}
                   />
                   {errors.firstName && (
-                    <div className="text-danger mt-1">Məcburi xana!</div>
+                    <div className="text-danger mt-1">{errors.firstName}</div>
                   )}
                 </div>
                 <div className="col-md-6">
-                  <label
-                    className="form-label d-flex align-items-center"
-                    htmlFor="lastName"
-                  >
+                  <label className="form-label d-flex align-items-center" htmlFor="lastName">
                     <span className="text-dark">Soyad</span>
                     <span className="text-danger ms-2">*</span>
                   </label>
@@ -147,17 +193,14 @@ const Apply = () => {
                     style={{ fontSize: "1.1rem", padding: "0.75rem" }}
                   />
                   {errors.lastName && (
-                    <div className="text-danger mt-1">Məcburi xana!</div>
+                    <div className="text-danger mt-1">{errors.lastName}</div>
                   )}
                 </div>
               </div>
 
               <div className="row mb-3">
                 <div className="col-md-6 mb-3 mb-md-0">
-                  <label
-                    className="form-label d-flex align-items-center"
-                    htmlFor="email"
-                  >
+                  <label className="form-label d-flex align-items-center" htmlFor="email">
                     <span className="text-dark">Email</span>
                     <span className="text-danger ms-2">*</span>
                   </label>
@@ -169,14 +212,11 @@ const Apply = () => {
                     style={{ fontSize: "1.1rem", padding: "0.75rem" }}
                   />
                   {errors.email && (
-                    <div className="text-danger mt-1">Məcburi xana!</div>
+                    <div className="text-danger mt-1">{errors.email}</div>
                   )}
                 </div>
                 <div className="col-md-6">
-                  <label
-                    className="form-label d-flex align-items-center"
-                    htmlFor="phone"
-                  >
+                  <label className="form-label d-flex align-items-center" htmlFor="phone">
                     <span className="text-dark">Mobil nömrə</span>
                     <span className="text-danger ms-2">*</span>
                   </label>
@@ -190,32 +230,36 @@ const Apply = () => {
                     style={{ fontSize: "1.1rem", padding: "0.75rem" }}
                   />
                   {errors.phone && (
-                    <div className="text-danger mt-1">Məcburi xana!</div>
+                    <div className="text-danger mt-1">
+                      {errors.phone ? "Məcburi xana!" : "Telefon nömrəsi düzgün deyil!"}
+                    </div>
                   )}
                 </div>
               </div>
-
-              <div className="d-flex justify-content-between">
-                <button
-                  type="button"
-                  className="btn btn-outline-danger"
-                  style={{ fontSize: "1.1rem", padding: "0.75rem 1.5rem" }}
-                  onClick={() => navigate(-1)}
-                >
-                  Geri
-                </button>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  style={{ fontSize: "1.1rem", padding: "0.75rem 1.5rem" }}
-                >
-                  Göndər
-                </button>
-              </div>
+              
+              <div className="d-flex justify-content-between mb-4">
+                 <button 
+                   type="button" 
+                   className="btn btn-secondary"
+                   onClick={() => navigate(-1)}
+                   style={{ width: "10%" }}
+                 >
+                   Geri
+                 </button>
+                 <button 
+                  type="submit" 
+                   className="btn btn-primary"
+                   style={{ width: "10%" }}
+                 >
+                   Göndər
+                 </button>
+               </div>
             </form>
           </div>
         </div>
       </div>
+
+      <ToastContainer />
     </>
   );
 };
