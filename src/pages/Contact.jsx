@@ -21,17 +21,21 @@ const Contact = () => {
         allowfullscreen=""
         loading="lazy"
       ></iframe>
+      <div className="line">
+        <hr />
+      </div>
       <div className="contacts-item">
         <div className="contacts-text">
           <h4>Telefon</h4>
           <ul>
+            <li>+994 12 434 50 30</li>
             <li>+994 12 488 64 91</li>
             <li>+994 12 488 64 92</li>
           </ul>
         </div>
       </div>
       <div className="contacts-item">
-        <div className="contacts-text">
+        <div className="contacts-text2">
           <h4>Mobil</h4>
           <ul>
             <li>+994 50 205 66 20</li>
@@ -40,7 +44,7 @@ const Contact = () => {
         </div>
       </div>
       <div className="contacts-item">
-        <div className="contacts-text">
+        <div className="contacts-text3">
           <h4>E-mail</h4>
           <span>info@jobsearch.az</span>
         </div>
