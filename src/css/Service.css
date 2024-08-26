@@ -8,13 +8,20 @@
     flex-direction: column;
 }
 .all-services-2{
-    padding: 4rem 3.2rem;
+    padding: 3rem 3.2rem;
     height: 100%;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+.all-services-2 h1{
+    font-size: 2rem;
+    padding-bottom: 1rem;
 }
 .services-list{
     list-style: none;
     margin-bottom: 2.4rem;
+    margin-right: 150px;
 }
 .services-item{
     border: 1px solid #e2e2e2;
@@ -24,4 +31,10 @@
 }
 .services-item h2{
     font-size: 1.5rem;
+}
+.tab-content_item p{
+    margin-bottom: 1.2rem;
+}
+.tab-content_item3{
+    margin-bottom: 2.9rem;
 }
