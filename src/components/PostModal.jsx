@@ -211,7 +211,8 @@ function PostModal(props) {
               value={values.requirement}
               onChange={handleChange}
               as="textarea"
-              rows={3}
+              rows="10"
+              cols="50"
               placeholder="Namizədə olan tələbləri daxil edin"
             />
             {errors.requirement && (

@@ -1,14 +1,17 @@
-import { useState, useEffect } from "react";
-import { FaBars, FaClock, FaEye } from "react-icons/fa";
+import { useState, useEffect, useContext } from "react";
+import { FaEye } from "react-icons/fa";
 import "../css/Details.css";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Context from "../context/context";
 
 const Details = () => {
   const { id } = useParams();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [randomColor, setRandomColor] = useState("");
+  const { count } = useContext(Context);
+  
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -69,7 +72,7 @@ const Details = () => {
                 <div className="d-flex align-items-center justify-content-center justify-content-md-start mb-2">
                   <p className="text-secondary mb-0">{post.location}</p>
                   <FaEye className="text-secondary ms-3 me-2" />
-                  <p className="text-secondary mb-0">View count (optional)</p>
+                  <p className="text-secondary mb-0">View count ({count})</p>
                 </div>
               </div>
               <div className="apply-btn text-center text-md-start">
@@ -98,17 +101,28 @@ const Details = () => {
                 <article className="col-12 mb-4">
                   <div className="description">
                     <h3 className="fw-bold">Təsvir</h3>
-                    <p>{post.jobInformation}</p>
+                    <ul className="formatted-requirements">
+                      {post.jobInformation.split('.' && ';').map((line, index) => (
+                        line.trim() ? <li key={index}>{line};</li> : null
+                      ))}
+                    </ul>
+                    {/* <pre>{post.jobInformation}</pre> */}
                   </div>
                 </article>
-                <article className="col-md-6 mb-4">
+                <article className="col-md-12 mb-4">
                   <div className="requirements">
                     <h3 className="fw-bold">Tələblər</h3>
                     <ul className="list-unstyled">
-                      <li className="mb-2">{post.requirement}</li>
-                      <li className="mb-2">
+                      <li className="formatted-requirements">
                         {post.workExperience} illik iş təcrübəsi
                       </li>
+                      <ul className="formatted-requirements">
+                        {post.requirement.split('.' && ';').map((line, index) => (
+                          line.trim() ? <li key={index}>{line};</li> : null
+                        ))}
+                      </ul>
+                      {/* <pre className="mb-4">{post.requirement}</pre> */}
+                      {/* <li className="mb-4">{post.requirement}</li> */}
                     </ul>
                   </div>
                 </article>
