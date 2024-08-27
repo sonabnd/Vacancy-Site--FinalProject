@@ -41,7 +41,8 @@ function App() {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1098);
   const [editInputVal,setEditInputVal] = useState({});
   const [deleteVacancy, setDeleteVacancy] = useState([]);
-  const [myPost,setMyPost] = useState([]);
+  const [myPost,setMyPost] = useState([])
+  const [count , setCount] = useState(0);
   const [loading, setLoading] = useState(false);
   
   
@@ -134,6 +135,9 @@ function App() {
     originalPostCard,
     setOriginalPostCard,
     user, setUser,
+    updateVacancy,setUpdateVacancy,
+    editInputVal, setEditInputVal,
+    deleteVacancy, setDeleteVacancy,
     searchInput,
     setSearchInput,
     filterContainer,
@@ -150,6 +154,11 @@ function App() {
     setUser,
     myPost,
     setMyPost,
+    count,
+    setCount,
+    togglePasswordVisibility,
+    navigation,
+    showPassword,
   };
 
   const getData = async () => {
@@ -213,9 +222,7 @@ function App() {
         formik.resetForm("");
       } else {
         toast.error("Sifre və ya e-poçt yanlışdır!");
-        formik.resetForm("");
-        setLogin(false);
-        setDesign(false);
+        formik.resetForm(""); 
       }
     }
   };
