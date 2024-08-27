@@ -33,56 +33,36 @@ import Spinner from 'react-bootstrap/Spinner';
   const singlePositions = [...new Set(originalPostCard.map(post => post.position))];
   const singleLocations = [...new Set(originalPostCard.map(post => post.location))];
 
-  async function delDeadline() {
-    const today = new Date();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-    const day = today.getDate();
-
-    const formattedDay = day < 10 ? '0' + day : day;
-    const formattedMonth = month < 10 ? '0' + month : month;
-    const currentDate = formattedDay + "-" + formattedMonth + "-" + year;
-
-    for (const card of postCard) {
-      if (card.deadline == currentDate) {
-        try {
-          const response = await axios.delete(`http://localhost:3000/advertisement/${card.id}`)
-          console.log(`Card with ID ${card.id} deleted`, response.data);
-        }
-        catch (error) {
-          console.error(`Failed to delete card with ID ${card.id}:`, error);
-
-
-
   useEffect(() => {
     const delExpiredPosts = async () => {
       const today = new Date();
-      today.setHours(0, 0, 0, 0); 
+      today.setHours(0, 0, 0, 0); // Set the time to 00:00:00 to compare dates only
 
+      // Function to parse date from various formats
       const parseDate = (dateStr) => {
         const formats = ['-', '/', '.'];
         for (const format of formats) {
           const [day, month, year] = dateStr.split(format).map(Number);
           if (day && month && year) {
-            return new Date(year, month - 1, day); 
+            return new Date(year, month - 1, day); // Month is zero-based in JavaScript Date
           }
         }
-        return null; 
+        return null; // Return null if no valid date is found
       };
 
-
+      // Filter expired posts
       const expiredPosts = postCard.filter((card) => {
         const deadlineDate = parseDate(card.deadline);
-        return deadlineDate && deadlineDate < today; 
+        return deadlineDate && deadlineDate < today; // Check if the deadline is before today
       });
 
-
+      // Filter non-expired posts
       const remainingPosts = postCard.filter((card) => {
         const deadlineDate = parseDate(card.deadline);
-        return deadlineDate && deadlineDate >= today; 
+        return deadlineDate && deadlineDate >= today; // Keep posts with deadlines today or in the future
       });
 
-
+      // Delete expired posts and log the response
       for (const card of expiredPosts) {
         try {
           const response = await axios.delete(
@@ -94,17 +74,17 @@ import Spinner from 'react-bootstrap/Spinner';
         }
       }
 
+      // Update the state to reflect only the remaining posts
       setPostCard(remainingPosts);
     };
 
     if (postCard.length > 0) {
       delExpiredPosts();
     }
-  }
-  useEffect(() => {
-    delDeadline();
-  }, [])
   }, [postCard, setPostCard]);
+
+
+
 
   const searchVacancy = () => {
     const filteredCards = originalPostCard.filter(card => {
@@ -146,10 +126,7 @@ import Spinner from 'react-bootstrap/Spinner';
     ) : (
 
       <div className="homepage-container">
-        <SearchFilter />
-        <div className={`filter-container animate__animated animate__fadeInDown`} style={{ display: filterContainer ? "block" : "none" }} >
-          <select name="" id="" onChange={e => setSelectedPosition(e.target.value)}>
-        <SearchFilter />         
+        <SearchFilter />    
         <div className = {`filter-container animate__animated animate__fadeInDown`} style={{ display: filterContainer ? "block" : "none" }} >
           <select name="" id=""  onChange={e => setSelectedPosition(e.target.value)}>
             <option value="">Vəzifə</option>
@@ -192,27 +169,8 @@ import Spinner from 'react-bootstrap/Spinner';
           )
         }
       </div>
-          {
-            postCard.length>0 ? (
-              postCard.map(post => (
-                <Link className="details-page-link" to={`details/${post.id}`} key={post.id}>
-                  <div className="advertisement" >
-                    <HomepageCard post={post} />
-                  </div>
-                </Link>
-              ))
-            ) : (
-              <div className="not-found-container">
-                <span><VscSearchStop /></span>
-                <p className="not-found-search">Sizin axtarış üzrə heç bir nəticə tapılmadı.</p>
-              </div>
-            )
-          }
-        </div>
     )}
     </>
   );
 };
-
-
-export default Homepage;  
+export default Homepage; 
