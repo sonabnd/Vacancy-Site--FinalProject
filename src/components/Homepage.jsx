@@ -6,18 +6,18 @@ import Context from "../context/context";
 import axios from "axios";
 import { VscSearchStop } from "react-icons/vsc";
 import { Link } from "react-router-dom";
-// import 'animate.css';
+import 'animate.css';
+import Spinner from 'react-bootstrap/Spinner';
 
   const Homepage = () => {
 
-  const { postCard, setPostCard, filterContainer, setOriginalPostCard, originalPostCard, setCount, count } = useContext(Context);
+  const { postCard, setPostCard, filterContainer, setOriginalPostCard, originalPostCard, setCount, count,loading,setLoading } = useContext(Context);
 
   const handleClickCount = (id) => {
     if (id) {
       setCount(count + 1);
     }
   }
-
 
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedPosition, setSelectedPosition] = useState('');
@@ -51,13 +51,60 @@ import { Link } from "react-router-dom";
         }
         catch (error) {
           console.error(`Failed to delete card with ID ${card.id}:`, error);
+
+
+
+  useEffect(() => {
+    const delExpiredPosts = async () => {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); 
+
+      const parseDate = (dateStr) => {
+        const formats = ['-', '/', '.'];
+        for (const format of formats) {
+          const [day, month, year] = dateStr.split(format).map(Number);
+          if (day && month && year) {
+            return new Date(year, month - 1, day); 
+          }
+        }
+        return null; 
+      };
+
+
+      const expiredPosts = postCard.filter((card) => {
+        const deadlineDate = parseDate(card.deadline);
+        return deadlineDate && deadlineDate < today; 
+      });
+
+
+      const remainingPosts = postCard.filter((card) => {
+        const deadlineDate = parseDate(card.deadline);
+        return deadlineDate && deadlineDate >= today; 
+      });
+
+
+      for (const card of expiredPosts) {
+        try {
+          const response = await axios.delete(
+            `http://localhost:3000/advertisement/${card.id}`
+          );
+          console.log(`Card with ID ${card.id} deleted`, response.data);
+        } catch (error) {
+          console.error(`Failed to delete card with ID ${card.id}:`, error.message);
         }
       }
+
+      setPostCard(remainingPosts);
+    };
+
+    if (postCard.length > 0) {
+      delExpiredPosts();
     }
   }
   useEffect(() => {
     delDeadline();
   }, [])
+  }, [postCard, setPostCard]);
 
   const searchVacancy = () => {
     const filteredCards = originalPostCard.filter(card => {
@@ -90,11 +137,21 @@ import { Link } from "react-router-dom";
   };
 
   return (
-    <>
+    <>{loading ? (
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </div>
+    ) : (
+
       <div className="homepage-container">
         <SearchFilter />
         <div className={`filter-container animate__animated animate__fadeInDown`} style={{ display: filterContainer ? "block" : "none" }} >
           <select name="" id="" onChange={e => setSelectedPosition(e.target.value)}>
+        <SearchFilter />         
+        <div className = {`filter-container animate__animated animate__fadeInDown`} style={{ display: filterContainer ? "block" : "none" }} >
+          <select name="" id=""  onChange={e => setSelectedPosition(e.target.value)}>
             <option value="">Vəzifə</option>
             {
               singlePositions.map((position, index) => (
@@ -135,6 +192,24 @@ import { Link } from "react-router-dom";
           )
         }
       </div>
+          {
+            postCard.length>0 ? (
+              postCard.map(post => (
+                <Link className="details-page-link" to={`details/${post.id}`} key={post.id}>
+                  <div className="advertisement" >
+                    <HomepageCard post={post} />
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <div className="not-found-container">
+                <span><VscSearchStop /></span>
+                <p className="not-found-search">Sizin axtarış üzrə heç bir nəticə tapılmadı.</p>
+              </div>
+            )
+          }
+        </div>
+    )}
     </>
   );
 };

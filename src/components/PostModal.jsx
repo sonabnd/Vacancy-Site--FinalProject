@@ -18,7 +18,6 @@ function PostModal(props) {
       position: "",
       location: "",
       salary: "",
-      workExperience: "",
       deadline: "",
       jobTime: "",
       requirement: "",
@@ -28,7 +27,7 @@ function PostModal(props) {
     onSubmit: async (values, actions) => {
       try {
         const checkData = await axios.get(
-          "http://localhost:3000/advertisement"
+          "http://localhost:3000/advertisement?_sort=createdDate&_order=desc"
         );
         const getData = checkData.data;
         const sameVacancy = getData.find(
@@ -41,16 +40,17 @@ function PostModal(props) {
           return;
         } else {
           const user = JSON.parse(localStorage.getItem("user"));
-          const newAd = {...values, userId : user.id}
+          const newAd = { ...values, userId: user.id, createdDate: new Date().toISOString() };
 
           const response = await axios.post(
             "http://localhost:3000/advertisement",
             newAd
           );
 
-          toast.success("Əlavə olundu!");
-          // setPostCard((prevAds) => [response.data, ...prevAds]);
           actions.resetForm();
+          toast.success("Əlavə olundu!");
+          props.onHide();
+          setPostCard((topPostCard) => [response.data, ...topPostCard]);
         }
       } catch (error) {
         console.log(error);
@@ -185,21 +185,6 @@ function PostModal(props) {
               <div className="formatted-date">
                 <strong>Selected Date:</strong> {formatDate(values.deadline)}
               </div>
-            )}
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Label htmlFor="workExperience">İş təcrübəsi:</Form.Label>
-            <Form.Control
-              id="workExperience"
-              name="workExperience"
-              value={values.workExperience}
-              onChange={handleChange}
-              type="text"
-              placeholder="Məsələn: 3 il"
-            />
-            {errors.workExperience && (
-              <div className="error-message">{errors.workExperience}</div>
             )}
           </Form.Group>
 

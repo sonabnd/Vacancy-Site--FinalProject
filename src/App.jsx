@@ -43,9 +43,7 @@ function App() {
   const [deleteVacancy, setDeleteVacancy] = useState([]);
   const [myPost,setMyPost] = useState([])
   const [count , setCount] = useState(0);
-  
-
-
+  const [loading, setLoading] = useState(false);
   
   
   const togglePasswordVisibility = (type) => {
@@ -140,6 +138,20 @@ function App() {
     updateVacancy,setUpdateVacancy,
     editInputVal, setEditInputVal,
     deleteVacancy, setDeleteVacancy,
+    searchInput,
+    setSearchInput,
+    filterContainer,
+    showHideFilter,
+    originalPostCard, setOriginalPostCard,
+    user,setUser,
+    updateVacancy, setUpdateVacancy,
+    editInputVal, setEditInputVal,
+    deleteVacancy, setDeleteVacancy,
+    loading, setLoading,
+    originalPostCard,
+    setOriginalPostCard,
+    user,
+    setUser,
     myPost,
     setMyPost,
     count,
@@ -151,11 +163,14 @@ function App() {
 
   const getData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/advertisement");
-      const posts = response.data;
-      setPostCard(posts);
-      setMyPost(posts);
+      setLoading(true);
+      const response = await axios.get("http://localhost:3000/advertisement?_sort=createdDate&_order=desc");
+      const sortedAds = response.data.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
+      setPostCard(sortedAds);
+      setMyPost(sortedAds);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -322,7 +337,7 @@ function App() {
                       <i
                         type="button"
                         onClick={() => togglePasswordVisibility('password')}
-                        className="toggle-password-visibility">
+                        className="toggle-password-visibility loginVisibility">
                         {showPassword ? <IoEyeOff /> : <IoEye />}
                       </i>
                       {formikLogin.errors.password && formikLogin.touched.password && (

@@ -56,8 +56,8 @@ const Details = () => {
                 className="logo mb-3 mb-md-0 me-md-4 advertisement-loqo"
                 style={{
                   backgroundColor: randomColor,
-                  width: "80px",
-                  height: "80px",
+                  width: "50px",
+                  height: "50px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -67,7 +67,7 @@ const Details = () => {
                 {post.company.slice(0, 1)}
               </div>
               <div className="job-title flex-grow-1 text-center text-md-start">
-                <h1 className="text-primary fw-bold mb-2">{post.position}</h1>
+                <h1 className="text-primary fw-bold mb-2" style={{ fontSize: '20px' }}>{post.position}</h1>
                 <p className="text-secondary mb-2 mt-2">{post.company}</p>
                 <div className="d-flex align-items-center justify-content-center justify-content-md-start mb-2">
                   <p className="text-secondary mb-0">{post.location}</p>

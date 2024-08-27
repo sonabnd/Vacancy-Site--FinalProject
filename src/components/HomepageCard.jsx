@@ -35,7 +35,7 @@ const HomepageCard = ({ post }) => {
         <span>{post.location} |</span>
         <span className="deadline">Son müraciət tarixi : {post.deadline}</span>
       </div>
-      <p className="price">{post.salary}</p>
+      <p className="price"><span>{post.salary}</span></p>
     </>
   );
 };

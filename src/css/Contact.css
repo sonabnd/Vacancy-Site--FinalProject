@@ -1,44 +1,36 @@
 /* CSS for Contact Page */
-
-.about{
+.about {
   padding: 4rem 3.2rem;
-    height: 100%;
-    overflow-y: auto;
-}
-.contact-1 h2 {
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 20px;
+  height: 100%;
+  overflow-y: auto;
 }
 
-.contact-2 h3 {
-  font-size: 22px;
+.contact-1 h2, .contact-2 h3 {
   font-weight: 500;
-  margin-bottom: 10px;
-}
-
-.contact-2 p {
-  font-size: 16px;
   margin-bottom: 20px;
 }
 
-.phone,
-.mobile,
-.email {
+.contact-2 {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.line {
+  width: 100%;
+  margin: 50px 0;
+}
+
+.phone, .mobile, .email {
   margin-bottom: 20px;
 }
 
-.phone span,
-.mobile span,
-.email span {
+.phone span, .mobile span, .email span {
   display: block;
-  font-size: 16px;
   margin-bottom: 5px;
 }
 
 h3 {
-  margin-top: 0;
-  font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
 }
@@ -61,11 +53,31 @@ iframe {
   border-bottom: 1px solid #eaeaea;
 }
 
-.contacts-text {
+.contacts-text, .contacts-text2, .contacts-text3 {
   color: rgba(0, 0, 0, .7);
+  display: flex;
 }
 
+.contacts-text {
+  gap: 90px;
+}
 
+.contacts-text2 {
+  gap: 100px;
+}
+
+.contacts-text3 {
+  gap: 130px;
+}
+
+.contacts-text ul, .contacts-text2 ul {
+  list-style: none;
+  cursor: pointer;
+}
+
+.contacts-text3 span {
+  cursor: pointer;
+}
 
 /* Layout adjustments */
 .container {
