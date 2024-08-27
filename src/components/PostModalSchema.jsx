@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
-const dateRegex = /^(\d{2})-(\d{2})-(\d{4})$/;
+const dateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+
 const capitalizeFirstLetter = (value) =>
     value.replace(/\b\w/g, (char) => char.toUpperCase());
 export const PostModalSchema=Yup.object().shape({
@@ -29,10 +30,10 @@ export const PostModalSchema=Yup.object().shape({
     .positive('Maaş müsbət olmalıdır')
     .required('Xananı doldurmağınız tələb olunur'),
 
-    workExperience: Yup.number(),
+    workExperience: Yup.number().typeError('Maaş yalnız rəqəmlərdən ibarət olmalıdır'),
 
     deadline: Yup.string()
-    .matches(dateRegex, 'Son tarix bu formatda olmalıdır : DD-MM.YYYY')
+    .matches(dateRegex, 'Son tarix bu formatda olmalıdır : DD/MM/YYYY')
     .required('Xananı doldurmağınız tələb olunur'),
 
     jobTime: Yup.string(),

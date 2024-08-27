@@ -129,6 +129,9 @@
   display: flex;
   justify-content: center;
 }
+.loginVisibility{
+  background-color: white;
+}
 
 .login-button button {
   width: 100%;

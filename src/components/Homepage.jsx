@@ -6,6 +6,7 @@ import Context from "../context/context";
 import axios from "axios";
 import { VscSearchStop } from "react-icons/vsc";
 import { Link } from "react-router-dom";
+import 'animate.css';
 
 const Homepage = () => {
 
@@ -86,7 +87,7 @@ const Homepage = () => {
     <>
       <div className="homepage-container">
         <SearchFilter />         
-        <div className="filter-container" style={{ display: filterContainer ? "block" : "none" }} >
+        <div className = {`filter-container animate__animated animate__fadeInDown`} style={{ display: filterContainer ? "block" : "none" }} >
           <select name="" id=""  onChange={e => setSelectedPosition(e.target.value)}>
             <option value="">Vəzifə</option>
             {
