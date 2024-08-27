@@ -132,17 +132,6 @@ function UpdatePost(props) {
             />
           </Form.Group>
 
-          <Form.Group controlId="formWorkExperience">
-            <Form.Label>İş təcrübəsi</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder=""
-              value={editInputVal?.workExperience || ""}
-              onChange={handleChange}
-              name="workExperience"
-            />
-          </Form.Group>
-
           <Form.Group controlId="formCandidateRequirements">
             <Form.Label>Namizədə tələbləri</Form.Label>
             <Form.Control
@@ -172,7 +161,6 @@ function UpdatePost(props) {
         <Button variant="secondary" onClick={props.onHide}>
           Bağla
         </Button>
-        {/* Call handleUpdate when this button is clicked */}
         <Button variant="primary" onClick={handleUpdate}>
           Redaktə et
         </Button>

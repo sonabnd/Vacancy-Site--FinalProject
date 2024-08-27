@@ -1,32 +1,6 @@
 {
   "advertisement": [
     {
-      "id": "3577",
-      "company": "Agile",
-      "category": "Assduieunc",
-      "position": "Engineer",
-      "location": "Baki",
-      "salary": "324",
-      "workExperience": "5",
-      "deadline": "2024-08-30",
-      "jobTime": "cxv",
-      "requirement": "fghjk",
-      "jobInformation": "fghjkl"
-    },
-    {
-      "id": "1a74",
-      "company": "Agile",
-      "category": "sd",
-      "position": "Kassir",
-      "location": "Baki",
-      "salary": "800",
-      "workExperience": "5",
-      "deadline": "19-08-2024",
-      "jobTime": "cxv",
-      "requirement": "ssfhh",
-      "jobInformation": "gfdytb"
-    },
-    {
       "id": "4715",
       "company": "Admin",
       "category": "scdf",
@@ -39,20 +13,6 @@
       "requirement": "qw",
       "jobInformation": "",
       "userId": "a662"
-    },
-    {
-      "id": "7089",
-      "company": "Agile Solutions",
-      "category": "Maliyyə",
-      "position": "Full stack",
-      "location": "Baki",
-      "salary": "1800",
-      "workExperience": "2",
-      "deadline": "20-08-2024",
-      "jobTime": "yarim",
-      "requirement": "requirement",
-      "jobInformation": "scdfvgbh",
-      "userId": "e10c"
     },
     {
       "id": "9ba0",
@@ -70,7 +30,7 @@
     },
     {
       "id": "6ba4",
-      "company": "ABB",
+      "company": "aaaa",
       "category": "Maliyyə",
       "position": "Engineer",
       "location": "Qax",
@@ -122,34 +82,6 @@
       "jobTime": "yarim",
       "requirement": "cvb n",
       "jobInformation": "cdvfbgh",
-      "userId": "e10c"
-    },
-    {
-      "id": "ab88",
-      "company": "ABB",
-      "category": "werf",
-      "position": "Kassir",
-      "location": "Baki",
-      "salary": "123",
-      "workExperience": "1",
-      "deadline": "30/02/2024",
-      "jobTime": "yarim",
-      "requirement": "dfv",
-      "jobInformation": "scdvf",
-      "userId": "e10c"
-    },
-    {
-      "id": "446c",
-      "company": "asdefgrt",
-      "category": "sdfgrthy",
-      "position": "sdfg",
-      "location": "Baki",
-      "salary": "234",
-      "workExperience": "3",
-      "deadline": "25/04/2024",
-      "jobTime": "sdfgh",
-      "requirement": "erfg",
-      "jobInformation": "dfg",
       "userId": "e10c"
     },
     {
@@ -207,6 +139,98 @@
       "requirement": "DF",
       "jobInformation": "FVGB",
       "userId": "e10c"
+    },
+    {
+      "id": "5ba8",
+      "company": "Pasha bank",
+      "category": "proqramlasdirma",
+      "position": "Front-end",
+      "location": "Xətai",
+      "salary": "1200",
+      "deadline": "25/09/2024",
+      "jobTime": "tam",
+      "requirement": "guclu",
+      "jobInformation": "maraqli isdi",
+      "userId": "e10c"
+    },
+    {
+      "id": "b83e",
+      "company": "Oba market",
+      "category": "satis",
+      "position": "satici",
+      "location": "Nizami",
+      "salary": "400",
+      "deadline": "19/09/2024",
+      "jobTime": "yarim",
+      "requirement": "cevik ",
+      "jobInformation": "guclu",
+      "userId": "e10c"
+    },
+    {
+      "id": "bfa3",
+      "company": "Sona",
+      "category": "satis",
+      "position": "Full stack",
+      "location": "asxcdfvgbh",
+      "salary": "234",
+      "deadline": "10/09/2024",
+      "jobTime": "sdfgh",
+      "requirement": "cevik",
+      "jobInformation": "cevik",
+      "userId": "e10c"
+    },
+    {
+      "id": "6b54",
+      "company": "Bank Respublika ",
+      "category": "satis",
+      "position": "Operator",
+      "location": "baki",
+      "salary": "200",
+      "deadline": "20/10/2024",
+      "jobTime": "yarim",
+      "requirement": "guclu",
+      "jobInformation": "guclu",
+      "userId": "e10c"
+    },
+    {
+      "id": "a93e",
+      "company": "Rabite bank",
+      "category": "proqram",
+      "position": "Java developer",
+      "location": "Baki",
+      "salary": "1200",
+      "deadline": "30/10/2024",
+      "jobTime": "yarim",
+      "requirement": "",
+      "jobInformation": "",
+      "userId": "e10c",
+      "createdDate": "2024-08-27T16:31:46.026Z"
+    },
+    {
+      "company": "Xalq",
+      "category": "proqram",
+      "position": "SQL",
+      "location": "Nesimi",
+      "salary": "800",
+      "deadline": "10/09/2024",
+      "jobTime": "yarim",
+      "requirement": "",
+      "jobInformation": "",
+      "id": "7a12"
+    },
+    {
+      "id": "867a",
+      "company": "Rahat market",
+      "category": "satis",
+      "position": "Kassir",
+      "location": "Qax",
+      "salary": "400",
+      "deadline": "25/09/2024",
+      "jobTime": "yarim",
+      "requirement": "dcfvgh",
+      "jobInformation": "csdvfbgnhjm",
+      "userId": "e10c",
+      "createdDate": "2024-08-27T21:15:38.569Z"
     }
   ],
   "users": [

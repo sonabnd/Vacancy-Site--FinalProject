@@ -41,8 +41,8 @@ function App() {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 1098);
   const [editInputVal,setEditInputVal] = useState({});
   const [deleteVacancy, setDeleteVacancy] = useState([]);
-  const [myPost,setMyPost] = useState([])
-  
+  const [myPost,setMyPost] = useState([]);
+  const [loading, setLoading] = useState(false);
   
   
   const togglePasswordVisibility = (type) => {
@@ -140,9 +140,10 @@ function App() {
     showHideFilter,
     originalPostCard, setOriginalPostCard,
     user,setUser,
-    updateVacancy,setUpdateVacancy,
+    updateVacancy, setUpdateVacancy,
     editInputVal, setEditInputVal,
     deleteVacancy, setDeleteVacancy,
+    loading, setLoading,
     originalPostCard,
     setOriginalPostCard,
     user,
@@ -153,11 +154,14 @@ function App() {
 
   const getData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/advertisement");
-      const posts = response.data;
-      setPostCard(posts);
-      setMyPost(posts);
+      setLoading(true);
+      const response = await axios.get("http://localhost:3000/advertisement?_sort=createdDate&_order=desc");
+      const sortedAds = response.data.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
+      setPostCard(sortedAds);
+      setMyPost(sortedAds);
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };

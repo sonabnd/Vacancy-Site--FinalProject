@@ -7,11 +7,11 @@ import axios from "axios";
 import { VscSearchStop } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import 'animate.css';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Homepage = () => {
 
-  const { postCard, setPostCard, filterContainer, setOriginalPostCard, originalPostCard } = useContext(Context);
-
+  const { postCard, setPostCard, filterContainer, setOriginalPostCard, originalPostCard,loading,setLoading } = useContext(Context);
 
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedPosition, setSelectedPosition] = useState('');
@@ -27,31 +27,56 @@ const Homepage = () => {
   const singlePositions = [...new Set(originalPostCard.map(post => post.position))];
   const singleLocations = [...new Set(originalPostCard.map(post => post.location))];
 
-    async function delDeadline(){
+
+
+  useEffect(() => {
+    const delExpiredPosts = async () => {
       const today = new Date();
-      const month = today.getMonth()+1;
-      const year = today.getFullYear();
-      const day = today. getDate();
-      
-      const formattedDay = day < 10 ? '0' + day : day;
-      const formattedMonth = month < 10 ? '0' + month : month;
-      const currentDate = formattedDay + "-" + formattedMonth + "-" + year;
-      
-      for(const card of postCard){
-        if(card.deadline == currentDate){
-          try{
-            const response = await axios.delete(`http://localhost:3000/advertisement/${card.id}`)
-            console.log(`Card with ID ${card.id} deleted`, response.data);
-          }
-          catch(error){
-            console.error(`Failed to delete card with ID ${card.id}:`, error);
+      today.setHours(0, 0, 0, 0); 
+
+      const parseDate = (dateStr) => {
+        const formats = ['-', '/', '.'];
+        for (const format of formats) {
+          const [day, month, year] = dateStr.split(format).map(Number);
+          if (day && month && year) {
+            return new Date(year, month - 1, day); 
           }
         }
+        return null; 
+      };
+
+
+      const expiredPosts = postCard.filter((card) => {
+        const deadlineDate = parseDate(card.deadline);
+        return deadlineDate && deadlineDate < today; 
+      });
+
+
+      const remainingPosts = postCard.filter((card) => {
+        const deadlineDate = parseDate(card.deadline);
+        return deadlineDate && deadlineDate >= today; 
+      });
+
+
+      for (const card of expiredPosts) {
+        try {
+          const response = await axios.delete(
+            `http://localhost:3000/advertisement/${card.id}`
+          );
+          console.log(`Card with ID ${card.id} deleted`, response.data);
+        } catch (error) {
+          console.error(`Failed to delete card with ID ${card.id}:`, error.message);
+        }
       }
+
+      setPostCard(remainingPosts);
+    };
+
+    if (postCard.length > 0) {
+      delExpiredPosts();
     }
-    useEffect(()=>{
-      delDeadline(); 
-    }, [])
+  }, [postCard, setPostCard]);
+  
 
   const searchVacancy = () => {
   const filteredCards = originalPostCard.filter(card => {
@@ -84,7 +109,14 @@ const Homepage = () => {
 };
 
   return (
-    <>
+    <>{loading ? (
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </div>
+    ) : (
+
       <div className="homepage-container">
         <SearchFilter />         
         <div className = {`filter-container animate__animated animate__fadeInDown`} style={{ display: filterContainer ? "block" : "none" }} >
@@ -129,6 +161,7 @@ const Homepage = () => {
             )
           }
         </div>
+    )}
     </>
   );
 };
