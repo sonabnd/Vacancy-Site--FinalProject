@@ -47,10 +47,10 @@ function PostModal(props) {
             "http://localhost:3000/advertisement",
             newAd
           );
-
-          toast.success("Əlavə olundu!");
-          // setPostCard((prevAds) => [response.data, ...prevAds]);
           actions.resetForm();
+          toast.success("Əlavə olundu!");
+          props.onHide();
+          window.location.reload();
         }
       } catch (error) {
         console.log(error);

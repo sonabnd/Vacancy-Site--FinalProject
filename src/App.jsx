@@ -326,7 +326,7 @@ function App() {
                       <i
                         type="button"
                         onClick={() => togglePasswordVisibility('password')}
-                        className="toggle-password-visibility">
+                        className="toggle-password-visibility loginVisibility">
                         {showPassword ? <IoEyeOff /> : <IoEye />}
                       </i>
                       {formikLogin.errors.password && formikLogin.touched.password && (

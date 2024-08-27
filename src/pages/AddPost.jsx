@@ -40,7 +40,6 @@ const AddPost = () => {
       navigation('/');
     } else {
       setDetails(JSON.parse(local));
-      console.log(details);
     }
   }, [local])
 

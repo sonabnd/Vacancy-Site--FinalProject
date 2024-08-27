@@ -149,9 +149,9 @@ function UpdatePost(props) {
               as="textarea"
               rows={3}
               placeholder=""
-              value={editInputVal?.requirements || ""}
+              value={editInputVal?.requirement || ""}
               onChange={handleChange}
-              name="requirements"
+              name="requirement"
             />
           </Form.Group>
 
