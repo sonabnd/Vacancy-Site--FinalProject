@@ -106,8 +106,8 @@ const AddPost = () => {
               <div className="ad-card" key={post.id}>
                 <div className="company-logo">{post.company.slice(0,1)}</div>
                 <div className="ad-details">
-                  <p className="job-position">{post.position}</p>
-                  <p className="company-name">{post.company}.</p>
+                <p className="job-position">{post.position}</p>
+                <p className="company-name">{post.company}.</p>
                 </div>
                 <div className="ad-actions">
                   <button

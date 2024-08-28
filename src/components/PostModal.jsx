@@ -86,7 +86,7 @@ function PostModal(props) {
               value={values.company}
               onChange={handleChange}
               type="text"
-              placeholder="Məsələn: Agile Solutions"
+              placeholder=""
             />
             {errors.company && (
               <div className="error-message">{errors.company}</div>
@@ -116,7 +116,7 @@ function PostModal(props) {
               value={values.position}
               onChange={handleChange}
               type="text"
-              placeholder="Məsələn: Software Engineer"
+              placeholder=""
             />
             {errors.position && (
               <div className="error-message">{errors.position}</div>

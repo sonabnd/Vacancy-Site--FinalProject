@@ -1,5 +1,5 @@
 .all_services{
-    padding: 20px 15px;
+    padding: 0px 15px;
 }
 .all_services-1{
     height: 100vh;
@@ -8,15 +8,16 @@
     flex-direction: column;
 }
 .all-services-2{
-    padding: 3rem 3.2rem;
+    padding: 1.5rem 3.2rem;
     height: 100%;
     margin: auto;
     display: flex;
     flex-direction: column;
 }
-.all-services-2 h1{
+.all-services-2 h3{
     font-size: 2rem;
     padding-bottom: 1rem;
+    margin-bottom: 20px;
 }
 .services-list{
     list-style: none;
@@ -29,12 +30,15 @@
     margin-bottom: .8rem;
     padding: 1.2rem 1.6rem;
 }
-.services-item h2{
-    font-size: 1.5rem;
+.services-item h4{
+    font-size: 18px;
 }
 .tab-content_item p{
     margin-bottom: 1.2rem;
 }
 .tab-content_item3{
     margin-bottom: 2.9rem;
+}
+.all_services h4{
+    margin-bottom: 15px;
 }

@@ -5,21 +5,21 @@ const Service = () => {
     <div className="all_services">
       <div className="all_services-1">
         <div className="all-services-2">
-          <h1>Xidmətlər</h1>
+          <h3>Xidmətlər</h3>
           <div className="services-list">
             <li className="services-item">
-              <h2>Bir vakansiya</h2>
+              <h4>Bir vakansiya</h4>
               <p>1 ay müddətində aktiv qalır</p>
             </li>
             <li className="services-item">
-              <h2>5 və daha çox vakansiya</h2>
+              <h4>5 və daha çox vakansiya</h4>
               <p>
                 Bir gündə 5 və daha çox elan yerləşdirilməsinə 20% endirim
                 tətbiq olunur
               </p>
             </li>
             <li className="services-item">
-              <h2>Premium</h2>
+              <h4>Premium</h4>
               <p>
                 Premium iş elanı saytda olan digər elanlardan xüsusi dizayn və
                 Premium qeydi ilə fərqlənərək saytın yuxarı hissəsində, ilk
@@ -29,7 +29,7 @@ const Service = () => {
           </div>
           <div className="tab-content_item">
             <div className="tab-content_item1">
-              <h2>İş elanlarının yerləşdirilməsi</h2>
+              <h4>İş elanlarının yerləşdirilməsi</h4>
               <p>
                 İş elanı yerləşdirmək üçün, sizdən vakant iş yeri haqqında
                 məlumatı ünvanına Word formatında göndərməyiniz xahiş olunur.
@@ -59,13 +59,13 @@ const Service = () => {
               </p>
             </div>
             <div className="tab-content_item2">
-              <h2>Reklam bannerinin yerləşdirilməsi</h2>
+              <h4>Reklam bannerinin yerləşdirilməsi</h4>
               <p>
                 Reklam bannerinin yerləşdirilməsi üçün xidmət haqqımız bannerin
                 ölçüsündən və saytda olan yerindən asılıdır. Əlavə məlumat əldə
                 etmək üçün Əlaqə bölməsindən müraciət edə bilərsiniz.{" "}
               </p>
-              <h2>İş elanı Storilərinin yerləşdirilməsi </h2>
+              <h4>İş elanı Storilərinin yerləşdirilməsi </h4>
               <p>
                 Bu xüsusi funksiya dəyərli müştərilərimiz üçün yaradılmışdır.
                 Sizin elanın Storisi saytın sol menyusunun bütün bölmələrində
@@ -76,7 +76,7 @@ const Service = () => {
               </p>
             </div>
             <div className="tab-content_item3">
-              <h2>Xidmətin ödənişi</h2>
+              <h4>Xidmətin ödənişi</h4>
               <p>
                 JobSearch.az rəsmi qeydiyyatdan keçmiş şirkətdir. Ödənişlər bank
                 köçürməsi vasitəsilə həyata keçirilir və bütün vergilər müvafiq
