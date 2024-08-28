@@ -5,7 +5,7 @@ const dateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
 const startsWithCapitalLetter = Yup.string().test(
     "startsWithCapitalLetter",
     "Dəyər böyük hərflə (A-Z) başlamalıdır",
-    (value) => /^[A-Z]/.test(value)
+    (value) => /^[A-HJ-Z]/.test(value)  // Matches any uppercase letter except 'I'
 );
 
 export const PostModalSchema = Yup.object().shape({

@@ -10,8 +10,12 @@ const Details = () => {
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [randomColor, setRandomColor] = useState("");
-  const { count } = useContext(Context);
+  const [viewCount, setViewCount] = useState(0);
   
+  useEffect(() => {
+    const viewCounts = JSON.parse(localStorage.getItem("viewCounts")) || {};
+    setViewCount(viewCounts[id] || 0);
+  }, [id]);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -72,7 +76,7 @@ const Details = () => {
                 <div className="d-flex align-items-center justify-content-center justify-content-md-start mb-2">
                   <p className="text-secondary mb-0">{post.location}</p>
                   <FaEye className="text-secondary ms-3 me-2" />
-                  <p className="text-secondary mb-0">View count ({count})</p>
+                  <p className="text-secondary mb-0"> View count ({viewCount})</p>
                 </div>
               </div>
               <div className="apply-btn text-center text-md-start">
@@ -83,7 +87,7 @@ const Details = () => {
               <div className="row g-4">
                 <aside className="col-md-6 mb-4">
                   <div className="job-details">
-                    <h3 className="fw-bold">Vakansiya haqqında</h3>
+                    <h4 className="fw-bold" style={{ marginBottom: '20px' }}>Vakansiya haqqında</h4>
                     <div className="d-flex">
                       <p>Son tarix:</p>
                       <strong>{post.deadline}</strong>
@@ -100,29 +104,23 @@ const Details = () => {
                 </aside>
                 <article className="col-12 mb-4">
                   <div className="description">
-                    <h3 className="fw-bold">Təsvir</h3>
+                    <h4 className="fw-bold" style={{ marginBottom: '20px' }}>Təsvir</h4>
                     <ul className="formatted-requirements">
-                      {post.jobInformation.split('.' && ';').map((line, index) => (
+                      {post.jobInformation.split('.' && ';' && ',').map((line, index) => (
                         line.trim() ? <li key={index}>{line};</li> : null
                       ))}
                     </ul>
-                    {/* <pre>{post.jobInformation}</pre> */}
                   </div>
                 </article>
                 <article className="col-md-12 mb-4">
                   <div className="requirements">
-                    <h3 className="fw-bold">Tələblər</h3>
+                    <h4 className="fw-bold" style={{ marginBottom: '20px' }}>Tələblər</h4>
                     <ul className="list-unstyled">
-                      <li className="formatted-requirements">
-                        {post.workExperience} illik iş təcrübəsi
-                      </li>
                       <ul className="formatted-requirements">
-                        {post.requirement.split('.' && ';').map((line, index) => (
+                        {post.requirement.split('.' && ';' && ',').map((line, index) => (
                           line.trim() ? <li key={index}>{line};</li> : null
                         ))}
                       </ul>
-                      {/* <pre className="mb-4">{post.requirement}</pre> */}
-                      {/* <li className="mb-4">{post.requirement}</li> */}
                     </ul>
                   </div>
                 </article>

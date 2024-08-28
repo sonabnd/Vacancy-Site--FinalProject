@@ -42,7 +42,6 @@ function App() {
   const [editInputVal,setEditInputVal] = useState({});
   const [deleteVacancy, setDeleteVacancy] = useState([]);
   const [myPost,setMyPost] = useState([])
-  const [count , setCount] = useState(0);
   const [loading, setLoading] = useState(false);
   
   
@@ -65,19 +64,6 @@ function App() {
       setNavbarOpen(false);
     }
   };
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/advertisement");
-        const posts = response.data;
-        setPostCard(posts);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
-  }, []);
 
   useEffect(() => {
     handleResize();
@@ -119,6 +105,7 @@ function App() {
     setDesign(false);
   };
 
+
   const data = {
     login,
     setLogin,
@@ -154,8 +141,6 @@ function App() {
     setUser,
     myPost,
     setMyPost,
-    count,
-    setCount,
     togglePasswordVisibility,
     navigation,
     showPassword,
@@ -179,6 +164,44 @@ function App() {
     getData();
   }, []);
   
+  // DEADLİNE
+  
+  const date = (dateStr) => {
+    const [day, month, year] = dateStr.split('/').map(Number);
+    return new Date(year, month - 1, day);
+  };
+
+  const deleteExpiredCards = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/advertisement");
+      const now = new Date();
+
+      const expiredCards = response.data.filter(card => {
+        const deadlineDate = date(card.deadline);
+        return deadlineDate < now;
+      });
+
+
+      for (const card of expiredCards) {
+        await axios.delete(`http://localhost:3000/advertisement/${card.id}`);
+      }
+
+      const updatedResponse = await axios.get("http://localhost:3000/advertisement");
+
+      const sortedCards = updatedResponse.data.sort((a, b) => new Date(b.createdDate) - new Date(a.createdDate));
+      setPostCard(sortedCards);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error deleting", error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    deleteExpiredCards();
+  }, []);
+
+
 
   //login functions start
 

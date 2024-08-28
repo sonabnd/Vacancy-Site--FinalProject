@@ -1,17 +1,19 @@
 /* CSS for Contact Page */
 .about {
-  padding: 4rem 3.2rem;
+  padding: 1.5rem 3.2rem;
   height: 100%;
   overflow-y: auto;
 }
-
+.about h1{
+  font-size: 30px;
+}
 .contact-1 h2, .contact-2 h3 {
   font-weight: 500;
   margin-bottom: 20px;
 }
 
 .contact-2 {
-  margin-top: 30px;
+  margin-top: 36px;
   display: flex;
   justify-content: space-between;
 }

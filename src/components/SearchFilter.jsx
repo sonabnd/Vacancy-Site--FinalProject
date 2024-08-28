@@ -6,14 +6,21 @@ import Context from "../context/context";
 import { IoMdClose } from "react-icons/io";
 
 const SearchFilter = () => {
-  const { searchInput, setSearchInput,postCard,setPostCard,filterContainer, showHideFilter,originalPostCard,setOriginalPostCard } = useContext(Context);
-  
+  const { searchInput, setSearchInput, postCard, setPostCard, filterContainer, showHideFilter, originalPostCard, setOriginalPostCard } = useContext(Context);
 
   useEffect(() => {
     if (postCard.length > 0 && originalPostCard.length === 0) {
       setOriginalPostCard(postCard);
     }
   }, [postCard]);
+
+  useEffect(() => {
+    if (!filterContainer) {
+      // Clear the filters and reset postCard when filterContainer is closed
+      setSearchInput("");
+      setPostCard(originalPostCard);
+    }
+  }, [filterContainer, originalPostCard, setPostCard, setSearchInput]);
 
   const getValueInput = (e) => {
     const value = e.target.value;
@@ -28,6 +35,7 @@ const SearchFilter = () => {
       setPostCard(filtered);
     }
   };
+
   return (
     <div className="search-filter-container">
       <div className="search">
@@ -42,10 +50,10 @@ const SearchFilter = () => {
         </div>
         <div className="search-filter" onClick={showHideFilter}>
           <span className="search-label"></span>
-          <span  >
-            {filterContainer ? <IoMdClose className="filter-icon" style={{color : "red", fontSize : "16px"}} /> : <FaFilter className="filter-icon" />}
+          <span>
+            {filterContainer ? <IoMdClose className="filter-icon" style={{ color: "red", fontSize: "16px" }} /> : <FaFilter className="filter-icon" />}
           </span>
-          <span className="filter-text" style={{color : filterContainer ? "red" : "#0C4DDE"}} >{filterContainer ? "Bağla" : "Filterlər"}</span>
+          <span className="filter-text" style={{ color: filterContainer ? "red" : "#0C4DDE" }}>{filterContainer ? "Bağla" : "Filterlər"}</span>
         </div>
       </div>
     </div>
@@ -53,3 +61,4 @@ const SearchFilter = () => {
 };
 
 export default SearchFilter;
+
